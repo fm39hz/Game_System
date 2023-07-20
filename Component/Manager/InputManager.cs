@@ -28,10 +28,10 @@ namespace GameSystem.Component.Manager;
 			var _down = Input.IsActionPressed("ui_down");
 			var _left = Input.IsActionPressed("ui_left");
 			var _right = Input.IsActionPressed("ui_right");
-				if (Input.IsActionJustPressed("ui_dash")){
-					EmitSignal(SignalName.DashKeyPressed);
-					CurrentPlayer.CanMove = false;
-					}
+				// if (Input.IsActionJustPressed("ui_dash")){
+				// 	EmitSignal(SignalName.DashKeyPressed);
+				// 	CurrentPlayer.CanMove = false;
+				// 	}
 				if (CurrentPlayer.CanMove){
 					if (_up || _down || _left || _right){
 						EmitSignal(SignalName.MovementKeyPressed, true);

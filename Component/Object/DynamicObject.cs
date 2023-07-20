@@ -6,6 +6,7 @@ using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Manager;
 
 namespace GameSystem.Component.Object;
+	[GlobalClass]
 	/// <summary>
 	/// Object động, có State Machine & Animation
 	/// </summary>

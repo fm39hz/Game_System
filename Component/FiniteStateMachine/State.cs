@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameSystem.Component.FiniteStateMachine;
     [GlobalClass]
-    public abstract partial class State : Node{
+    public partial class State : Node{
 		[Signal] public delegate void StateRunningEventHandler();
         [Export] public int ID { get; set; }
         public bool Condition { get; protected set; }

@@ -10,7 +10,7 @@ namespace GameSystem.Component.Object;
 	/// <summary>
 	/// Object động, có State Machine & Animation
 	/// </summary>
-	public abstract partial class DynamicObject : CharacterBody2D{
+	public partial class DynamicObject : CharacterBody2D{
 		/// <summary>
 		/// Điều kiện quyết định đối tượng có được di chuyển hay không
 		/// </summary>

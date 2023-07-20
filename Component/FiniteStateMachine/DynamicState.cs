@@ -4,7 +4,7 @@ using GameSystem.Component.Object;
 
 namespace GameSystem.Component.FiniteStateMachine;
 	[GlobalClass]
-	public abstract partial class DynamicState : State{
+	public partial class DynamicState : State{
 		public DynamicObject Object { get; protected set; }
 		public FrameData Frame { get; protected set; }
 		[ExportCategory("Motion")]

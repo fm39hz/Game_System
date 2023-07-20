@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace GameSystem.Component.FiniteStateMachine;
 	[GlobalClass]
-	public abstract partial class StateMachine : Node{
+	public partial class StateMachine : Node{
 		[Signal] public delegate void StateEnteredEventHandler();
 		[Signal] public delegate void StateExitedEventHandler();
 		[Export] public State CurrentState { get; protected set; }

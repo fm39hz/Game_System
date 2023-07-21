@@ -6,7 +6,7 @@ namespace GameSystem.Component.Object;
     /// <summary>
     /// Đối tượng Cơ sở của các đối tượng tương tác
     /// </summary>
-    public class BaseObject : CharacterBody2D{
+    public partial class BaseObject : CharacterBody2D{
 		/// <summary>
 		/// Lưu giá trị kiểm tra xem có đang collide với vật thể nào không
 		/// </summary>

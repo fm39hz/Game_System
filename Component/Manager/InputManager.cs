@@ -37,7 +37,7 @@ namespace GameSystem.Component.Manager;
 						EmitSignal(SignalName.MovementKeyPressed, false);
 						}
 					}
-				if (Input.IsActionPressed("ui_enter")){
+				if (Input.IsActionPressed("ui_accept")){
 					EmitSignal(SignalName.ActionKeyPressed);
 					}
 			}

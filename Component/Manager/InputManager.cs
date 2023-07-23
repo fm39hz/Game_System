@@ -6,6 +6,7 @@ namespace GameSystem.Component.Manager;
 	[GlobalClass]
 	public partial class InputManager : Node{
 		[Signal] public delegate void MovementKeyPressedEventHandler(bool IsPressed);
+		[Signal] public delegate void ActionKeyPressedEventHandler();
 		private DynamicObject Target { get; set; }
 		public override void _Ready(){
 			try{
@@ -35,6 +36,9 @@ namespace GameSystem.Component.Manager;
 					else if (!_up && !_down && !_left && !_right){
 						EmitSignal(SignalName.MovementKeyPressed, false);
 						}
+					}
+				if (Input.IsActionPressed("ui_enter")){
+					EmitSignal(SignalName.ActionKeyPressed);
 					}
 			}
 		public Vector2 TopDownVector(Vector2 inputVector){

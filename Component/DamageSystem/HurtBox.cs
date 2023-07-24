@@ -1,17 +1,14 @@
-using System.Dynamic;
+using GameSystem.Component.Object;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
     [GlobalClass]
-    public partial class HurtBox : Node{
+    public partial class HurtBox : Area2D{
         public DynamicObject Target { get; set; }
-        public Area2D HurtZone { get; set; }
         public override void _EnterTree(){
-            this.HurtZone = new(){
-                CollisionLayer = 2
-                };
+            this.Target = this.GetOwner<DynamicObject>();
             }
         public void EnterHitZone(){
             
             }
-    }
+        }

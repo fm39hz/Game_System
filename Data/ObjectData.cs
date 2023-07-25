@@ -1,15 +1,15 @@
+using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
 namespace GameSystem.Data.Instance;
-    public partial class ObjectData{
-        public int StateID { get; set; }
+    public class ObjectData{
+        public DynamicState CurrentState { get; set; }
         public DirectionData Direction { get; protected set; }
-        public bool IsLoopingAnimation { get; set; }
+        public float Health { get; set; }
         public bool IsFourDirection { get; set; }
         public ObjectData(){
-            this.StateID = 0;
+            this.CurrentState = new();
             this.Direction = new();
-            this.IsLoopingAnimation = true;
             this.IsFourDirection = true;
             }
         public void SetDirection(int input){

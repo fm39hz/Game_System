@@ -36,7 +36,7 @@ namespace GameSystem.Component.Animation{
 					}
 				if (FrameCounter >= 60 * _relativeResponseTime / frameInfo.Speed){
 					if (CurrentFrame == _nextFrame - 1){
-						if (!objectData.IsLoopingAnimation){
+						if (!objectData.CurrentState.IsLoop){
 							EmitSignal(SignalName.AnimationFinished);
 							}
 						CurrentFrame = _firstFrame;             //Reset về frame bắt đầu khi tới frame cuối
@@ -49,7 +49,7 @@ namespace GameSystem.Component.Animation{
 				if (CurrentFrame < _firstFrame || CurrentFrame > _nextFrame){
 					CurrentFrame = _firstFrame;                 //Chuyển tiếp frame tới vị trí mới
 					}
-			FrameCoords = new Vector2I(CurrentFrame, objectData.StateID);
+			FrameCoords = new Vector2I(CurrentFrame, objectData.CurrentState.ID);
 			}
 		}
 	}

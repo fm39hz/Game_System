@@ -4,6 +4,7 @@ using GameSystem.Data.Instance;
 using GameSystem.Component.Animation;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Manager;
+using GameSystem.Component.Object.Equipment;
 
 namespace GameSystem.Component.Object;
 	[GlobalClass]
@@ -18,7 +19,7 @@ namespace GameSystem.Component.Object;
 		/// <summary>
 		/// Kiểm soát signal từ input
 		/// </summary>
-		public InputManager ObjectInputManager { get; protected set; }
+		public InputManager InputManager { get; protected set; }
 		/// <summary>
 		/// Sprite Sheet của đối tượng
 		/// </summary>
@@ -26,16 +27,17 @@ namespace GameSystem.Component.Object;
 		/// <summary>
 		/// State Machine của đối tượng
 		/// </summary>
-		public StateMachine ObjectiveStateMachine { get; protected set; }
+		public StateMachine StateMachine { get; protected set; }
 		/// <summary>
 		/// Metadata, chứa thông tin về State ID, hướng nhìn của object, Animation có loop hay không,...
 		/// </summary>
 		public ObjectData Metadata { get; protected set; }
+		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
 		public override void _EnterTree(){
 			try{
 				this.Sheet = GetFirstChildOfType<SpriteSheet>();
-				this.ObjectInputManager = GetFirstChildOfType<InputManager>();
+				this.InputManager = GetFirstChildOfType<InputManager>();
 				}
 			catch (InvalidCastException CannotGetSpriteSheet){
 				GD.Print("Không thể cast tới Sprite Sheet & Player Input Manager");
@@ -48,7 +50,7 @@ namespace GameSystem.Component.Object;
 			}
 		public override void _Ready(){
 			try{
-				this.ObjectiveStateMachine = GetFirstChildOfType<StateMachine>();
+				this.StateMachine = GetFirstChildOfType<StateMachine>();
 				this.Metadata = new(){
 					IsFourDirection = this.FourDirectionAnimation
 					};
@@ -72,9 +74,8 @@ namespace GameSystem.Component.Object;
 		/// </summary>
 		protected void UpdateMetadata(){
 			try {
-				var _state = this.ObjectiveStateMachine.CurrentState as DynamicState;
-					this.Metadata.StateID = _state.ID;
-					this.Metadata.IsLoopingAnimation = _state.IsLoop;
+				var _state = this.StateMachine.CurrentState as DynamicState;
+					this.Metadata.CurrentState = _state;
 						if (!this.Velocity.IsEqualApprox(Vector2.Zero)){
 							this.Metadata.SetDirection(Velocity);
 							}
@@ -89,7 +90,7 @@ namespace GameSystem.Component.Object;
 		/// </summary>
 		protected void ActiveAnimation(){
 			try {
-				var _state = this.ObjectiveStateMachine.CurrentState as DynamicState;
+				var _state = this.StateMachine.CurrentState as DynamicState;
 				var _frame = _state.Frame;
 					this.Sheet.Animate(_frame, Metadata);
 				}

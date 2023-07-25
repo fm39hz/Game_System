@@ -1,12 +1,16 @@
+using System;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Data.Instance;
 using Godot;
 
 namespace GameSystem.Component.Object.Equipment;
-    public abstract partial class Weapon : DynamicObject{
-        [Export] public Area2D Hitbox { get; set; }
+    public abstract partial class Weapon : BaseObject{
+        [Signal] public delegate void ApplyDamageEventHandler(DamageData damage);
+        public Hitbox Hitbox { get; set; }
         public DamageData Damage { get; set; }
-        public virtual double DoDamage(){
-            return Damage.Value;
+        public DynamicObject Target { get; set; }
+        public override void _EnterTree(){
+            this.Target = GetOwner<DynamicObject>();
+            this.Damage = GetFirstChildOfType<DamageData>();
             }
         }

@@ -13,7 +13,7 @@ namespace GameSystem.Component.Manager;
 				Target = GetOwner<DynamicObject>();
 				}
 			catch(NullReferenceException InputMustInPlayer){
-				GD.Print("InputManager phải được đặt trong 1 Đối tượng DynamicObject");
+				GD.Print("InputManager phải được đặt trong DynamicObject");
 				throw InputMustInPlayer;
 				}
 			}

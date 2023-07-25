@@ -1,4 +1,5 @@
 using GameSystem.Component.Object;
+using GameSystem.Data.Instance;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
@@ -8,7 +9,7 @@ namespace GameSystem.Component.DamageSystem;
         public override void _EnterTree(){
             this.Target = this.GetOwner<DynamicObject>();
             }
-        public void EnterHitZone(){
-            
+        public void TakeDamage(DamageData damage){
+            this.Target.Metadata.Health -= damage.Value;
             }
         }

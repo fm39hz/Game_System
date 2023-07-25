@@ -1,17 +1,18 @@
-using System.Dynamic;
-using System;
-using System.Collections.Generic;
+using GameSystem.Component.Object.Equipment;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
-    public partial class Hitbox : Node{
-        public List<Area2D> HitZone { get; set; }
-    public override void _Ready(){
-        this.HitZone = new List<Area2D>(8);
-        for (int i = 0; i < 8; i++){
-            this.HitZone.Add(new Area2D(){
-                
-                });
+    public partial class Hitbox : Area2D{
+        public Weapon Target { get; set; }
+        public override void _EnterTree(){
+            this.Target = GetOwner<Weapon>();
+            }
+        public override void _PhysicsProcess(double delta){
+            }
+        public void HurtboxEnter(HurtBox target){
+            Target.ApplyDamage += target.TakeDamage;
+            }
+        public void HurtBoxExit(HurtBox target){
+            Target.ApplyDamage -= target.TakeDamage;
             }
         }
-    }

@@ -5,7 +5,7 @@ namespace GameSystem.Component.DamageSystem;
     public partial class Hitbox : Area2D{
         public Weapon Target { get; set; }
         public override void _EnterTree(){
-            this.Target = GetOwner<Weapon>();
+            Target = GetOwner<Weapon>();
             }
         public override void _PhysicsProcess(double delta){
             }

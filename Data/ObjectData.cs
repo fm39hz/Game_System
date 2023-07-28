@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using GameSystem.Component.DamageSystem;
 using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
@@ -7,20 +9,29 @@ namespace GameSystem.Data.Instance;
         public DirectionData Direction { get; protected set; }
         public float Health { get; set; }
         public bool IsFourDirection { get; set; }
+        public List<Effect> Effected { get; set; }
         public ObjectData(){
-            this.CurrentState = new();
-            this.Direction = new();
-            this.IsFourDirection = true;
+            CurrentState = new();
+            Direction = new();
+            IsFourDirection = true;
+            Effected = new();
+            }
+        public void TakeDamage(DamageData damage) {
+            Health -= damage.Value;
+            foreach (var effect in damage.EffectsValue) {
+                Effected.Add(effect);
+                effect.Apply();
+                }
             }
         public void SetDirection(int input){
-            this.Direction.SetDirection(input);
+            Direction.SetDirection(input);
             }
         public void SetDirection(Vector2 input){
-            this.Direction.SetDirection(input);
+            Direction.SetDirection(input);
             }
         public int GetDirectionAsNumber(){
-            if (this.Direction.AsNumber > 3 && this.IsFourDirection){
-                switch (this.Direction.AsNumber){
+            if (Direction.AsNumber > 3 && IsFourDirection){
+                switch (Direction.AsNumber){
                     case 4:
                         return 1;
                     case 5:
@@ -31,9 +42,9 @@ namespace GameSystem.Data.Instance;
                         return 3;
                     }
                 }
-            return this.Direction.AsNumber;
+            return Direction.AsNumber;
             }
         public Vector2 GetDirectionAsVector(){
-            return this.Direction.AsVector.Normalized();
+            return Direction.AsVector.Normalized();
             }
         }

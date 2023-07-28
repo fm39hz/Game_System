@@ -20,11 +20,11 @@ namespace GameSystem.Data.Instance;
 				};
 			}
 		public void SetDirection(int input){
-			this.AsNumber = input;
-			this.AsVector = DirectionConverter.ToDirection(input);
+			AsNumber = input;
+			AsVector = DirectionConverter.ToDirection(input);
 			}
 		public void SetDirection(Vector2 input){
-			this.AsVector = input;
-			this.AsNumber = DirectionConverter.ToDirection(input);
+			AsVector = input;
+			AsNumber = DirectionConverter.ToDirection(input);
 			}
 		}

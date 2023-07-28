@@ -13,40 +13,40 @@ namespace GameSystem.Component.FiniteStateMachine;
 		protected bool IsInitialized { get; set; }
 		public override void _Ready(){
 			var _id = 0;
-			this.States = new();
+			States = new();
 			foreach (var target in GetChildren().OfType<State>()){
-				this.States.Add(target);
+				States.Add(target);
 				target.ID = _id++;
 				}
-			this.Init();
+			Init();
 			}
 		protected void Init(){
-			this.IsInitialized = true;
+			IsInitialized = true;
 				foreach (var selected in States){
-					this.StateEntered += selected.EnteredMachine;
-					selected.StateRunning += this.CheckingCondition;
-					this.StateExited += selected.ExitState;
+					StateEntered += selected.EnteredMachine;
+					selected.StateRunning += CheckingCondition;
+					StateExited += selected.ExitState;
 					}
-			this.SelectState();
-			this.PreviousState = this.CurrentState;
+			SelectState();
+			PreviousState = CurrentState;
 			}
 		protected void SelectState(){
-			if (!this.IsInitialized){
+			if (!IsInitialized){
 				return;
 				}
 			foreach (var selected in States){
 				if (selected.Condition){
-					this.CurrentState = selected;
-					this.EmitSignal(SignalName.StateEntered);
+					CurrentState = selected;
+					EmitSignal(SignalName.StateEntered);
 					return;
 					}
 					}
 			}
 		protected void CheckingCondition(){
-			if (this.IsInitialized && !CurrentState.Condition){
-				this.PreviousState = this.CurrentState;
-					this.EmitSignal(SignalName.StateExited);
-					this.SelectState();
+			if (IsInitialized && !CurrentState.Condition){
+				PreviousState = CurrentState;
+					EmitSignal(SignalName.StateExited);
+					SelectState();
 				}
 			}
 		}

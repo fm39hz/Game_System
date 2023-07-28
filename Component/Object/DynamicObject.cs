@@ -36,8 +36,8 @@ namespace GameSystem.Component.Object;
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
 		public override void _EnterTree(){
 			try{
-				this.Sheet = GetFirstChildOfType<SpriteSheet>();
-				this.InputManager = GetFirstChildOfType<InputManager>();
+				Sheet = GetFirstChildOfType<SpriteSheet>();
+				InputManager = GetFirstChildOfType<InputManager>();
 				}
 			catch (InvalidCastException CannotGetSpriteSheet){
 				GD.Print("Không thể cast tới Sprite Sheet & Player Input Manager");
@@ -50,9 +50,9 @@ namespace GameSystem.Component.Object;
 			}
 		public override void _Ready(){
 			try{
-				this.StateMachine = GetFirstChildOfType<StateMachine>();
-				this.Metadata = new(){
-					IsFourDirection = this.FourDirectionAnimation
+				StateMachine = GetFirstChildOfType<StateMachine>();
+				Metadata = new(){
+					IsFourDirection = FourDirectionAnimation
 					};
 				}
 			catch (InvalidCastException CannotGetStateMachine){
@@ -67,21 +67,21 @@ namespace GameSystem.Component.Object;
 		public override void _PhysicsProcess(double delta){
 			UpdateMetadata();
 			ActiveAnimation();
-			this.IsCollided = MoveAndSlide();
+			IsCollided = MoveAndSlide();
 			}
 		/// <summary>
 		/// Cập nhật Metadata của đối tượng
 		/// </summary>
 		protected void UpdateMetadata(){
 			try {
-				var _state = this.StateMachine.CurrentState as DynamicState;
-					this.Metadata.CurrentState = _state;
-						if (!this.Velocity.IsEqualApprox(Vector2.Zero)){
-							this.Metadata.SetDirection(Velocity);
+				var _state = StateMachine.CurrentState as DynamicState;
+					Metadata.CurrentState = _state;
+						if (!Velocity.IsEqualApprox(Vector2.Zero)){
+							Metadata.SetDirection(Velocity);
 							}
 				}
 			catch (NullReferenceException CurrentStateMissing){
-				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + this.Name + "\'");
+				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
 				throw CurrentStateMissing;
 				}
 			}
@@ -90,12 +90,12 @@ namespace GameSystem.Component.Object;
 		/// </summary>
 		protected void ActiveAnimation(){
 			try {
-				var _state = this.StateMachine.CurrentState as DynamicState;
+				var _state = StateMachine.CurrentState as DynamicState;
 				var _frame = _state.Frame;
-					this.Sheet.Animate(_frame, Metadata);
+					Sheet.Animate(_frame, Metadata);
 				}
 			catch (NullReferenceException CurrentStateMissing){
-				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + this.Name + "\'");
+				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
 				throw CurrentStateMissing;
 				}
 			}

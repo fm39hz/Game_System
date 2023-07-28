@@ -10,7 +10,7 @@ namespace GameSystem.Component.Object.Equipment;
         public DamageData Damage { get; set; }
         public DynamicObject Target { get; set; }
         public override void _EnterTree(){
-            this.Target = GetOwner<DynamicObject>();
-            this.Damage = GetFirstChildOfType<DamageData>();
+            Target = GetOwner<DynamicObject>();
+            Damage = GetFirstChildOfType<DamageData>();
             }
         }

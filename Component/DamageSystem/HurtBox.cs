@@ -7,9 +7,14 @@ namespace GameSystem.Component.DamageSystem;
     public partial class HurtBox : Area2D{
         public DynamicObject Target { get; set; }
         public override void _EnterTree(){
-            this.Target = this.GetOwner<DynamicObject>();
+            Target = GetOwner<DynamicObject>();
             }
         public void TakeDamage(DamageData damage){
-            this.Target.Metadata.Health -= damage.Value;
+            foreach (var target in damage.Target){
+                if (Target.GetType().IsAssignableTo(target.GetType())){
+                    Target.Metadata.TakeDamage(damage);
+                    return;
+                    }
+                }
             }
         }

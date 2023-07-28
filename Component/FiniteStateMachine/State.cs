@@ -11,24 +11,24 @@ namespace GameSystem.Component.FiniteStateMachine;
         protected bool IsInitialized { get; set; }
         public override void _EnterTree(){
             try{
-                this.StateController = this.GetParent<StateMachine>();
+                StateController = GetParent<StateMachine>();
                 }
             catch (NullReferenceException){
-                GD.Print("Failed to detect State Machine for State \"" + this.Name + "\"");
-                GD.Print("This State's Parent is \"" + this.GetParent().GetType() + "\"");
+                GD.Print("Failed to detect State Machine for State \"" + Name + "\"");
+                GD.Print("This State's Parent is \"" + GetParent().GetType() + "\"");
                 }
             }
         public override void _Ready(){
-             this.Init();
+             Init();
             }
         public override void _PhysicsProcess(double delta){
-            this.UpdateCondition(delta);
+            UpdateCondition(delta);
                 if (StateController.CurrentState == this){
                     RunningState(delta);
                     }
             }
         protected void Init(){
-            this.IsInitialized = true;
+            IsInitialized = true;
             }
         public DynamicState ToDynamic(){
             return this as DynamicState;
@@ -43,41 +43,41 @@ namespace GameSystem.Component.FiniteStateMachine;
             return false;
             }
         public bool IsState(String stateName){
-            if (stateName == this.Name){
+            if (stateName == Name){
                 return true;
                 }
             return false;
             }
         public virtual void SetCondition(bool condition){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
-            this.Condition = condition;
+            Condition = condition;
             }
         public virtual void ResetCondition(){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
-            this.Condition = false;
+            Condition = false;
             }
         public virtual void EnteredMachine(){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
             }
         public virtual void UpdateCondition(double delta){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
             }
         public virtual void RunningState(double delta){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
-            this.EmitSignal(SignalName.StateRunning);
+            EmitSignal(SignalName.StateRunning);
             }
         public virtual void ExitState(){
-            if (!this.IsInitialized){
+            if (!IsInitialized){
                 return;
                 }
             }

@@ -9,9 +9,9 @@ namespace GameSystem.Data.Global;
 		/// <returns>1 khi fps đạt ngưỡng lý tưởng</returns>
         public double RelativeResponseTime { get; private set; }
         public override void _Ready(){
-            this.ProcessMode = ProcessModeEnum.Always;
+            ProcessMode = ProcessModeEnum.Always;
             }
         public override void _PhysicsProcess(double delta){
-            this.RelativeResponseTime = Performance.GetMonitor(Performance.Monitor.TimeFps) * delta;
+            RelativeResponseTime = Performance.GetMonitor(Performance.Monitor.TimeFps) * delta;
             }
         }   

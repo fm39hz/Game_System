@@ -18,9 +18,9 @@ namespace GameSystem.Component.Object;
 		/// <returns>Node con đầu tiên có type T, hoặc null nếu không tìm thấy</returns>
 		public T GetFirstChildOfType<T>() where T : Node{
 			T targetChild = null;
-				for (int i = 0; i < this.GetChildCount(); i++){
-					if (this.GetChildOrNull<T>(i) != null){
-						targetChild = this.GetChild<T>(i);
+				for (int i = 0; i < GetChildCount(); i++){
+					if (GetChildOrNull<T>(i) != null){
+						targetChild = GetChild<T>(i);
 						break;
 						}
 					}
@@ -32,7 +32,7 @@ namespace GameSystem.Component.Object;
 		/// <typeparam name="T"></typeparam>
 		/// <returns>Node đầu tiên có type T ở cùng cấp, hoặc null nếu không tìm thấy</returns>
 		public T GetFirstSiblingOfType<T>() where T : Node{
-			var parent = this.GetParent();
+			var parent = GetParent();
 			T targetSibling = null;
 				for (int i = 0; i < parent.GetChildCount(); i++){
 					if (parent.GetChildOrNull<T>(i) != null){

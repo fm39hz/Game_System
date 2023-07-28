@@ -4,8 +4,8 @@ namespace GameSystem.Data.Instance;
     /// </summary>
     public class FrameData{
         public FrameData(int frameNumber, double speed){
-            this.Length = frameNumber;
-            this.Speed = speed;
+            Length = frameNumber;
+            Speed = speed;
             }
         /// <summary>
         /// Số frame của Animation

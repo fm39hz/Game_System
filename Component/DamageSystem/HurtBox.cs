@@ -8,6 +8,8 @@ namespace GameSystem.Component.DamageSystem;
         public DynamicObject Target { get; set; }
         public override void _EnterTree(){
             Target = GetOwner<DynamicObject>();
+            CollisionLayer = 2;
+            CollisionMask = 2;
             }
         public void TakeDamage(DamageData damage){
             foreach (var target in damage.Target){

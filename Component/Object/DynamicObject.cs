@@ -34,6 +34,7 @@ namespace GameSystem.Component.Object;
 		public ObjectData Metadata { get; protected set; }
 		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
+		[Export] public float Health { get; set; }
 		public override void _EnterTree(){
 			try{
 				Sheet = GetFirstChildOfType<SpriteSheet>();
@@ -52,7 +53,8 @@ namespace GameSystem.Component.Object;
 			try{
 				StateMachine = GetFirstChildOfType<StateMachine>();
 				Metadata = new(){
-					IsFourDirection = FourDirectionAnimation
+					IsFourDirection = FourDirectionAnimation,
+					Health = this.Health
 					};
 				}
 			catch (InvalidCastException CannotGetStateMachine){
@@ -79,6 +81,7 @@ namespace GameSystem.Component.Object;
 						if (!Velocity.IsEqualApprox(Vector2.Zero)){
 							Metadata.SetDirection(Velocity);
 							}
+				GD.Print(Metadata.Health);
 				}
 			catch (NullReferenceException CurrentStateMissing){
 				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");

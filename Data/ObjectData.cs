@@ -15,6 +15,7 @@ namespace GameSystem.Data.Instance;
             Direction = new();
             IsFourDirection = true;
             Effected = new();
+            Health = 0;
             }
         public void TakeDamage(DamageData damage) {
             Health -= damage.Value;

@@ -7,6 +7,7 @@ namespace GameSystem.Data.Instance;
 		public Dictionary<int, Vector2> DirectionContainer { get; private set; }
 		public int AsNumber { get; private set; }
 		public Vector2 AsVector { get; private set; }
+		public float AsRadiant { get; private set; }
 		public DirectionData(){
 			DirectionContainer = new(8){
 				{ 0, Vector2.Down },

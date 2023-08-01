@@ -81,7 +81,6 @@ namespace GameSystem.Component.Object;
 						if (!Velocity.IsEqualApprox(Vector2.Zero)){
 							Metadata.SetDirection(Velocity);
 							}
-				GD.Print(Name +	":" + Metadata.Health);
 				}
 			catch (NullReferenceException CurrentStateMissing){
 				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");

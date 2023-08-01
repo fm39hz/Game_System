@@ -1,5 +1,6 @@
 using GameSystem.Component.Object;
 using GameSystem.Component.Object.Equipment;
+using GameSystem.Data.Instance;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
@@ -12,7 +13,7 @@ namespace GameSystem.Component.DamageSystem;
         public HurtBox OwnerHurtbox { get; set; }
         public override void _EnterTree(){
             Target = GetParent<Weapon>();
-            OwnerHurtbox = GetOwner<DynamicObject>().GetFirstChildOfType<HurtBox>();
+            OwnerHurtbox = Target.GetOwner<DynamicObject>().GetFirstChildOfType<HurtBox>();
             var _hitboxZone = new Area2D(){
                 CollisionLayer = 2,
                 CollisionMask = 2
@@ -30,6 +31,7 @@ namespace GameSystem.Component.DamageSystem;
                 AddChild(_hitboxZone, true);
             }
         public override void _PhysicsProcess(double delta){
+            Rotation = Target.Metadata.Direction.AsRadiant;
             }
         public void HurtboxEnter(Area2D target){
             if (typeof(HurtBox).IsAssignableFrom(target.GetType())){

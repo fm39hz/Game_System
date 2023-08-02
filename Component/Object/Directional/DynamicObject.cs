@@ -13,10 +13,6 @@ namespace GameSystem.Component.Object;
 	/// </summary>
 	public partial class DynamicObject : BaseObject{
 		/// <summary>
-		/// Điều kiện quyết định đối tượng có được di chuyển hay không
-		/// </summary>
-		public bool IsMoveable { get; set; } = true;
-		/// <summary>
 		/// Kiểm soát signal từ input
 		/// </summary>
 		public InputManager InputManager { get; protected set; }
@@ -31,10 +27,9 @@ namespace GameSystem.Component.Object;
 		/// <summary>
 		/// Metadata, chứa thông tin về State ID, hướng nhìn của object, Animation có loop hay không,...
 		/// </summary>
-		public ObjectData Metadata { get; protected set; }
+		public ObjectData Information { get; protected set; }
 		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
-		[Export] public float Health { get; set; }
 		public override void _EnterTree(){
 			try{
 				Sheet = GetFirstChildOfType<SpriteSheet>();
@@ -52,7 +47,7 @@ namespace GameSystem.Component.Object;
 		public override void _Ready(){
 			try{
 				StateMachine = GetFirstChildOfType<StateMachine>();
-				Metadata = new(){
+				Information = new(){
 					IsFourDirection = FourDirectionAnimation,
 					};
 				}
@@ -68,7 +63,7 @@ namespace GameSystem.Component.Object;
 		public override void _PhysicsProcess(double delta){
 			UpdateMetadata();
 			ActiveAnimation();
-			IsCollided = MoveAndSlide();
+			MoveAndSlide();
 			}
 		/// <summary>
 		/// Cập nhật Metadata của đối tượng
@@ -76,9 +71,9 @@ namespace GameSystem.Component.Object;
 		protected void UpdateMetadata(){
 			try {
 				var _state = StateMachine.CurrentState as DynamicState;
-					Metadata.CurrentState = _state;
+					Information.CurrentState = _state;
 						if (!Velocity.IsEqualApprox(Vector2.Zero)){
-							Metadata.SetDirection(Velocity);
+							Information.SetDirection(Velocity);
 							}
 				}
 			catch (NullReferenceException CurrentStateMissing){
@@ -93,7 +88,7 @@ namespace GameSystem.Component.Object;
 			try {
 				var _state = StateMachine.CurrentState as DynamicState;
 				var _frame = _state.Frame;
-					Sheet.Animate(_frame, Metadata);
+					Sheet.Animate(_frame, Information);
 				}
 			catch (NullReferenceException CurrentStateMissing){
 				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");

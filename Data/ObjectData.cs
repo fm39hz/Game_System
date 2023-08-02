@@ -4,13 +4,13 @@ using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
 namespace GameSystem.Data.Instance;
-    public class ObjectData{
+    public class DynamicObjectData{
         public DynamicState CurrentState { get; set; }
         public DirectionData Direction { get; protected set; }
         public float Health { get; set; }
         public bool IsFourDirection { get; set; }
         public List<Effect> Effected { get; set; }
-        public ObjectData(){
+        public DynamicObjectData(){
             CurrentState = new();
             Direction = new();
             IsFourDirection = true;

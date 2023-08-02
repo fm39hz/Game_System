@@ -1,6 +1,6 @@
 using System;
 using Godot;
-using GameSystem.Component.Object;
+using GameSystem.Component.Object.Directional;
 
 namespace GameSystem.Component.Manager;
 	[GlobalClass]

@@ -1,6 +1,6 @@
 using Godot;
 using GameSystem.Data.Instance;
-using GameSystem.Component.Object;
+using GameSystem.Component.Object.Directional;
 
 namespace GameSystem.Component.FiniteStateMachine;
 	[GlobalClass]

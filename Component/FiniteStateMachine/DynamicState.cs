@@ -8,7 +8,9 @@ namespace GameSystem.Component.FiniteStateMachine;
 		public DynamicObject Object { get; protected set; }
 		public FrameData Frame { get; protected set; }
 		[ExportCategory("Motion")]
-			[Export] public float MovingSpeed { get; protected set; }
+			[Export] public float MaxSpeed { get; protected set; }
+			[Export] public float Acceleration { get; protected set; }
+			[Export] public float Deceleration { get; protected set; }
 		[ExportCategory("Animation")]
 			[Export] public int NumberOfFrame { get; protected set; }
 			[Export] public bool IsLoop { get; protected set; }

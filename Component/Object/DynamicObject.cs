@@ -31,7 +31,7 @@ namespace GameSystem.Component.Object;
 		/// <summary>
 		/// Metadata, chứa thông tin về State ID, hướng nhìn của object, Animation có loop hay không,...
 		/// </summary>
-		public DynamicObjectData Metadata { get; protected set; }
+		public ObjectData Metadata { get; protected set; }
 		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
 		[Export] public float Health { get; set; }
@@ -54,7 +54,6 @@ namespace GameSystem.Component.Object;
 				StateMachine = GetFirstChildOfType<StateMachine>();
 				Metadata = new(){
 					IsFourDirection = FourDirectionAnimation,
-					Health = this.Health
 					};
 				}
 			catch (InvalidCastException CannotGetStateMachine){

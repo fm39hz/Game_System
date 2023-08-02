@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Data.Instance;
 namespace Prototype.GameSystem.Data;
-    public class LivingObjectData : DynamicObjectData{
+    public class LivingObjectData : ObjectData{
         public List<Effect> EffetedEffects { get; set; }
         public float Health { get; set; }
         public LivingObjectData(){

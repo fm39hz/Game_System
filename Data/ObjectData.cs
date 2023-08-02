@@ -1,14 +1,12 @@
-using System.Collections.Generic;
-using GameSystem.Component.DamageSystem;
 using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
 namespace GameSystem.Data.Instance;
-    public class DynamicObjectData{
+    public class ObjectData{
         public DynamicState CurrentState { get; set; }
         public DirectionData Direction { get; protected set; }
         public bool IsFourDirection { get; set; }
-        public DynamicObjectData(){
+        public ObjectData(){
             CurrentState = new();
             Direction = new();
             IsFourDirection = true;

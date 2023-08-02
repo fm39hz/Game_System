@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using System.Collections.Generic;
 using GameSystem.Data.Instance;
 
 namespace GameSystem.Utility.Direction;

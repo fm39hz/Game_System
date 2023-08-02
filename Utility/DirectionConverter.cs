@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using System.Collections.Generic;
 using GameSystem.Data.Instance;
@@ -8,7 +9,7 @@ namespace GameSystem.Utility.Direction;
 				var _directionMap = new DirectionData().DirectionContainer;
 				var _target = 0;
 					foreach (var direction in _directionMap){
-						if (input.AngleTo(direction.Value) == 0){
+						if (MathF.Round(input.AngleTo(direction.Value)) == 0){
 							_target = direction.Key;
 							break;
 							}

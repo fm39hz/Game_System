@@ -8,9 +8,9 @@ namespace GameSystem.Component.Object;
     /// </summary>
     public partial class BaseObject : CharacterBody2D{
 		/// <summary>
-		/// Lưu giá trị kiểm tra xem có đang collide với vật thể nào không
+		/// Điều kiện quyết định đối tượng có được di chuyển hay không
 		/// </summary>
-		public bool IsCollided { get; protected set; } = false;
+		public bool IsMoveable { get; set; } = true;
 		/// <summary>
 		/// Trả về node con đầu tiên có type T
 		/// </summary>

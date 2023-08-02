@@ -1,6 +1,5 @@
-using GameSystem.Component.Object;
 using GameSystem.Component.Object.Equipment;
-using GameSystem.Data.Instance;
+using GameSystem.Component.Object.Directional;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
@@ -31,7 +30,7 @@ namespace GameSystem.Component.DamageSystem;
                 AddChild(_hitboxZone, true);
             }
         public override void _PhysicsProcess(double delta){
-            Rotation = Target.Metadata.Direction.AsRadiant;
+            Rotation = Target.Information.Direction.AsRadiant;
             }
         public void HurtboxEnter(Area2D target){
             if (typeof(HurtBox).IsAssignableFrom(target.GetType())){

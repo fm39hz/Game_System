@@ -7,22 +7,11 @@ namespace GameSystem.Data.Instance;
     public class DynamicObjectData{
         public DynamicState CurrentState { get; set; }
         public DirectionData Direction { get; protected set; }
-        public float Health { get; set; }
         public bool IsFourDirection { get; set; }
-        public List<Effect> Effected { get; set; }
         public DynamicObjectData(){
             CurrentState = new();
             Direction = new();
             IsFourDirection = true;
-            Effected = new();
-            Health = 0;
-            }
-        public void TakeDamage(DamageData damage) {
-            Health -= damage.Value;
-            foreach (var effect in damage.EffectsValue) {
-                Effected.Add(effect);
-                effect.Apply();
-                }
             }
         public void SetDirection(int input){
             Direction.SetDirection(input);

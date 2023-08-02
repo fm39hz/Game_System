@@ -1,5 +1,6 @@
 using GameSystem.Component.DamageSystem;
 using GameSystem.Data.Instance;
+using GameSystem.Component.Object.Directional;
 using Godot;
 
 namespace GameSystem.Component.Object.Equipment;

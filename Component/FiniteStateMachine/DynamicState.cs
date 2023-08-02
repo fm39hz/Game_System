@@ -10,7 +10,7 @@ namespace GameSystem.Component.FiniteStateMachine;
 		[ExportCategory("Motion")]
 			[Export] public float MaxSpeed { get; protected set; }
 			[Export] public float Acceleration { get; protected set; }
-			[Export] public float Deceleration { get; protected set; }
+			[Export] public float Friction { get; protected set; }
 		[ExportCategory("Animation")]
 			[Export] public int NumberOfFrame { get; protected set; }
 			[Export] public bool IsLoop { get; protected set; }

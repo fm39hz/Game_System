@@ -1,17 +1,31 @@
 using System;
 using Godot;
+using GameSystem.Component.Object;
+using GameSystem.Data.Instance;
 
 namespace GameSystem.Component.FiniteStateMachine;
     [GlobalClass]
     public partial class State : Node{
 		[Signal] public delegate void StateRunningEventHandler();
         [Export] public int ID { get; set; }
+		[ExportCategory("Animation")]
+			[Export] public int NumberOfFrame { get; protected set; }
+			[Export] public bool IsLoop { get; protected set; }
+			[Export] public float AnimationSpeed { get; protected set; }
+		public BaseObject Object { get; protected set; }
+		public FrameData Frame { get; protected set; }
         public bool Condition { get; protected set; }
         protected StateMachine StateController{get; set;}
         protected bool IsInitialized { get; set; }
         public override void _EnterTree(){
             try{
                 StateController = GetParent<StateMachine>();
+                Object = GetOwner<BaseObject>();
+                Frame = new(NumberOfFrame, AnimationSpeed);
+                    if (AnimationSpeed == 0){
+                        IsLoop = false;
+                        GD.Print("Animation Loop đã được set về false vì AnimationSpeed chưa được set");
+                        }
                 }
             catch (NullReferenceException){
                 GD.Print("Failed to detect State Machine for State \"" + Name + "\"");
@@ -19,7 +33,7 @@ namespace GameSystem.Component.FiniteStateMachine;
                 }
             }
         public override void _Ready(){
-             Init();
+            Init();
             }
         public override void _PhysicsProcess(double delta){
             UpdateCondition(delta);

@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameSystem.Data.Instance;
     public class ObjectData{
-        public DynamicState CurrentState { get; set; }
+        public State CurrentState { get; set; }
         public DirectionData Direction { get; protected set; }
         public bool IsFourDirection { get; set; }
         public ObjectData(){

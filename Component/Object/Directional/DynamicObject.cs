@@ -70,7 +70,7 @@ namespace GameSystem.Component.Object.Directional;
 		/// </summary>
 		protected void UpdateMetadata(){
 			try {
-				var _state = StateMachine.CurrentState as DynamicState;
+				var _state = StateMachine.CurrentState;
 					Information.CurrentState = _state;
 						if (!Velocity.IsEqualApprox(Vector2.Zero)){
 							Information.SetDirection(Velocity);
@@ -86,7 +86,7 @@ namespace GameSystem.Component.Object.Directional;
 		/// </summary>
 		protected void ActiveAnimation(){
 			try {
-				var _state = StateMachine.CurrentState as DynamicState;
+				var _state = StateMachine.CurrentState;
 				var _frame = _state.Frame;
 					Sheet.Animate(_frame, Information);
 				}
@@ -96,3 +96,4 @@ namespace GameSystem.Component.Object.Directional;
 				}
 			}
 		}
+ 

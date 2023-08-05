@@ -31,6 +31,9 @@ namespace GameSystem.Component.Animation{
 			var _direction = objectData.GetDirectionAsNumber();     //Lấy hướng nhìn của đối tượng
 			var _firstFrame = frameInfo.Length * _direction++;      //Lấy frame bắt đầu của animation
 			var _nextFrame = frameInfo.Length * _direction;         //Lấy frame bắt đầu của hướng kế tiếp
+				if (objectData.Transitioning){
+					_nextFrame = (frameInfo.Length * _direction) + frameInfo.TransitionFrame;
+					}
 				if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame){
 					FrameCounter += _relativeResponseTime;       //Tạo bộ đếm frame(thực)
 					}

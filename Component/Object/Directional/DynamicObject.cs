@@ -70,16 +70,19 @@ namespace GameSystem.Component.Object.Directional;
 		/// </summary>
 		protected void UpdateMetadata(){
 			try {
-				var _state = StateMachine.CurrentState;
-					Information.CurrentState = _state;
-						if (!Velocity.IsEqualApprox(Vector2.Zero)){
-							Information.SetDirection(Velocity);
-							}
+				Information.CurrentState = StateMachine.CurrentState;
+					if (!Velocity.IsEqualApprox(Vector2.Zero)){
+						Information.SetDirection(Velocity);
+						}
 				}
 			catch (NullReferenceException CurrentStateMissing){
 				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
 				throw CurrentStateMissing;
 				}
+			}
+		public void Transition(){
+			Information.Transitioning = !Information.Transitioning;
+				GD.Print(Information.Transitioning);
 			}
 		/// <summary>
 		/// Animate Sprite Sheet dựa trên thông tin lấy được từ method UpdateMetadata

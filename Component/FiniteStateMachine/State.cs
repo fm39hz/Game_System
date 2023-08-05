@@ -12,6 +12,7 @@ namespace GameSystem.Component.FiniteStateMachine;
 			[Export] public int NumberOfFrame { get; protected set; }
 			[Export] public bool IsLoop { get; protected set; }
 			[Export] public float AnimationSpeed { get; protected set; }
+            [Export] public int TransitionFrame { get; set; }
 		public BaseObject Object { get; protected set; }
 		public FrameData Frame { get; protected set; }
         public bool Condition { get; protected set; }
@@ -21,7 +22,7 @@ namespace GameSystem.Component.FiniteStateMachine;
             try{
                 StateController = GetParent<StateMachine>();
                 Object = GetOwner<BaseObject>();
-                Frame = new(NumberOfFrame, AnimationSpeed);
+                Frame = new(NumberOfFrame, AnimationSpeed, TransitionFrame);
                     if (AnimationSpeed == 0){
                         IsLoop = false;
                         GD.Print("Animation Loop đã được set về false vì AnimationSpeed chưa được set");

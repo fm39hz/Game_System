@@ -1,3 +1,4 @@
+using GameSystem.Component.Object.Directional;
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace GameSystem.Component.FiniteStateMachine;
 			}
 		protected void Init(){
 			IsInitialized = true;
+			StateExited += GetParent<DynamicObject>().Transition;
+			StateEntered += GetParent<DynamicObject>().Transition;
 				foreach (var selected in States){
 					StateEntered += selected.EnteredMachine;
 					selected.StateRunning += CheckingCondition;
@@ -40,7 +43,7 @@ namespace GameSystem.Component.FiniteStateMachine;
 					EmitSignal(SignalName.StateEntered);
 					return;
 					}
-					}
+				}
 			}
 		protected void CheckingCondition(){
 			if (IsInitialized && !CurrentState.Condition){

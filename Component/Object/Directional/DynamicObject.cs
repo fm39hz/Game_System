@@ -4,7 +4,6 @@ using GameSystem.Data.Instance;
 using GameSystem.Component.Animation;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Manager;
-using GameSystem.Component.Object.Equipment;
 
 namespace GameSystem.Component.Object.Directional;
 	[GlobalClass]
@@ -28,7 +27,6 @@ namespace GameSystem.Component.Object.Directional;
 		/// Metadata, chứa thông tin về State ID, hướng nhìn của object, Animation có loop hay không,...
 		/// </summary>
 		public ObjectData Information { get; protected set; }
-		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
 		public override void _EnterTree(){
 			Sheet = GetFirstChildOfType<SpriteSheet>();

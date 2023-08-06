@@ -24,6 +24,9 @@ namespace GameSystem.Component.Object;
 						break;
 						}
 					}
+				if (targetChild == null){
+					throw new ArgumentException("Cannot find target of type " + targetChild.GetType().ToString());
+					}
 			return targetChild;
 			}
 		/// <summary>
@@ -39,6 +42,9 @@ namespace GameSystem.Component.Object;
 						targetSibling = parent.GetChild<T>(i);
 						break;
 						}
+					}
+				if (targetSibling == null){
+					throw new ArgumentException("Cannot find target of type " + targetSibling.GetType().ToString());
 					}
 			return targetSibling;
 			}

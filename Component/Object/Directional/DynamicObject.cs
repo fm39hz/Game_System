@@ -31,34 +31,14 @@ namespace GameSystem.Component.Object.Directional;
 		public Weapon Weapon { get; set; }
 		[Export] public bool FourDirectionAnimation { get; protected set; } = true;
 		public override void _EnterTree(){
-			try{
-				Sheet = GetFirstChildOfType<SpriteSheet>();
-				InputManager = GetFirstChildOfType<InputManager>();
-				}
-			catch (InvalidCastException CannotGetSpriteSheet){
-				GD.Print("Không thể cast tới Sprite Sheet & Player Input Manager");
-				throw CannotGetSpriteSheet;
-				}
-			catch (NullReferenceException DontHaveSpriteSheet){
-				GD.Print("Chưa có Sprite Sheet & Player Input Manger");
-				throw DontHaveSpriteSheet;
-				}
+			Sheet = GetFirstChildOfType<SpriteSheet>();
+			InputManager = GetFirstChildOfType<InputManager>();
 			}
 		public override void _Ready(){
-			try{
-				StateMachine = GetFirstChildOfType<StateMachine>();
-				Information = new(){
-					IsFourDirection = FourDirectionAnimation,
-					};
-				}
-			catch (InvalidCastException CannotGetStateMachine){
-				GD.Print("Không thể cast tới State Machine");
-				throw CannotGetStateMachine;
-				}
-			catch (NullReferenceException DontHaveStateMachine){
-				GD.Print("Chưa có State Machine");
-				throw DontHaveStateMachine;
-				}
+			StateMachine = GetFirstChildOfType<StateMachine>();
+			Information = new(){
+				IsFourDirection = FourDirectionAnimation,
+				};
 			}
 		public override void _PhysicsProcess(double delta){
 			UpdateMetadata();
@@ -82,7 +62,6 @@ namespace GameSystem.Component.Object.Directional;
 			}
 		public void Transition(){
 			Information.Transitioning = !Information.Transitioning;
-				GD.Print(Information.Transitioning);
 			}
 		/// <summary>
 		/// Animate Sprite Sheet dựa trên thông tin lấy được từ method UpdateMetadata
@@ -93,9 +72,8 @@ namespace GameSystem.Component.Object.Directional;
 				var _frame = _state.Frame;
 					Sheet.Animate(_frame, Information);
 				}
-			catch (NullReferenceException CurrentStateMissing){
-				GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
-				throw CurrentStateMissing;
+			catch (NullReferenceException NullRef){
+				throw NullRef;
 				}
 			}
 		}

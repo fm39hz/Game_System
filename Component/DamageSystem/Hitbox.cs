@@ -44,7 +44,7 @@ public partial class Hitbox : Marker2D
 
 	public void HurtboxEnter(Area2D target)
 	{
-		if (typeof(HurtBox).IsAssignableFrom(target.GetType()))
+		if (target is HurtBox)
 		{
 			var _target = target as HurtBox;
 			if (_target != OwnerHurtbox)
@@ -56,7 +56,7 @@ public partial class Hitbox : Marker2D
 
 	public void HurtBoxExit(Area2D target)
 	{
-		if (typeof(HurtBox).IsAssignableFrom(target.GetType()))
+		if (target is HurtBox)
 		{
 			var _target = target as HurtBox;
 			if (_target != OwnerHurtbox)

@@ -2,6 +2,7 @@ using Godot;
 
 namespace GameSystem.Component.DamageSystem;
 
+[GlobalClass]
 public partial class Effect : Node
 {
 	[Signal]

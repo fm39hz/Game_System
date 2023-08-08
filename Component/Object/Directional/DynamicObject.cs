@@ -9,9 +9,6 @@ using GameSystem.Component.Object.Equipment;
 namespace GameSystem.Component.Object.Directional;
 
 [GlobalClass]
-/// <summary>
-/// Object động, có State Machine & Animation
-/// </summary>
 public partial class DynamicObject : BaseObject
 {
 	/// <summary>
@@ -41,10 +38,10 @@ public partial class DynamicObject : BaseObject
 			Sheet = GetFirstChildOfType<SpriteSheet>();
 			InputManager = GetFirstChildOfType<InputManager>();
 		}
-		catch (InvalidCastException CannotGetSpriteSheet)
+		catch (InvalidCastException _cannotGetSpriteSheet)
 		{
-			GD.Print("Không thể cast tới Sprite Sheet & Player Input Manager");
-			throw CannotGetSpriteSheet;
+			GD.Print(_cannotGetSpriteSheet.Message);
+			throw;
 		}
 	}
 
@@ -55,10 +52,10 @@ public partial class DynamicObject : BaseObject
 			StateMachine = GetFirstChildOfType<StateMachine>();
 			Information = GetFirstChildOfType<ObjectData>();
 		}
-		catch (InvalidCastException CannotGetStateMachine)
+		catch (InvalidCastException _cannotGetStateMachine)
 		{
-			GD.Print("Không thể cast tới State Machine");
-			throw CannotGetStateMachine;
+			GD.Print(_cannotGetStateMachine.Message);
+			throw;
 		}
 	}
 
@@ -74,11 +71,11 @@ public partial class DynamicObject : BaseObject
 	/// </summary>
 	protected void UpdateMetadata()
 	{
-			Information.CurrentState = StateMachine.CurrentState;
-			if (!Velocity.IsEqualApprox(Vector2.Zero))
-			{
-				Information.SetDirection(Velocity);
-			}
+		Information.CurrentState = StateMachine.CurrentState;
+		if (!Velocity.IsEqualApprox(Vector2.Zero))
+		{
+			Information.SetDirection(Velocity);
+		}
 	}
 
 	public void Transition()

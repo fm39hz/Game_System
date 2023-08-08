@@ -1,14 +1,13 @@
-using System;
 using Godot;
 
 namespace GameSystem.Data.Global;
 
-public partial class Metadata : Node
+public partial class GlobalData : Node
 {
 	/// <summary>
-	/// Trả về giá trị bằng fps * delta
+	/// Percentage of the real fps to the ideal fps
 	/// </summary>
-	/// <returns>1 khi fps đạt ngưỡng lý tưởng</returns>
+	/// <returns>1 when fps under ideal condition</returns>
 	public double RelativeResponseTime { get; private set; }
 
 	public override void _Ready()
@@ -19,5 +18,6 @@ public partial class Metadata : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		RelativeResponseTime = Performance.GetMonitor(Performance.Monitor.TimeFps) * delta;
+		GD.Print("Fps percentage: " + RelativeResponseTime / 100 + "%");
 	}
 }

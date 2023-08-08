@@ -10,19 +10,18 @@ public partial class LivingObjectData : ObjectData
 	public List<Effect> EffetedEffects { get; set; }
 	[Export] public float Health { get; set; }
 
-	public LivingObjectData()
+	public override void _EnterTree()
 	{
-		EffetedEffects = new List<Effect>();
-		Health = 0;
+		EffetedEffects = new();
 	}
 
 	public void TakeDamage(DamageData damage)
 	{
 		Health -= damage.Value;
-		foreach (var effect in damage.EffectsValue)
+		foreach (var _effect in damage.EffectsValue)
 		{
-			EffetedEffects.Add(effect);
-			effect.Apply();
+			EffetedEffects.Add(_effect);
+			_effect.Apply();
 		}
 	}
 }

@@ -12,22 +12,22 @@ namespace GameSystem.Component.Object.Directional;
 public partial class DynamicObject : BaseObject
 {
 	/// <summary>
-	/// Kiểm soát signal từ input
+	/// Manage the Input Signal
 	/// </summary>
 	public InputManager InputManager { get; protected set; }
 
 	/// <summary>
-	/// Sprite Sheet của đối tượng
+	/// Object SpriteSheet
 	/// </summary>
 	public SpriteSheet Sheet { get; protected set; }
 
 	/// <summary>
-	/// State Machine của đối tượng
+	/// Object state machine, control the State data
 	/// </summary>
 	public StateMachine StateMachine { get; protected set; }
 
 	/// <summary>
-	/// Metadata, chứa thông tin về State ID, hướng nhìn của object, Animation có loop hay không,...
+	/// Object information
 	/// </summary>
 	public ObjectData Information { get; protected set; }
 
@@ -61,15 +61,15 @@ public partial class DynamicObject : BaseObject
 
 	public override void _PhysicsProcess(double delta)
 	{
-		UpdateMetadata();
+		ObjectUpdate();
 		ActiveAnimation();
 		MoveAndSlide();
 	}
 
 	/// <summary>
-	/// Cập nhật Metadata của đối tượng
+	/// Method to update Object data
 	/// </summary>
-	protected void UpdateMetadata()
+	protected void ObjectUpdate()
 	{
 		Information.CurrentState = StateMachine.CurrentState;
 		if (!Velocity.IsEqualApprox(Vector2.Zero))
@@ -85,11 +85,11 @@ public partial class DynamicObject : BaseObject
 	}
 
 	/// <summary>
-	/// Animate Sprite Sheet dựa trên thông tin lấy được từ method UpdateMetadata
+	/// Play the animation based on sheet and current state
 	/// </summary>
 	protected void ActiveAnimation()
 	{
-		var _state = StateMachine.CurrentState;
+		var _state = Information.CurrentState;
 		var _frame = _state.Frame;
 		Sheet.Animate(_frame, Information);
 	}

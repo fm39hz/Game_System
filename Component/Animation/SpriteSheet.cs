@@ -8,29 +8,29 @@ namespace GameSystem.Component.Animation;
 public partial class SpriteSheet : Sprite2D
 {
 	/// <summary>
-	/// Signal được kích khi Chủ thể không loop và chạy xong animation
+	/// Signal trigger when the Sheet finished
 	/// </summary>
 	[Signal]
 	public delegate void AnimationFinishedEventHandler();
 
 	/// <summary>
-	/// Frame hiện tại
+	/// The current frame, show by int
 	/// </summary>
 	private int CurrentFrame { get; set; }
 
 	/// <summary>
-	/// Bộ đếm frame thực
+	/// Realframe counter
 	/// </summary>
 	private double FrameCounter { get; set; }
 
 	/// <summary>
-	/// Chạy animation của Sprite Sheet Dữ liệu của đối tượng được truyền vào
+	/// Run the Animation based on the data provided
 	/// </summary>
-	/// <param name="frameInfo">Thông tin frame hiện tại</param>
-	/// <param name="objectData">Metadata của chủ thể</param>
+	/// <param name="frameInfo">Current Frame data</param>
+	/// <param name="objectData">Owner Data</param>
 	public void Animate(FrameData frameInfo, ObjectData objectData)
 	{
-		var _relativeResponseTime = GetNode<Metadata>("/root/Metadata").RelativeResponseTime;
+		var _relativeResponseTime = GetNode<GlobalData>("/root/GlobalData").RelativeResponseTime;
 		var _direction = objectData.GetDirectionAsNumber(); //Lấy hướng nhìn của đối tượng
 		var _firstFrame = frameInfo.Length * _direction++;  //Lấy frame bắt đầu của animation
 		var _nextFrame = frameInfo.Length * _direction;     //Lấy frame bắt đầu của hướng kế tiếp

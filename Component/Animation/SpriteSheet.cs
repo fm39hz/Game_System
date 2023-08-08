@@ -16,19 +16,18 @@ public partial class SpriteSheet : Sprite2D
 	/// <summary>
 	/// Frame hiện tại
 	/// </summary>
-	private int CurrentFrame { get; set; } = 0;
+	private int CurrentFrame { get; set; }
 
 	/// <summary>
 	/// Bộ đếm frame thực
 	/// </summary>
-	private double FrameCounter { get; set; } = 0;
+	private double FrameCounter { get; set; }
 
 	/// <summary>
 	/// Chạy animation của Sprite Sheet Dữ liệu của đối tượng được truyền vào
 	/// </summary>
 	/// <param name="frameInfo">Thông tin frame hiện tại</param>
 	/// <param name="objectData">Metadata của chủ thể</param>
-	/// <param name="relativeResponseTime">Thời gian phản hồi tương đối</param>
 	public void Animate(FrameData frameInfo, ObjectData objectData)
 	{
 		var _relativeResponseTime = GetNode<Metadata>("/root/Metadata").RelativeResponseTime;

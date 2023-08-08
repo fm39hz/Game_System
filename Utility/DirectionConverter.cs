@@ -10,11 +10,11 @@ public static class DirectionConverter
 	{
 		var _directionMap = new DirectionData().DirectionContainer;
 		var _target = 0;
-		foreach (var direction in _directionMap)
+		foreach (var _direction in _directionMap)
 		{
-			if (MathF.Abs(MathF.Round(input.AngleTo(direction.Value))) <= 2)
+			if (MathF.Abs(MathF.Round(input.AngleTo(_direction.Value))) <= 2)
 			{
-				_target = direction.Key;
+				_target = _direction.Key;
 				break;
 			}
 		}

@@ -12,7 +12,7 @@ public static class DirectionConverter
 		var _target = 0;
 		foreach (var direction in _directionMap)
 		{
-			if (MathF.Round(input.AngleTo(direction.Value)) == 0)
+			if (MathF.Abs(MathF.Round(input.AngleTo(direction.Value))) <= 2)
 			{
 				_target = direction.Key;
 				break;
@@ -31,11 +31,11 @@ public static class DirectionConverter
 			return _target;
 		}
 
-		foreach (var direction in _directionMap)
+		foreach (var _direction in _directionMap)
 		{
-			if (input == direction.Key)
+			if (input == _direction.Key)
 			{
-				_target = direction.Value.Normalized();
+				_target = _direction.Value.Normalized();
 				break;
 			}
 		}
@@ -47,11 +47,11 @@ public static class DirectionConverter
 	{
 		var _radiantMap = new DirectionData().RadiantContainer;
 		var _target = 0.0f;
-		foreach (var radiant in _radiantMap)
+		foreach (var _radian in _radiantMap)
 		{
-			if (input == radiant.Key)
+			if (input == _radian.Key)
 			{
-				_target = radiant.Value;
+				_target = _radian.Value;
 			}
 		}
 

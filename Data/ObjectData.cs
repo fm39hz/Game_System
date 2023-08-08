@@ -3,22 +3,22 @@ using Godot;
 
 namespace GameSystem.Data.Instance;
 
-public class ObjectData
+[GlobalClass]
+public partial class ObjectData : Node
 {
 	public State CurrentState { get; set; }
 	public DirectionData Direction { get; protected set; }
 	public DirectionData OldDirection { get; set; }
-	public bool IsFourDirection { get; set; }
+	[Export] public bool IsFourDirection { get; set; } = true;
 	public bool Transitioning { get; set; }
 
-	public ObjectData()
+	public override void _EnterTree()
 	{
 		CurrentState = new State();
 		Direction = new DirectionData();
 		OldDirection = new DirectionData();
 		IsFourDirection = true;
 	}
-
 	public void SetDirection(int input)
 	{
 		OldDirection = Direction;

@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using GameSystem.Component.DamageSystem;
+using Godot;
 
 namespace GameSystem.Data.Instance;
 
-public class LivingObjectData : ObjectData
+[GlobalClass]
+public partial class LivingObjectData : ObjectData
 {
 	public List<Effect> EffetedEffects { get; set; }
-	public float Health { get; set; }
+	[Export] public float Health { get; set; }
 
 	public LivingObjectData()
 	{

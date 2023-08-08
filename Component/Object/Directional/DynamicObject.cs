@@ -34,9 +34,6 @@ public partial class DynamicObject : BaseObject
 	/// </summary>
 	public ObjectData Information { get; protected set; }
 
-	public Weapon Weapon { get; set; }
-	[Export] public bool FourDirectionAnimation { get; protected set; } = true;
-
 	public override void _EnterTree()
 	{
 		try
@@ -49,11 +46,6 @@ public partial class DynamicObject : BaseObject
 			GD.Print("Không thể cast tới Sprite Sheet & Player Input Manager");
 			throw CannotGetSpriteSheet;
 		}
-		catch (NullReferenceException DontHaveSpriteSheet)
-		{
-			GD.Print("Chưa có Sprite Sheet & Player Input Manger");
-			throw DontHaveSpriteSheet;
-		}
 	}
 
 	public override void _Ready()
@@ -61,20 +53,12 @@ public partial class DynamicObject : BaseObject
 		try
 		{
 			StateMachine = GetFirstChildOfType<StateMachine>();
-			Information = new ObjectData
-			{
-				IsFourDirection = FourDirectionAnimation
-			};
+			Information = GetFirstChildOfType<ObjectData>();
 		}
 		catch (InvalidCastException CannotGetStateMachine)
 		{
 			GD.Print("Không thể cast tới State Machine");
 			throw CannotGetStateMachine;
-		}
-		catch (NullReferenceException DontHaveStateMachine)
-		{
-			GD.Print("Chưa có State Machine");
-			throw DontHaveStateMachine;
 		}
 	}
 
@@ -90,19 +74,11 @@ public partial class DynamicObject : BaseObject
 	/// </summary>
 	protected void UpdateMetadata()
 	{
-		try
-		{
 			Information.CurrentState = StateMachine.CurrentState;
 			if (!Velocity.IsEqualApprox(Vector2.Zero))
 			{
 				Information.SetDirection(Velocity);
 			}
-		}
-		catch (NullReferenceException CurrentStateMissing)
-		{
-			GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
-			throw CurrentStateMissing;
-		}
 	}
 
 	public void Transition()
@@ -116,16 +92,8 @@ public partial class DynamicObject : BaseObject
 	/// </summary>
 	protected void ActiveAnimation()
 	{
-		try
-		{
-			var _state = StateMachine.CurrentState;
-			var _frame = _state.Frame;
-			Sheet.Animate(_frame, Information);
-		}
-		catch (NullReferenceException CurrentStateMissing)
-		{
-			GD.Print("Không thể tìm thấy State hiện tại của đối tượng: \'" + Name + "\'");
-			throw CurrentStateMissing;
-		}
+		var _state = StateMachine.CurrentState;
+		var _frame = _state.Frame;
+		Sheet.Animate(_frame, Information);
 	}
 }

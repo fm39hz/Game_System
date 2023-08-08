@@ -21,17 +21,21 @@ public partial class BaseObject : CharacterBody2D
 	/// <returns>Node con đầu tiên có type T, hoặc null nếu không tìm thấy</returns>
 	public T GetFirstChildOfType<T>() where T : Node
 	{
-		T targetChild = null;
+		T _targetChild = null;
 		for (var i = 0; i < GetChildCount(); i++)
 		{
 			if (GetChildOrNull<T>(i) != null)
 			{
-				targetChild = GetChild<T>(i);
+				_targetChild = GetChild<T>(i);
 				break;
 			}
 		}
 
-		return targetChild;
+		if (_targetChild == null)
+		{
+				throw new Exception("Cannot find any child of type " + typeof(T));
+		}
+		return _targetChild;
 	}
 
 	/// <summary>
@@ -41,17 +45,21 @@ public partial class BaseObject : CharacterBody2D
 	/// <returns>Node đầu tiên có type T ở cùng cấp, hoặc null nếu không tìm thấy</returns>
 	public T GetFirstSiblingOfType<T>() where T : Node
 	{
-		var parent = GetParent();
-		T targetSibling = null;
-		for (var i = 0; i < parent.GetChildCount(); i++)
+		var _parent = GetParent();
+		T _targetSibling = null;
+		for (var i = 0; i < _parent.GetChildCount(); i++)
 		{
-			if (parent.GetChildOrNull<T>(i) != null)
+			if (_parent.GetChildOrNull<T>(i) != null)
 			{
-				targetSibling = parent.GetChild<T>(i);
+				_targetSibling = _parent.GetChild<T>(i);
 				break;
 			}
 		}
 
-		return targetSibling;
+		if (_targetSibling == null)
+		{
+			throw new Exception("Cannot find any sibling of type " + typeof(T));
+		}
+		return _targetSibling;
 	}
 }

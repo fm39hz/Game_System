@@ -34,40 +34,35 @@ public partial class SpriteSheet : Sprite2D
 		var _direction = objectData.GetDirectionAsNumber(); //Lấy hướng nhìn của đối tượng
 		var _firstFrame = frameInfo.Length * _direction++;  //Lấy frame bắt đầu của animation
 		var _nextFrame = frameInfo.Length * _direction;     //Lấy frame bắt đầu của hướng kế tiếp
-		if (objectData.Transitioning)
-		{
-			_nextFrame = frameInfo.Length * _direction + frameInfo.TransitionFrame;
-		}
-
-		if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame)
-		{
-			FrameCounter += _relativeResponseTime; //Tạo bộ đếm frame(thực)
-		}
-
-		if (FrameCounter >= 60 * _relativeResponseTime / frameInfo.Speed)
-		{
-			if (CurrentFrame == _nextFrame - 1)
+			if (objectData.Transitioning)
 			{
-				if (!objectData.CurrentState.IsLoop)
+				_nextFrame = frameInfo.Length * _direction + frameInfo.TransitionFrame;
+			}
+			if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame)
+			{
+				FrameCounter += _relativeResponseTime; //Tạo bộ đếm frame(thực)
+			}
+			if (FrameCounter >= 60 * _relativeResponseTime / frameInfo.Speed)
+			{
+				if (CurrentFrame == _nextFrame - 1)
 				{
-					EmitSignal(SignalName.AnimationFinished);
+					if (!objectData.CurrentState.IsLoop)
+					{
+						EmitSignal(SignalName.AnimationFinished);
+					}
+					CurrentFrame = _firstFrame; //Reset về frame bắt đầu khi tới frame cuối
 				}
-
-				CurrentFrame = _firstFrame; //Reset về frame bắt đầu khi tới frame cuối
+				else if (CurrentFrame < _nextFrame)
+				{
+					CurrentFrame++; //Tăng frame lên 1 khi chưa chạm tới frame cuối
+				}
+				FrameCounter = 0; //Reset bộ đếm frame(thực)
 			}
-			else if (CurrentFrame < _nextFrame)
+			if (CurrentFrame < _firstFrame || CurrentFrame > _nextFrame)
 			{
-				CurrentFrame++; //Tăng frame lên 1 khi chưa chạm tới frame cuối
+				CurrentFrame = _firstFrame; //Chuyển tiếp frame tới vị trí mới
 			}
-
-			FrameCounter = 0; //Reset bộ đếm frame(thực)
-		}
-
-		if (CurrentFrame < _firstFrame || CurrentFrame > _nextFrame)
-		{
-			CurrentFrame = _firstFrame; //Chuyển tiếp frame tới vị trí mới
-		}
-
+			GD.Print(CurrentFrame + " " + objectData.CurrentState.ID);
 		FrameCoords = new Vector2I(CurrentFrame, objectData.CurrentState.ID);
 	}
 }

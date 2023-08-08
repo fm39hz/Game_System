@@ -37,11 +37,11 @@ public partial class StateMachine : Node
 		IsInitialized = true;
 		StateExited += GetParent<DynamicObject>().Transition;
 		StateEntered += GetParent<DynamicObject>().Transition;
-		foreach (var selected in States)
+		foreach (var _selected in States)
 		{
-			StateEntered += selected.EnteredMachine;
-			selected.StateRunning += CheckingCondition;
-			StateExited += selected.ExitState;
+			StateEntered += _selected.EnteredMachine;
+			_selected.StateRunning += CheckingCondition;
+			StateExited += _selected.ExitState;
 		}
 
 		SelectState();
@@ -55,11 +55,11 @@ public partial class StateMachine : Node
 			return;
 		}
 
-		foreach (var selected in States)
+		foreach (var _selected in States)
 		{
-			if (selected.Condition)
+			if (_selected.Condition)
 			{
-				CurrentState = selected;
+				CurrentState = _selected;
 				EmitSignal(SignalName.StateEntered);
 				return;
 			}

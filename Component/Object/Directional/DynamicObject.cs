@@ -4,7 +4,6 @@ using GameSystem.Data.Instance;
 using GameSystem.Component.Animation;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Manager;
-using GameSystem.Component.Object.Equipment;
 using GameSystem.Utility;
 
 namespace GameSystem.Component.Object.Directional;

@@ -31,16 +31,16 @@ public partial class SpriteSheet : Sprite2D
 	public void Animate(FrameData frameInfo, ObjectData objectData)
 	{
 		var _relativeResponseTime = GetNode<GlobalData>("/root/GlobalData").RelativeResponseTime;
-		var _direction = objectData.GetDirectionAsNumber(); //Lấy hướng nhìn của đối tượng
-		var _firstFrame = frameInfo.Length * _direction++;  //Lấy frame bắt đầu của animation
-		var _nextFrame = frameInfo.Length * _direction;     //Lấy frame bắt đầu của hướng kế tiếp
+		var _direction = objectData.GetDirectionAsNumber();		//Get Owner Direction
+		var _firstFrame = frameInfo.Length * _direction++;		//Set the First frame of animation
+		var _nextFrame = frameInfo.Length * _direction;			//Get the end frame
 			if (objectData.Transitioning)
 			{
 				_nextFrame = frameInfo.Length * _direction + frameInfo.TransitionFrame;
 			}
 			if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame)
 			{
-				FrameCounter += _relativeResponseTime; //Tạo bộ đếm frame(thực)
+				FrameCounter += _relativeResponseTime;				//Create realtime frame counter
 			}
 			if (FrameCounter >= 60 * _relativeResponseTime / frameInfo.Speed)
 			{
@@ -50,19 +50,18 @@ public partial class SpriteSheet : Sprite2D
 					{
 						EmitSignal(SignalName.AnimationFinished);
 					}
-					CurrentFrame = _firstFrame; //Reset về frame bắt đầu khi tới frame cuối
+					CurrentFrame = _firstFrame;						//Reset when reach the last frame
 				}
 				else if (CurrentFrame < _nextFrame)
 				{
-					CurrentFrame++; //Tăng frame lên 1 khi chưa chạm tới frame cuối
+					CurrentFrame++;									//Increase frame when frame counter end
 				}
-				FrameCounter = 0; //Reset bộ đếm frame(thực)
+				FrameCounter = 0;									//Reset frame counter
 			}
-			if (CurrentFrame < _firstFrame || CurrentFrame > _nextFrame)
+			if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)
 			{
-				CurrentFrame = _firstFrame; //Chuyển tiếp frame tới vị trí mới
+				CurrentFrame = _firstFrame;							//Move the frame to the next position
 			}
-			GD.Print(CurrentFrame + " " + objectData.CurrentState.ID);
 		FrameCoords = new Vector2I(CurrentFrame, objectData.CurrentState.ID);
 	}
 }

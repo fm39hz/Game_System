@@ -26,14 +26,14 @@ public partial class State : Node
 	{
 		try
 		{
-			StateController = GetParent<StateMachine>();
-			Object = GetOwner<BaseObject>();
-			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 			if (AnimationSpeed == 0)
 			{
 				IsLoop = false;
-				GD.Print("Animation Loop đã được set về false vì AnimationSpeed chưa được set");
+				GD.Print("Animation Loop has been set to false because of AnimationSpeed is not set");
 			}
+			StateController = GetParent<StateMachine>();
+			Object = GetOwner<BaseObject>();
+			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
 		catch (NullReferenceException)
 		{

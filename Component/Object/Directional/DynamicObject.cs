@@ -81,7 +81,7 @@ public partial class DynamicObject : BaseObject
 	public void Transition()
 	{
 		Information.Transitioning = !Information.Transitioning;
-		GD.Print(Information.Transitioning);
+		GD.Print(Name + " is Transition");
 	}
 
 	/// <summary>

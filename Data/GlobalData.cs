@@ -18,6 +18,6 @@ public partial class GlobalData : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		RelativeResponseTime = Performance.GetMonitor(Performance.Monitor.TimeFps) * delta;
-		GD.Print("Fps percentage: " + RelativeResponseTime / 100 + "%");
+		// GD.Print("Fps percentage: " + RelativeResponseTime / 100 + "%");
 	}
 }

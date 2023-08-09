@@ -1,6 +1,7 @@
 using GameSystem.Component.DamageSystem;
 using GameSystem.Data.Instance;
 using GameSystem.Component.Object.Directional;
+using GameSystem.Utility;
 using Godot;
 
 namespace GameSystem.Component.Object.Equipment;
@@ -18,6 +19,6 @@ public partial class Weapon : DynamicObject
 	public override void _EnterTree()
 	{
 		Target = GetOwner<DynamicObject>();
-		Damage = GetFirstChildOfType<DamageData>();
+		Damage = GodotNodeInteractive.GetFirstChildOfType<DamageData>(this);
 	}
 }

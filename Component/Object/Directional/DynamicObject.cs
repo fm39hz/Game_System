@@ -5,6 +5,7 @@ using GameSystem.Component.Animation;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Manager;
 using GameSystem.Component.Object.Equipment;
+using GameSystem.Utility;
 
 namespace GameSystem.Component.Object.Directional;
 
@@ -35,8 +36,8 @@ public partial class DynamicObject : BaseObject
 	{
 		try
 		{
-			Sheet = GetFirstChildOfType<SpriteSheet>();
-			InputManager = GetFirstChildOfType<InputManager>();
+			Sheet = GodotNodeInteractive.GetFirstChildOfType<SpriteSheet>(this);
+			InputManager = GodotNodeInteractive.GetFirstChildOfType<InputManager>(this);
 		}
 		catch (InvalidCastException _cannotGetSpriteSheet)
 		{
@@ -49,8 +50,8 @@ public partial class DynamicObject : BaseObject
 	{
 		try
 		{
-			StateMachine = GetFirstChildOfType<StateMachine>();
-			Information = GetFirstChildOfType<ObjectData>();
+			StateMachine = GodotNodeInteractive.GetFirstChildOfType<StateMachine>(this);
+			Information = GodotNodeInteractive.GetFirstChildOfType<ObjectData>(this);
 		}
 		catch (InvalidCastException _cannotGetStateMachine)
 		{

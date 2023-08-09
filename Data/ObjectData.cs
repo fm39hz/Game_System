@@ -1,4 +1,5 @@
 using GameSystem.Component.FiniteStateMachine;
+using GameSystem.Utility;
 using Godot;
 
 namespace GameSystem.Data.Instance;
@@ -12,11 +13,11 @@ public partial class ObjectData : Node
 	[Export] public bool IsFourDirection { get; set; } = true;
 	public bool Transitioning { get; set; }
 
-	public override void _EnterTree()
+	public override void _Ready()
 	{
 		CurrentState = new State();
-		Direction = new DirectionData();
-		OldDirection = new DirectionData();
+		Direction = GodotNodeInteractive.GetFirstChildOfType<DirectionData>(this);
+		OldDirection = Direction;
 		IsFourDirection = true;
 	}
 	public void SetDirection(int input)
@@ -33,22 +34,19 @@ public partial class ObjectData : Node
 
 	public int GetDirectionAsNumber()
 	{
-		if (Direction.AsNumber > 3 && IsFourDirection)
+		if (Direction.AsNumber <= 3 || !IsFourDirection)
 		{
-			switch (Direction.AsNumber)
-			{
-				case 4:
-					return 1;
-				case 5:
-					return 1;
-				case 6:
-					return 3;
-				case 7:
-					return 3;
-			}
+			return Direction.AsNumber;
 		}
 
-		return Direction.AsNumber;
+		return Direction.AsNumber switch
+		{
+			4 => 1,
+			5 => 1,
+			6 => 3,
+			7 => 3,
+			_ => 0
+		};
 	}
 
 	public Vector2 GetDirectionAsVector()

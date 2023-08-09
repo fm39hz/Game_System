@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-namespace GameSystem.Utility.Direction;
+namespace GameSystem.Utility;
 
 public static class Direction
 {

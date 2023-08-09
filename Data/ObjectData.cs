@@ -34,7 +34,7 @@ public partial class ObjectData : Node
 
 	public int GetDirectionAsNumber()
 	{
-		if (Direction.AsNumber <= 3 || !IsFourDirection)
+		if (Direction.AsNumber > 3 || IsFourDirection)
 		{
 			return Direction.AsNumber;
 		}

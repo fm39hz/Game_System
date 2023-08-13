@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using GameSystem.Component.Object.Compositor;
 
 namespace GameSystem.Component.Manager;
 
@@ -12,13 +13,13 @@ public partial class InputManager : Node
 	[Signal]
 	public delegate void ActionKeyPressedEventHandler();
 
-	private PlayerBody Target { get; set; }
+	private CreatureCompositor Target { get; set; }
 
 	public override void _Ready()
 	{
 		try
 		{
-			Target = GetParent<PlayerBody>();
+			Target = GetOwner<CreatureCompositor>();
 		}
 		catch (NullReferenceException)
 		{
@@ -44,7 +45,7 @@ public partial class InputManager : Node
 		var _down = Input.IsActionPressed("ui_down");
 		var _left = Input.IsActionPressed("ui_left");
 		var _right = Input.IsActionPressed("ui_right");
-		if (Target.Compositor.Information.IsMoveable)
+		if (Target.Information.IsMoveable)
 		{
 			if (_up || _down || _left || _right)
 			{
@@ -64,7 +65,7 @@ public partial class InputManager : Node
 
 	public Vector2 TopDownVector(Vector2 inputVector)
 	{
-		if (Target.Compositor.Information.IsMoveable)
+		if (Target.Information.IsMoveable)
 		{
 			inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		}

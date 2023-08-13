@@ -1,5 +1,5 @@
-using GameSystem.Component.Object.Equipment;
-using GameSystem.Component.Object.Directional;
+using GameSystem.Component.Object.Compositor.Equipment;
+using GameSystem.Component.Object.Compositor;
 using GameSystem.Utility;
 using Godot;
 
@@ -17,7 +17,7 @@ public partial class Hitbox : Marker2D
 	public override void _EnterTree()
 	{
 		Target = GetParent<Weapon>();
-		OwnerHurtbox = GodotNodeInteractive.GetFirstChildOfType<HurtBox>(Target.GetOwner<DynamicObject>());
+		OwnerHurtbox = GodotNodeInteractive.GetFirstChildOfType<HurtBox>(Target.GetOwner<CreatureCompositor>());
 		var _hitboxZone = new Area2D()
 		{
 			CollisionLayer = 2,
@@ -40,7 +40,7 @@ public partial class Hitbox : Marker2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Rotation = Target.Information.Direction.AsRadiant;
+		// Rotation = Target.Information.Direction.AsRadiant;
 	}
 
 	public void HurtboxEnter(Area2D target)

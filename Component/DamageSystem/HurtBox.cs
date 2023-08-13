@@ -1,6 +1,6 @@
-using GameSystem.Component.Object;
+using GameSystem.Component.Object.Composition;
+using GameSystem.Component.Object.Compositor;
 using GameSystem.Data.Instance;
-using GameSystem.Component.Object.Directional;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;
@@ -8,23 +8,22 @@ namespace GameSystem.Component.DamageSystem;
 [GlobalClass]
 public partial class HurtBox : Area2D
 {
-	public LivingObject Target { get; set; }
+	public CreatureCompositor Target { get; set; }
 
 	public override void _EnterTree()
 	{
-		Target = GetOwner<LivingObject>();
+		Target = GetOwner<CreatureCompositor>();
 		CollisionLayer = 2;
 		CollisionMask = 2;
 	}
 
 	public void TakeDamage(DamageData damage)
 	{
-		foreach (var target in damage.Target)
+		foreach (var _target in damage.Target)
 		{
-			if (Target.GetType().IsAssignableTo(target.GetType()))
+			if (Target.Information is CreatureData _information)
 			{
-				Target.Information.TakeDamage(damage);
-				return;
+				_information.TakeDamage(damage);
 			}
 		}
 	}

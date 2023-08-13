@@ -19,14 +19,14 @@ public static class Direction
 	};
 	private static readonly Dictionary<int, float> RadianContainer = new(8)
 	{
-		{ 0, MathF.PI / 2 },
+		{ 0, Mathf.Pi / 2 },
 		{ 1, 0 },
-		{ 2, -MathF.PI / 2 },
-		{ 3, 2 * MathF.PI },
-		{ 4, MathF.PI / 4 },
-		{ 5, -MathF.PI / 4 },
-		{ 6, -3 * MathF.PI / 4 },
-		{ 7, 3 * MathF.PI / 4 }
+		{ 2, -Mathf.Pi / 2 },
+		{ 3, 2 * Mathf.Pi },
+		{ 4, Mathf.Pi / 4 },
+		{ 5, -Mathf.Pi / 4 },
+		{ 6, -3 * Mathf.Pi / 4 },
+		{ 7, 3 * Mathf.Pi / 4 }
 	};
 	public static int ToDirection(Vector2 input)
 	{
@@ -57,7 +57,7 @@ public static class Direction
 					break;
 				}
 			}
-		return _target;
+		return _target.Normalized();
 	}
 
 	public static float ToRadian(int input)

@@ -1,56 +1,31 @@
 using GameSystem.Component.FiniteStateMachine;
-using GameSystem.Utility;
-using Godot;
+using GameSystem.Data.Instance;
 
-namespace GameSystem.Data.Instance;
+namespace GameSystem.BaseClass;
 
-[GlobalClass]
-public partial class ObjectData : Node
+public class ObjectData
 {
+	/// <summary>
+	/// Owner current state
+	/// </summary>
 	public State CurrentState { get; set; }
-	public DirectionData Direction { get; protected set; }
-	public DirectionData OldDirection { get; set; }
-	[Export] public bool IsFourDirection { get; set; } = true;
-	public bool Transitioning { get; set; }
 
-	public override void _Ready()
-	{
-		CurrentState = new State();
-		Direction = GodotNodeInteractive.GetFirstChildOfType<DirectionData>(this);
-		OldDirection = Direction;
-		IsFourDirection = true;
-	}
-	public void SetDirection(int input)
-	{
-		OldDirection = Direction;
-		Direction.SetDirection(input);
-	}
+	/// <summary>
+	/// Owner direction facing
+	/// </summary>
+	public DirectionData Direction { get; set; } = new();
 
-	public void SetDirection(Vector2 input)
-	{
-		OldDirection = Direction;
-		Direction.SetDirection(input);
-	}
+	/// <summary>
+	/// Condition allow Target to Move
+	/// </summary>
+	public bool IsMoveable { get; set; } = true;
+	/// <summary>
+	/// Condition to transition Target Data
+	/// </summary>
+	public bool IsTransitioning { get; set; }
 
-	public int GetDirectionAsNumber()
+	public virtual void Update(State currentState)
 	{
-		if (Direction.AsNumber > 3 || IsFourDirection)
-		{
-			return Direction.AsNumber;
-		}
-
-		return Direction.AsNumber switch
-		{
-			4 => 1,
-			5 => 1,
-			6 => 3,
-			7 => 3,
-			_ => 0
-		};
-	}
-
-	public Vector2 GetDirectionAsVector()
-	{
-		return Direction.AsVector.Normalized();
+		CurrentState = currentState;
 	}
 }

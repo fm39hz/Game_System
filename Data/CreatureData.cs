@@ -1,20 +1,16 @@
 using System.Collections.Generic;
 using GameSystem.Component.DamageSystem;
+using GameSystem.BaseClass;
 using Godot;
 
 namespace GameSystem.Data.Instance;
 
 [GlobalClass]
-public partial class LivingObjectData : ObjectData
+public class CreatureData : ObjectData
 {
-	public List<Effect> EffetedEffects { get; set; }
+	public List<Effect> EffetedEffects { get; set; } = new();
 	[Export] public float Health { get; set; }
-
-	public override void _EnterTree()
-	{
-		EffetedEffects = new();
-	}
-
+	
 	public void TakeDamage(DamageData damage)
 	{
 		Health -= damage.Value;

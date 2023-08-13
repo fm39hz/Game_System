@@ -1,6 +1,6 @@
 using System;
+using GameSystem.Component.Object.Compositor;
 using Godot;
-using GameSystem.Component.Object;
 using GameSystem.Data.Instance;
 
 namespace GameSystem.Component.FiniteStateMachine;
@@ -10,16 +10,15 @@ public partial class State : Node
 {
 	[Signal]
 	public delegate void StateRunningEventHandler();
-
-	[Export] public int ID { get; set; }
-	[ExportCategory("Animation")] [Export] public int NumberOfFrame { get; protected set; }
+	[Export] public int Id { get; set; }
+	[ExportCategory("SpriteSheetPlayer")] [Export] public int NumberOfFrame { get; protected set; }
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	public BaseObject Object { get; protected set; }
+	public ObjectCompositor Target { get; protected set; }
 	public FrameData Frame { get; protected set; }
 	public bool Condition { get; protected set; }
-	protected StateMachine StateController { get; set; }
+	protected StateMachine StateMachine { get; set; }
 	protected bool IsInitialized { get; set; }
 
 	public override void _EnterTree()
@@ -29,10 +28,10 @@ public partial class State : Node
 			if (AnimationSpeed == 0)
 			{
 				IsLoop = false;
-				GD.Print("Animation Loop has been set to false because of AnimationSpeed is not set");
+				GD.Print("SpriteSheetPlayer Loop has been set to false because of AnimationSpeed is not set");
 			}
-			StateController = GetParent<StateMachine>();
-			Object = GetOwner<BaseObject>();
+			StateMachine = GetParent<StateMachine>();
+			Target = GetOwner<ObjectCompositor>();
 			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
 		catch (NullReferenceException)
@@ -50,7 +49,7 @@ public partial class State : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateCondition(delta);
-		if (StateController.CurrentState == this)
+		if (StateMachine.CurrentState == this)
 		{
 			RunningState(delta);
 		}

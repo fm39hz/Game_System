@@ -1,3 +1,4 @@
+using GameSystem.BaseClass;
 using Godot;
 using GameSystem.Data.Instance;
 using GameSystem.Data.Global;
@@ -10,8 +11,7 @@ public partial class SpriteSheet : Sprite2D
 	/// <summary>
 	/// Signal trigger when the Sheet finished
 	/// </summary>
-	[Signal]
-	public delegate void AnimationFinishedEventHandler();
+	[Signal] public delegate void AnimationFinishedEventHandler();
 
 	/// <summary>
 	/// The current frame, show by int
@@ -24,25 +24,25 @@ public partial class SpriteSheet : Sprite2D
 	private double FrameCounter { get; set; }
 
 	/// <summary>
-	/// Run the Animation based on the data provided
+	/// Run the SpriteSheetPlayer based on the data provided
 	/// </summary>
-	/// <param name="frameInfo">Current Frame data</param>
 	/// <param name="objectData">Owner Data</param>
-	public void Animate(FrameData frameInfo, ObjectData objectData)
+	public void Animate(ObjectData objectData)
 	{
 		var _relativeResponseTime = GetNode<GlobalData>("/root/GlobalData").RelativeResponseTime;
-		var _direction = objectData.GetDirectionAsNumber();		//Get Owner Direction
-		var _firstFrame = frameInfo.Length * _direction++;		//Set the First frame of animation
-		var _nextFrame = frameInfo.Length * _direction;			//Get the end frame
-			if (objectData.Transitioning)
+		var _frameInfor = objectData.CurrentState.Frame;
+		var _direction = objectData.Direction.GetDirectionAsNumber();	//Get Owner Direction
+		var _firstFrame = _frameInfor.Length * _direction++;				//Set the First frame of animation
+		var _nextFrame = _frameInfor.Length * _direction;				//Get the end frame
+			if (objectData.IsTransitioning)
 			{
-				_nextFrame = frameInfo.Length * _direction + frameInfo.TransitionFrame;
+				_nextFrame = _frameInfor.Length * _direction + _frameInfor.TransitionFrame;
 			}
 			if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame)
 			{
-				FrameCounter += _relativeResponseTime;				//Create realtime frame counter
+				FrameCounter += _relativeResponseTime;						//Create realtime frame counter
 			}
-			if (FrameCounter >= 60 * _relativeResponseTime / frameInfo.Speed)
+			if (FrameCounter >= 60 * _relativeResponseTime / _frameInfor.Speed)
 			{
 				if (CurrentFrame == _nextFrame - 1)
 				{
@@ -50,18 +50,18 @@ public partial class SpriteSheet : Sprite2D
 					{
 						EmitSignal(SignalName.AnimationFinished);
 					}
-					CurrentFrame = _firstFrame;						//Reset when reach the last frame
+					CurrentFrame = _firstFrame;								//Reset when reach the last frame
 				}
 				else if (CurrentFrame < _nextFrame)
 				{
-					CurrentFrame++;									//Increase frame when frame counter end
+					CurrentFrame++;											//Increase frame when frame counter end
 				}
-				FrameCounter = 0;									//Reset frame counter
+				FrameCounter = 0;											//Reset frame counter
 			}
 			if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)
 			{
-				CurrentFrame = _firstFrame;							//Move the frame to the next position
+				CurrentFrame = _firstFrame;									//Move the frame to the next position
 			}
-		FrameCoords = new Vector2I(CurrentFrame, objectData.CurrentState.ID);
+		FrameCoords = new Vector2I(CurrentFrame, objectData.CurrentState.Id);
 	}
 }

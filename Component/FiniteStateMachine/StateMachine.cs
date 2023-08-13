@@ -1,4 +1,4 @@
-using GameSystem.Component.Object.Directional;
+using GameSystem.Component.Object.Compositor;
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,9 @@ namespace GameSystem.Component.FiniteStateMachine;
 [GlobalClass]
 public partial class StateMachine : Node
 {
-	[Signal]
-	public delegate void StateEnteredEventHandler();
+	[Signal] public delegate void StateEnteredEventHandler();
 
-	[Signal]
-	public delegate void StateExitedEventHandler();
+	[Signal] public delegate void StateExitedEventHandler();
 
 	[Export] public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
@@ -23,10 +21,10 @@ public partial class StateMachine : Node
 	{
 		var _id = 0;
 		States = new List<State>();
-		foreach (var target in GetChildren().OfType<State>())
+		foreach (var _target in GetChildren().OfType<State>())
 		{
-			States.Add(target);
-			target.ID = _id++;
+			States.Add(_target);
+			_target.Id = _id++;
 		}
 
 		Init();
@@ -35,8 +33,8 @@ public partial class StateMachine : Node
 	protected void Init()
 	{
 		IsInitialized = true;
-		StateExited += GetParent<DynamicObject>().Transition;
-		StateEntered += GetParent<DynamicObject>().Transition;
+		StateExited += GetOwner<ObjectCompositor>().Transition;
+		StateEntered += GetOwner<ObjectCompositor>().Transition;
 		foreach (var _selected in States)
 		{
 			StateEntered += _selected.EnteredMachine;
@@ -68,11 +66,13 @@ public partial class StateMachine : Node
 
 	protected void CheckingCondition()
 	{
-		if (IsInitialized && !CurrentState.Condition)
+		if (!IsInitialized || CurrentState.Condition)
 		{
-			PreviousState = CurrentState;
-			EmitSignal(SignalName.StateExited);
-			SelectState();
+			return;
 		}
+
+		PreviousState = CurrentState;
+		EmitSignal(SignalName.StateExited);
+		SelectState();
 	}
 }

@@ -1,6 +1,5 @@
 using GameSystem.BaseClass;
 using Godot;
-using GameSystem.Data.Instance;
 using GameSystem.Data.Global;
 
 namespace GameSystem.Component.Animation;

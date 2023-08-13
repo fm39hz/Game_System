@@ -41,18 +41,22 @@ public class DirectionData
 	}	
 	public int GetDirectionAsNumber()
 	{
-		if (AsNumber > 3 || IsFourDirection)
+		if (IsFourDirection)
 		{
-			return AsNumber;
+			return AsNumber switch
+			{
+				0 => 0,
+				1 => 1,
+				2 => 2,
+				3 => 3,
+				4 => 1,
+				5 => 1,
+				6 => 3,
+				7 => 3,
+				_ => 0
+			};
 		}
+		return AsNumber;
 
-		return AsNumber switch
-		{
-			4 => 1,
-			5 => 1,
-			6 => 3,
-			7 => 3,
-			_ => 0
-		};
 	}
 }

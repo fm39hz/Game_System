@@ -18,14 +18,14 @@ public partial class Hitbox : Marker2D
 	{
 		Target = GetParent<Weapon>();
 		OwnerHurtbox = GodotNodeInteractive.GetFirstChildOfType<HurtBox>(Target.GetOwner<CreatureCompositor>());
-		var _hitboxZone = new Area2D()
+		var _hitboxZone = new Area2D
 		{
 			CollisionLayer = 2,
 			CollisionMask = 2
 		};
-		_hitboxZone.AddChild(new CollisionShape2D()
+		_hitboxZone.AddChild(new CollisionShape2D
 		{
-			Shape = new CapsuleShape2D()
+			Shape = new CapsuleShape2D
 			{
 				Radius = ShapeRadius,
 				Height = ShapeHeight

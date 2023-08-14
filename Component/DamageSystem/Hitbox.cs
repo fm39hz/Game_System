@@ -45,9 +45,8 @@ public partial class Hitbox : Marker2D
 
 	public void HurtboxEnter(Area2D target)
 	{
-		if (target is HurtBox)
+		if (target is HurtBox _target)
 		{
-			var _target = target as HurtBox;
 			if (_target != OwnerHurtbox)
 			{
 				Target.ApplyDamage += _target.TakeDamage;
@@ -57,9 +56,8 @@ public partial class Hitbox : Marker2D
 
 	public void HurtBoxExit(Area2D target)
 	{
-		if (target is HurtBox)
+		if (target is HurtBox _target)
 		{
-			var _target = target as HurtBox;
 			if (_target != OwnerHurtbox)
 			{
 				Target.ApplyDamage -= _target.TakeDamage;

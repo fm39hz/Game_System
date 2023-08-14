@@ -70,26 +70,6 @@ public partial class State : Node
 		return this as StaticState;
 	}
 
-	public bool IsState(State state)
-	{
-		if (state == this)
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-	public bool IsState(string stateName)
-	{
-		if (stateName == Name)
-		{
-			return true;
-		}
-
-		return false;
-	}
-
 	public virtual void SetCondition(bool condition)
 	{
 		if (!IsInitialized)

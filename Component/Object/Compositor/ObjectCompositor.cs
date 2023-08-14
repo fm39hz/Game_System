@@ -10,7 +10,7 @@ namespace GameSystem.Component.Object.Compositor;
 public abstract partial class ObjectCompositor : Node2D
 {
 	[Export] public Node Target { get; set; }
-	[Export] public bool IsFourDirectoin { get; set; } = true;
+	[Export] public bool IsFourDirection { get; set; } = true;
 	public StateMachine StateMachine { get; protected set; }
 	public SpriteSheet SpriteSheet { get; protected set; }
 	public ObjectData Information { get; protected set; } = new();
@@ -19,15 +19,14 @@ public abstract partial class ObjectCompositor : Node2D
 	{
 		StateMachine = GodotNodeInteractive.GetFirstChildOfType<StateMachine>(Target);
 		SpriteSheet = GodotNodeInteractive.GetFirstChildOfType<SpriteSheet>(Target);
-		Information = new()
-		{
-			Direction = new()
-			{
-				IsFourDirection = this.IsFourDirectoin
-			}
-		};
+		InformationInit();
+		Information.Direction.IsFourDirection = IsFourDirection;
 	}
 
+	public virtual void InformationInit()
+	{
+		Information = new();
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateInformation();

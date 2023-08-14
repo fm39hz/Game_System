@@ -7,11 +7,15 @@ namespace GameSystem.Component.Object.Compositor;
 [GlobalClass]
 public partial class CreatureCompositor : ObjectCompositor
 {
+	[Export] public float Health { get; set; }
 	public HurtBox Hurtbox { get; set; }
-	public override void _Ready()
+
+	public override void InformationInit()
 	{
-		base._Ready();
-		Information = new CreatureData();
+		Information = new CreatureData
+		{
+			Health = Health
+		};
 	}
 
 	protected override void UpdateInformation()

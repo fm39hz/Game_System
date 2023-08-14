@@ -16,11 +16,11 @@ public class ObjectData
 	public DirectionData Direction { get; set; } = new();
 
 	/// <summary>
-	/// Condition allow Target to Move
+	/// Condition allow Compositor to Move
 	/// </summary>
 	public bool IsMoveable { get; set; } = true;
 	/// <summary>
-	/// Condition to transition Target Data
+	/// Condition to transition Compositor Data
 	/// </summary>
 	public bool IsTransitioning { get; set; }
 

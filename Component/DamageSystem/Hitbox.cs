@@ -40,7 +40,7 @@ public partial class Hitbox : Marker2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Rotation = Target.Information.Direction.AsRadiant;
+		// Rotation = Compositor.Information.Direction.AsRadiant;
 	}
 
 	public void HurtboxEnter(Area2D target)

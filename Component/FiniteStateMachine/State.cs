@@ -8,14 +8,13 @@ namespace GameSystem.Component.FiniteStateMachine;
 [GlobalClass]
 public partial class State : Node
 {
-	[Signal]
-	public delegate void StateRunningEventHandler();
+	[Signal] public delegate void StateRunningEventHandler();
 	[Export] public int Id { get; set; }
 	[ExportCategory("SpriteSheetPlayer")] [Export] public int NumberOfFrame { get; protected set; }
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	public ObjectCompositor Target { get; protected set; }
+	public ObjectCompositor Compositor { get; protected set; }
 	public FrameData Frame { get; protected set; }
 	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
@@ -28,10 +27,10 @@ public partial class State : Node
 			if (AnimationSpeed == 0)
 			{
 				IsLoop = false;
-				GD.Print("SpriteSheetPlayer Loop has been set to false because of AnimationSpeed is not set");
+				GD.Print("SpriteSheet Loop has been set to false because of Animation Speed is not set");
 			}
 			StateMachine = GetParent<StateMachine>();
-			Target = GetOwner<ObjectCompositor>();
+			Compositor = GetOwner<ObjectCompositor>();
 			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
 		catch (NullReferenceException)

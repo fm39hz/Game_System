@@ -1,3 +1,4 @@
+using System;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Component.Object.Composition;
 using GameSystem.Data.Instance;
@@ -12,10 +13,17 @@ public partial class CreatureCompositor : ObjectCompositor
 
 	public override void InformationInit()
 	{
-		Information = new CreatureData
+		if (Target is Creature)
 		{
-			Health = Health
-		};
+			Information = new CreatureData
+			{
+				Health = Health
+			};
+		}
+		else
+		{
+			throw new Exception("Target must be Creature");
+		}
 	}
 
 	protected override void UpdateInformation()

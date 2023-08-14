@@ -47,14 +47,7 @@ public partial class InputManager : Node
 		var _right = Input.IsActionPressed("ui_right");
 		if (Target.Information.IsMoveable)
 		{
-			if (_up || _down || _left || _right)
-			{
-				EmitSignal(SignalName.MovementKeyPressed, true);
-			}
-			else if (!_up && !_down && !_left && !_right)
-			{
-				EmitSignal(SignalName.MovementKeyPressed, false);
-			}
+			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
 
 		if (Input.IsActionPressed("ui_accept"))

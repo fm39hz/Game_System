@@ -39,7 +39,7 @@ public partial class StateMachine : Node
 		{
 			StateEntered += _selected.EnteredMachine;
 			_selected.StateRunning += CheckingCondition;
-			StateExited += _selected.ExitState;
+			StateExited += _selected.ExitMachine;
 		}
 
 		SelectState();

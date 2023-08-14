@@ -6,7 +6,7 @@ using GameSystem.Data.Instance;
 namespace GameSystem.Component.FiniteStateMachine;
 
 [GlobalClass]
-public partial class State : Node
+public abstract partial class State : Node
 {
 	[Signal] public delegate void StateRunningEventHandler();
 	[Export] public int Id { get; set; }
@@ -18,7 +18,6 @@ public partial class State : Node
 	public FrameData Frame { get; protected set; }
 	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
-	protected bool IsInitialized { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -39,12 +38,6 @@ public partial class State : Node
 			GD.Print("This State's Parent is \"" + GetParent().GetType() + "\"");
 		}
 	}
-
-	public override void _Ready()
-	{
-		Init();
-	}
-
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateCondition(delta);
@@ -54,72 +47,24 @@ public partial class State : Node
 		}
 	}
 
-	protected void Init()
-	{
-		IsInitialized = true;
-	}
-
-	public DynamicState ToDynamic()
-	{
-		return this as DynamicState;
-	}
-
-	public StaticState ToStatic()
-	{
-		return this as StaticState;
-	}
-
 	public virtual void SetCondition(bool condition)
 	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-
 		Condition = condition;
 	}
 
 	public virtual void ResetCondition()
 	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-
 		Condition = false;
 	}
 
-	public virtual void EnteredMachine()
-	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-	}
+	public abstract void EnteredMachine();
 
-	public virtual void UpdateCondition(double delta)
-	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-	}
+	public abstract void UpdateCondition(double delta);
 
 	public virtual void RunningState(double delta)
 	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-
 		EmitSignal(SignalName.StateRunning);
 	}
 
-	public virtual void ExitState()
-	{
-		if (!IsInitialized)
-		{
-			return;
-		}
-	}
+	public abstract void ExitMachine();
 }

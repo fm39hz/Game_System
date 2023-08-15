@@ -1,6 +1,6 @@
 using GameSystem.Component.Object.Compositor.Equipment;
 using GameSystem.Component.Object.Compositor;
-using GameSystem.Utility;
+using GameSystem.Utils;
 using Godot;
 
 namespace GameSystem.Component.DamageSystem;

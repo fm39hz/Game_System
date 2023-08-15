@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-namespace GameSystem.Utility;
+namespace GameSystem.Utils;
 
-public static class GodotNodeInteractive
+public static class NodeExtension
 {
 	/// <summary>
 	/// Get the first child node of type T

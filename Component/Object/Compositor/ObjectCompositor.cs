@@ -1,7 +1,7 @@
 using GameSystem.BaseClass;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Animation;
-using GameSystem.Utility;
+using GameSystem.Utils;
 using Godot;
 
 namespace GameSystem.Component.Object.Compositor;

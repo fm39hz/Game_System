@@ -1,5 +1,5 @@
 using Godot;
-using GameSystem.Utility;
+using GameSystem.Utils;
 
 namespace GameSystem.Data.Instance;
 

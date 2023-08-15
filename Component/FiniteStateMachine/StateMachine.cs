@@ -15,7 +15,6 @@ public partial class StateMachine : Node
 	[Export] public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
 	public List<State> States { get; protected set; }
-	protected bool IsInitialized { get; set; }
 
 	public override void _Ready()
 	{
@@ -32,9 +31,9 @@ public partial class StateMachine : Node
 
 	protected void Init()
 	{
-		IsInitialized = true;
-		StateExited += GetOwner<ObjectCompositor>().Transition;
-		StateEntered += GetOwner<ObjectCompositor>().Transition;
+		var _owner = GetOwner<ObjectCompositor>();
+		StateExited += _owner.Transition;
+		StateEntered += _owner.Transition;
 		foreach (var _selected in States)
 		{
 			StateEntered += _selected.EnteredMachine;
@@ -48,29 +47,16 @@ public partial class StateMachine : Node
 
 	protected void SelectState()
 	{
-		if (!IsInitialized)
+		foreach (var _selected in States.Where(selected => selected.Condition))
 		{
+			CurrentState = _selected;
+			EmitSignal(SignalName.StateEntered);
 			return;
-		}
-
-		foreach (var _selected in States)
-		{
-			if (_selected.Condition)
-			{
-				CurrentState = _selected;
-				EmitSignal(SignalName.StateEntered);
-				return;
-			}
 		}
 	}
 
 	protected void CheckingCondition()
 	{
-		if (!IsInitialized || CurrentState.Condition)
-		{
-			return;
-		}
-
 		PreviousState = CurrentState;
 		EmitSignal(SignalName.StateExited);
 		SelectState();

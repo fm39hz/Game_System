@@ -50,7 +50,7 @@ public partial class InputManager : Node
 			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
 
-		if (Input.IsActionPressed("ui_accept"))
+		if (Input.IsActionJustPressed("ui_accept"))
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
 		}

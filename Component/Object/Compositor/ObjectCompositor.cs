@@ -17,8 +17,8 @@ public abstract partial class ObjectCompositor : Node2D
 	
 	public override void _Ready()
 	{
-		StateMachine = GodotNodeInteractive.GetFirstChildOfType<StateMachine>(Target);
-		SpriteSheet = GodotNodeInteractive.GetFirstChildOfType<SpriteSheet>(Target);
+		StateMachine = Target.GetFirstChildOfType<StateMachine>();
+		SpriteSheet = Target.GetFirstChildOfType<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
 	}

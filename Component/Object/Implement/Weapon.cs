@@ -18,6 +18,6 @@ public partial class Weapon : Item
 	public override void _EnterTree()
 	{
 		Target = GetOwner<Item>();
-		Damage = GodotNodeInteractive.GetFirstChildOfType<DamageData>(this);
+		Damage = this.GetFirstChildOfType<DamageData>();
 	}
 }

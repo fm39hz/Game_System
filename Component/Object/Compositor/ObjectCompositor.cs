@@ -21,6 +21,7 @@ public abstract partial class ObjectCompositor : Node2D
 		SpriteSheet = Target.GetFirstChildOfType<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
+		YSortEnabled = true;
 	}
 
 	public virtual void InformationInit()

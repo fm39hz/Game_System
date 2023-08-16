@@ -17,7 +17,7 @@ public abstract partial class ObjectCompositor : Node2D
 	
 	public override void _Ready()
 	{
-		StateMachine = Target.GetFirstChildOfType<StateMachine>();
+		StateMachine = this.GetFirstChildOfType<StateMachine>();
 		SpriteSheet = Target.GetFirstChildOfType<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
@@ -45,8 +45,6 @@ public abstract partial class ObjectCompositor : Node2D
 	public virtual void Transition()
 	{
 		Information.IsTransitioning = !Information.IsTransitioning;
-		#if DEBUG
 			GD.Print(Name + " is Transition");
-		#endif
 	}
 }

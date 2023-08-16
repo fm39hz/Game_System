@@ -7,7 +7,6 @@ namespace GameSystem.Component.FiniteStateMachine;
 [GlobalClass]
 public partial class DynamicState : State
 {
-	private ObjectCompositor Compositor { get; set; }
 	public override void _EnterTree()
 	{
 		base._EnterTree();

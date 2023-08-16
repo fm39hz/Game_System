@@ -13,11 +13,11 @@ public static class NodeExtension
 	public static T GetFirstChildOfType<T>(this Node target) where T : Node
 	{
 		T _targetChild = null;
-		for (var i = 0; i < target.GetChildCount(); i++)
+		for (var _i = 0; _i < target.GetChildCount(); _i++)
 		{
-			if (target.GetChildOrNull<T>(i) != null)
+			if (target.GetChildOrNull<T>(_i) != null)
 			{
-				_targetChild = target.GetChild<T>(i);
+				_targetChild = target.GetChild<T>(_i);
 				break;
 			}
 		}
@@ -38,11 +38,11 @@ public static class NodeExtension
 	{
 		var _parent = target.GetParent();
 		T _targetSibling = null;
-		for (var i = 0; i < _parent.GetChildCount(); i++)
+		for (var _i = 0; _i < _parent.GetChildCount(); _i++)
 		{
-			if (_parent.GetChildOrNull<T>(i) != null)
+			if (_parent.GetChildOrNull<T>(_i) != null)
 			{
-				_targetSibling = _parent.GetChild<T>(i);
+				_targetSibling = _parent.GetChild<T>(_i);
 				break;
 			}
 		}

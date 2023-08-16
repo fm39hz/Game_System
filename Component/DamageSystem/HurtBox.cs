@@ -18,9 +18,9 @@ public partial class HurtBox : Area2D
 
 	public void TakeDamage(DamageData damage)
 	{
-		foreach (var _target in damage.Target)
+		if (Target.Information is CreatureData _information)
 		{
-			if (Target.Information is CreatureData _information)
+			foreach (var _target in damage.Target)
 			{
 				_information.TakeDamage(damage);
 			}

@@ -1,4 +1,5 @@
 using System;
+using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Component.Object.Composition;
 using GameSystem.Data.Instance;
@@ -11,7 +12,13 @@ public partial class CreatureCompositor : ObjectCompositor
 	[Export] public float Health { get; set; }
 	public HurtBox Hurtbox { get; set; }
 
-	public override void InformationInit()
+    public override void _Ready()
+    {
+        base._Ready();
+		Hurtbox = this.GetFirstChildOfType<HurtBox>();
+		SpriteSheet.CollisionChanged += Hurtbox.UpdateCollision;
+	}
+    public override void InformationInit()
 	{
 		if (Target is Creature)
 		{

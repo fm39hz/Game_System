@@ -58,6 +58,11 @@ public partial class StateMachine : Node
 	protected void CheckingCondition()
 	{
 		PreviousState = CurrentState;
+		if (CurrentState.Condition)
+		{
+			return;
+		}
+
 		EmitSignal(SignalName.StateExited);
 		SelectState();
 	}

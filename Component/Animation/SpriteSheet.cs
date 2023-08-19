@@ -15,6 +15,9 @@ public partial class SpriteSheet : Sprite2D
 	/// </summary>
 	[Signal]
 	public delegate void AnimationFinishedEventHandler();
+	/// <summary>
+	/// Signal trigger when the collision must changed	
+	/// </summary>
 
 	[Signal]
 	public delegate void CollisionChangedEventHandler(Array<Vector2[]> polygons, Vector2I bitmapSize);
@@ -33,11 +36,6 @@ public partial class SpriteSheet : Sprite2D
 	/// Realframe counter
 	/// </summary>
 	private double FrameCounter { get; set; }
-	
-	/// <summary>
-	/// The Position when Sprite Centered is on
-	/// </summary>
-	[Export] public Vector2 PivotPoint { get; set; }
 
 	/// <summary>
 	/// Run the SpriteSheetPlayer based on the data provided
@@ -102,7 +100,7 @@ public partial class SpriteSheet : Sprite2D
 		var _position = new Vector2I(_collumn, CurrentState * _height);
 		var _bitmap = new Bitmap();
 		_bitmap.CreateFromImageAlpha(Texture.GetImage());
-		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.4f);
+		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
 		
 		EmitSignal(SignalName.CollisionChanged, _polys, _bitmap.GetSize());
 	}

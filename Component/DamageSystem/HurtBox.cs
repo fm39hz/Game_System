@@ -28,7 +28,7 @@ public partial class HurtBox : Area2D
 		{
 			for (var _i = 0; _i < _polygon.Length; _i++)
 			{
-				_polygon[_i] += Compositor.SpriteSheet.PivotPoint;
+				_polygon[_i] -= Position;
 			}
 			var _collisionPolygon = new CollisionPolygon2D
 			{

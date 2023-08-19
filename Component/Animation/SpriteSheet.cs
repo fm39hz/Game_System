@@ -1,6 +1,8 @@
 using GameSystem.BaseClass;
+using GameSystem.Component.DamageSystem;
 using Godot;
 using GameSystem.Data.Global;
+using GameSystem.Utils;
 using Godot.Collections;
 
 namespace GameSystem.Component.Animation;
@@ -31,6 +33,11 @@ public partial class SpriteSheet : Sprite2D
 	/// Realframe counter
 	/// </summary>
 	private double FrameCounter { get; set; }
+	
+	/// <summary>
+	/// The Position when Sprite Centered is on
+	/// </summary>
+	[Export] public Vector2 PivotPoint { get; set; }
 
 	/// <summary>
 	/// Run the SpriteSheetPlayer based on the data provided
@@ -64,11 +71,9 @@ public partial class SpriteSheet : Sprite2D
 				}
 				
 				CurrentFrame = _firstFrame; //Reset when reach the last frame
-				UpdateCollision();          //Update Collision
 			}
 			else if (CurrentFrame < _nextFrame)
 			{
-				UpdateCollision();	//Update Collision
 				CurrentFrame++; //Increase frame when frame counter end
 			}
 
@@ -78,9 +83,9 @@ public partial class SpriteSheet : Sprite2D
 		if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)
 		{
 			CurrentFrame = _firstFrame; //Move the frame to the next position
-			UpdateCollision();          //Update Collision
 		}
 
+		UpdateCollision(); //Update Collision
 		FrameCoords = new Vector2I(CurrentFrame, CurrentState);
 	}
 
@@ -97,9 +102,13 @@ public partial class SpriteSheet : Sprite2D
 		var _position = new Vector2I(_collumn, CurrentState * _height);
 		var _bitmap = new Bitmap();
 		_bitmap.CreateFromImageAlpha(Texture.GetImage());
-		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height));
+		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.4f);
 		
 		EmitSignal(SignalName.CollisionChanged, _polys, _bitmap.GetSize());
 	}
-    
+
+	public override void _Ready()
+	{
+		CollisionChanged += this.GetFirstChildOfType<HurtBox>().UpdateCollision;
+	}
 }

@@ -15,6 +15,7 @@ public partial class HurtBox : Area2D
 		Compositor = GetOwner<CreatureCompositor>();
 		CollisionLayer = 2;
 		CollisionMask = 2;
+		Modulate = Colors.Red;
 	}
     
 	public void UpdateCollision(Array<Vector2[]> polygons, Vector2I bitmapSize)
@@ -25,15 +26,15 @@ public partial class HurtBox : Area2D
 		}
 		foreach (var _polygon in polygons)
 		{
+			for (var _i = 0; _i < _polygon.Length; _i++)
+			{
+				_polygon[_i] += Compositor.SpriteSheet.PivotPoint;
+			}
 			var _collisionPolygon = new CollisionPolygon2D
 			{
 				Polygon = _polygon
 			};
 			AddChild(_collisionPolygon);
-			if (Compositor.SpriteSheet.Centered)
-			{
-				_collisionPolygon.Position -= bitmapSize;
-			}
 		}
 	}
 	public void TakeDamage(DamageData damage)

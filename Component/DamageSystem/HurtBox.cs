@@ -14,7 +14,7 @@ public partial class HurtBox : Area2D
 	public override void _EnterTree()
 	{
 		Compositor = GetOwner<CreatureCompositor>();
-		AddChild(Area = new());
+		AddChild(Area = new(), true);
 		CollisionLayer = 2;
 		CollisionMask = 2;
 		Modulate = Colors.Red;
@@ -26,7 +26,7 @@ public partial class HurtBox : Area2D
 		{
 			for (var _i = 0; _i < _polygon.Length; _i++)
 			{
-				_polygon[_i] -= Position;
+				_polygon[_i] += Compositor.SpriteSheet.Position;
 			}
 
 			Area.Polygon = _polygon;

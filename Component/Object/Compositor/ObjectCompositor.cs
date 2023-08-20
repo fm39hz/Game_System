@@ -46,6 +46,8 @@ public abstract partial class ObjectCompositor : Node2D
 	public virtual void Transition()
 	{
 		Information.IsTransitioning = !Information.IsTransitioning;
-			GD.Print(Name + " is Transition");
+			#if DEBUG
+				GD.Print(Name + " is Transition");
+			#endif
 	}
 }

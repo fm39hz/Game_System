@@ -15,7 +15,8 @@ public partial class CreatureCompositor : ObjectCompositor
     public override void _Ready()
     {
         base._Ready();
-		Hurtbox = SpriteSheet.GetFirstChildOfType<HurtBox>();
+		Hurtbox = this.GetFirstChildOfType<Creature>().GetFirstChildOfType<HurtBox>();
+		SpriteSheet.PolygonChanged += Hurtbox.UpdateCollision;
 	}
     public override void InformationInit()
 	{

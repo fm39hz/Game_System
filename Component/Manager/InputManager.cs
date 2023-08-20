@@ -30,11 +30,19 @@ public partial class InputManager : Node
 
 	public override void _UnhandledKeyInput(InputEvent @event)
 	{
-		if (@event is InputEventKey _keyEscape)
+		if (@event is InputEventKey _eventKey)
 		{
-			if (_keyEscape.IsPressed() && _keyEscape.Keycode == Key.Escape)
+			if (_eventKey.IsPressed())
 			{
-				GetTree().Quit();
+				if (_eventKey.Keycode == Key.Escape)
+				{
+					GetTree().Quit();
+				}
+
+				if (_eventKey.Keycode == Key.F3)
+				{
+					GetTree().DebugCollisionsHint = true;
+				}
 			}
 		}
 	}

@@ -53,4 +53,12 @@ public static class NodeExtension
 		}
 		return _targetSibling;
 	}
+
+	public static void RemoveAllChild(this Node target)
+	{
+		for (var _i = 0; _i < target.GetChildCount(); _i++)
+		{
+			target.RemoveChild(target.GetChild(_i));
+		}
+	}
 }

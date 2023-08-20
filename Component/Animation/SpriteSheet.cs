@@ -20,7 +20,7 @@ public partial class SpriteSheet : Sprite2D
 	/// </summary>
 
 	[Signal]
-	public delegate void CollisionChangedEventHandler(Array<Vector2[]> polygons, Vector2I bitmapSize);
+	public delegate void CollisionChangedEventHandler(Array<Vector2[]> polygons);
 
 	/// <summary>
 	/// The current frame, show by int

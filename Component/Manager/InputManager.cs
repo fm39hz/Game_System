@@ -13,17 +13,17 @@ public partial class InputManager : Node
 	[Signal]
 	public delegate void ActionKeyPressedEventHandler();
 
-	private CreatureCompositor Target { get; set; }
+	private CreatureCompositor Compositor { get; set; }
 
 	public override void _Ready()
 	{
 		try
 		{
-			Target = GetOwner<CreatureCompositor>();
+			Compositor = GetOwner<CreatureCompositor>();
 		}
 		catch (NullReferenceException)
 		{
-			GD.Print("InputManager phải được đặt trong Player");
+			GD.Print("InputManager phải được đặt trong CreatureCompositor");
 			throw;
 		}
 	}
@@ -45,7 +45,7 @@ public partial class InputManager : Node
 		var _down = Input.IsActionPressed("ui_down");
 		var _left = Input.IsActionPressed("ui_left");
 		var _right = Input.IsActionPressed("ui_right");
-		if (Target.Information.IsMoveable)
+		if (Compositor.Information.IsMoveable)
 		{
 			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
@@ -58,7 +58,7 @@ public partial class InputManager : Node
 
 	public Vector2 TopDownVector(Vector2 inputVector)
 	{
-		if (Target.Information.IsMoveable)
+		if (Compositor.Information.IsMoveable)
 		{
 			inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		}

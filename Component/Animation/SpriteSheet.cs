@@ -1,5 +1,6 @@
 using GameSystem.BaseClass;
 using GameSystem.Component.DamageSystem;
+using GameSystem.Component.Object.Compositor;
 using Godot;
 using GameSystem.Data.Global;
 using GameSystem.Utils;
@@ -20,7 +21,7 @@ public partial class SpriteSheet : Sprite2D
 	/// </summary>
 
 	[Signal]
-	public delegate void CollisionChangedEventHandler(Array<Vector2[]> polygons);
+	public delegate void PolygonChangedEventHandler(Array<Vector2[]> polygons);
 
 	/// <summary>
 	/// The current frame, show by int
@@ -83,11 +84,11 @@ public partial class SpriteSheet : Sprite2D
 			CurrentFrame = _firstFrame; //Move the frame to the next position
 		}
 
-		UpdateCollision(); //Update Collision
+		UpdateSpritePolygon(); //Update Collision
 		FrameCoords = new Vector2I(CurrentFrame, CurrentState);
 	}
 
-	public void UpdateCollision()
+	public void UpdateSpritePolygon()
 	{
 		var _width = Texture.GetWidth() / Hframes;
 		var _height = Texture.GetHeight() / Vframes;
@@ -102,11 +103,6 @@ public partial class SpriteSheet : Sprite2D
 		_bitmap.CreateFromImageAlpha(Texture.GetImage());
 		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
 		
-		EmitSignal(SignalName.CollisionChanged, _polys, _bitmap.GetSize());
-	}
-
-	public override void _Ready()
-	{
-		CollisionChanged += this.GetFirstChildOfType<HurtBox>().UpdateCollision;
+		EmitSignal(SignalName.PolygonChanged, _polys);
 	}
 }

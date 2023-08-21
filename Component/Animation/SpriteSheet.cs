@@ -74,7 +74,7 @@ public partial class SpriteSheet : Sprite2D
 		{
 			CurrentFrame = _firstFrame; //Move the frame to the next position
 		}
-		EmitSignal(SignalName.PolygonChanged, CurrentFrame);
+		EmitSignal(SignalName.PolygonChanged, Frame);
 		FrameCoords = new Vector2I(CurrentFrame, _currentState.Id);
 	}
 

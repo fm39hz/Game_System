@@ -74,7 +74,6 @@ public partial class SpriteSheet : Sprite2D
 		{
 			CurrentFrame = _firstFrame; //Move the frame to the next position
 		}
-		//TODO: reduce perfomance cost due to calculate & generate polygon vector
 		EmitSignal(SignalName.PolygonChanged, CurrentFrame);
 		FrameCoords = new Vector2I(CurrentFrame, _currentState.Id);
 	}

@@ -9,6 +9,7 @@ namespace GameSystem.Data.Instance;
 public class CreatureData : ObjectData
 {
 	public List<Effect> EffetedEffects { get; set; } = new();
+	public Dictionary<int, CollisionPolygon2D> ShapePool { get; set; } = new();
 	[Export] public float Health { get; set; }
 	
 	public void TakeDamage(DamageData damage)

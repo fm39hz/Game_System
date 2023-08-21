@@ -20,7 +20,6 @@ public partial class HurtBox : Area2D
     
 	public void UpdateCollision(int frame)
 	{
-		// TODO: make a polygon loader
 		this.RemoveAllChild();
 		foreach (var (_frame, _collisionPolygon2D) in ((CreatureData)Compositor.Information).ShapePool)
 		{

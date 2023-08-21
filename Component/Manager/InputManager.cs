@@ -41,7 +41,7 @@ public partial class InputManager : Node
 
 				if (_eventKey.Keycode == Key.F3)
 				{
-					GetTree().DebugCollisionsHint = true;
+					GetTree().DebugCollisionsHint = !GetTree().DebugCollisionsHint;
 				}
 			}
 		}

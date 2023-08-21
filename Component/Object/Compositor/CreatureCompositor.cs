@@ -52,7 +52,6 @@ public partial class CreatureCompositor : ObjectCompositor
 				_state++;
 			}
 			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
-			GD.Print(_frame + " :" + _position);
 			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
 			foreach (var _poly in _polys)
 			{

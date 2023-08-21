@@ -1,10 +1,6 @@
 using GameSystem.BaseClass;
-using GameSystem.Component.DamageSystem;
-using GameSystem.Component.Object.Compositor;
 using Godot;
 using GameSystem.Data.Global;
-using GameSystem.Utils;
-using Godot.Collections;
 
 namespace GameSystem.Component.Animation;
 
@@ -21,17 +17,12 @@ public partial class SpriteSheet : Sprite2D
 	/// </summary>
 
 	[Signal]
-	public delegate void PolygonChangedEventHandler(Array<Vector2[]> polygons);
+	public delegate void PolygonChangedEventHandler(int frame);
 
 	/// <summary>
 	/// The current frame, show by int
 	/// </summary>
-	private int CurrentFrame { get; set; }
-
-	/// <summary>
-	/// The current state, show by int
-	/// </summary>
-	private int CurrentState { get; set; }
+	public int CurrentFrame { get; private set; }
 
 	/// <summary>
 	/// Realframe counter
@@ -45,11 +36,11 @@ public partial class SpriteSheet : Sprite2D
 	public void Animate(ObjectData objectData)
 	{
 		var _relativeResponseTime = GetNode<GlobalData>("/root/GlobalData").RelativeResponseTime;
-		var _frameInfor = objectData.CurrentState.Frame;
+		var _currentState = objectData.CurrentState;
+		var _frameInfor = _currentState.Frame;
 		var _direction = objectData.Direction.GetDirectionAsNumber(); //Get Owner Direction
 		var _firstFrame = _frameInfor.Length * _direction++;          //Set the First frame of animation
 		var _nextFrame = _frameInfor.Length * _direction;             //Get the end frame
-		CurrentState = objectData.CurrentState.Id;
 		if (objectData.IsTransitioning)
 		{
 			_nextFrame = _frameInfor.Length * _direction + _frameInfor.TransitionFrame;
@@ -64,7 +55,7 @@ public partial class SpriteSheet : Sprite2D
 		{
 			if (CurrentFrame == _nextFrame - 1)
 			{
-				if (!objectData.CurrentState.IsLoop)
+				if (!_currentState.IsLoop)
 				{
 					EmitSignal(SignalName.AnimationFinished);
 				}
@@ -83,26 +74,9 @@ public partial class SpriteSheet : Sprite2D
 		{
 			CurrentFrame = _firstFrame; //Move the frame to the next position
 		}
-
-		UpdateSpritePolygon(); //Update Collision
-		FrameCoords = new Vector2I(CurrentFrame, CurrentState);
+		//TODO: reduce perfomance cost due to calculate & generate polygon vector
+		EmitSignal(SignalName.PolygonChanged, CurrentFrame);
+		FrameCoords = new Vector2I(CurrentFrame, _currentState.Id);
 	}
 
-	public void UpdateSpritePolygon()
-	{
-		var _width = Texture.GetWidth() / Hframes;
-		var _height = Texture.GetHeight() / Vframes;
-		var _collumn = CurrentFrame * _width;
-		if (CurrentFrame * _width > Texture.GetWidth())
-		{
-			_collumn -= Texture.GetWidth() * CurrentState;
-		}
-
-		var _position = new Vector2I(_collumn, CurrentState * _height);
-		var _bitmap = new Bitmap();
-		_bitmap.CreateFromImageAlpha(Texture.GetImage());
-		var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
-		
-		EmitSignal(SignalName.PolygonChanged, _polys);
-	}
 }

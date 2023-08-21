@@ -1,45 +1,40 @@
 using GameSystem.Component.Object.Compositor;
 using GameSystem.Data.Instance;
+using GameSystem.Utils;
 using Godot;
-using Godot.Collections;
 
 namespace GameSystem.Component.DamageSystem;
 
 [GlobalClass]
 public partial class HurtBox : Area2D
 {
-	public CreatureCompositor Compositor { get; set; }
-	public CollisionPolygon2D Area { get; set; }
+	private CreatureCompositor Compositor { get; set; }
 
 	public override void _EnterTree()
 	{
 		Compositor = GetOwner<CreatureCompositor>();
-		AddChild(Area = new(), true);
 		CollisionLayer = 2;
 		CollisionMask = 2;
 		Modulate = Colors.Red;
 	}
     
-	public void UpdateCollision(Array<Vector2[]> polygons)
+	public void UpdateCollision(int frame)
 	{
-		foreach (var _polygon in polygons)
+		// TODO: make a polygon loader
+		this.RemoveAllChild();
+		foreach (var (_frame, _collisionPolygon2D) in ((CreatureData)Compositor.Information).ShapePool)
 		{
-			for (var _i = 0; _i < _polygon.Length; _i++)
+			if (_frame == frame)
 			{
-				_polygon[_i] += Compositor.SpriteSheet.Position;
+				AddChild(_collisionPolygon2D, true);
 			}
-
-			Area.Polygon = _polygon;
 		}
 	}
 	public void TakeDamage(DamageData damage)
 	{
-		if (Compositor.Information is CreatureData _information)
+		foreach (var _target in damage.Target)
 		{
-			foreach (var _target in damage.Target)
-			{
-				_information.TakeDamage(damage);
-			}
+			((CreatureData)Compositor.Information).TakeDamage(damage);
 		}
 	}
 }

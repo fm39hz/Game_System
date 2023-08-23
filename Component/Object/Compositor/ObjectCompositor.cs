@@ -28,11 +28,11 @@ public abstract partial class ObjectCompositor : Node2D {
 
 	public override void _PhysicsProcess(double delta) {
 		UpdateInformation();
-		PlayAnimation(delta);
+		PlayAnimation();
 	}
 
-	protected void PlayAnimation(double delta) {
-		SpriteSheet.Animate(Information, delta);
+	protected void PlayAnimation() {
+		SpriteSheet.Animate(Information);
 	}
 
 	protected virtual void UpdateInformation() {

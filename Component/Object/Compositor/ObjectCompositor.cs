@@ -7,16 +7,14 @@ using Godot;
 namespace GameSystem.Component.Object.Compositor;
 
 [GlobalClass]
-public abstract partial class ObjectCompositor : Node2D
-{
+public abstract partial class ObjectCompositor : Node2D {
 	[Export] public Node Target { get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;
 	public StateMachine StateMachine { get; protected set; }
 	public SpriteSheet SpriteSheet { get; protected set; }
 	public ObjectData Information { get; protected set; } = new();
-	
-	public override void _Ready()
-	{
+
+	public override void _Ready() {
 		StateMachine = this.GetFirstChildOfType<StateMachine>();
 		SpriteSheet = Target.GetFirstChildOfType<SpriteSheet>();
 		InformationInit();
@@ -24,27 +22,20 @@ public abstract partial class ObjectCompositor : Node2D
 		YSortEnabled = true;
 	}
 
-	public virtual void InformationInit()
-	{
+	public virtual void InformationInit() {
 		Information = new();
 	}
-	public override void _PhysicsProcess(double delta)
-	{
+
+	public override void _PhysicsProcess(double delta) {
 		UpdateInformation();
-		PlayAnimation();
+		PlayAnimation(delta);
 	}
 
-	protected void PlayAnimation()
-	{
-		SpriteSheet.Animate(Information);
+	protected void PlayAnimation(double delta) {
+		SpriteSheet.Animate(Information, delta);
 	}
 
-	protected virtual void UpdateInformation()
-	{
+	protected virtual void UpdateInformation() {
 		Information.Update(StateMachine.CurrentState);
-	}
-	public virtual void Transition()
-	{
-		Information.IsTransitioning = !Information.IsTransitioning;
 	}
 }

@@ -1,4 +1,3 @@
-using GameSystem.Component.Object.Compositor;
 using Godot;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,22 +5,21 @@ using System.Linq;
 namespace GameSystem.Component.FiniteStateMachine;
 
 [GlobalClass]
-public partial class StateMachine : Node
-{
-	[Signal] public delegate void StateEnteredEventHandler();
+public partial class StateMachine : Node {
+	[Signal]
+	public delegate void StateEnteredEventHandler();
 
-	[Signal] public delegate void StateExitedEventHandler();
+	[Signal]
+	public delegate void StateExitedEventHandler();
 
 	[Export] public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
 	public List<State> States { get; protected set; }
 
-	public override void _Ready()
-	{
+	public override void _Ready() {
 		var _id = 0;
 		States = new List<State>();
-		foreach (var _target in GetChildren().OfType<State>())
-		{
+		foreach (var _target in GetChildren().OfType<State>()) {
 			States.Add(_target);
 			_target.Id = _id++;
 		}
@@ -29,13 +27,8 @@ public partial class StateMachine : Node
 		Init();
 	}
 
-	protected void Init()
-	{
-		var _owner = GetOwner<ObjectCompositor>();
-		StateExited += _owner.Transition;
-		StateEntered += _owner.Transition;
-		foreach (var _selected in States)
-		{
+	protected void Init() {
+		foreach (var _selected in States) {
 			StateEntered += _selected.EnteredMachine;
 			_selected.StateRunning += CheckingCondition;
 			StateExited += _selected.ExitMachine;
@@ -45,21 +38,17 @@ public partial class StateMachine : Node
 		PreviousState = CurrentState;
 	}
 
-	protected void SelectState()
-	{
-		foreach (var _selected in States.Where(selected => selected.Condition))
-		{
+	protected void SelectState() {
+		foreach (var _selected in States.Where(selected => selected.Condition)) {
 			CurrentState = _selected;
 			EmitSignal(SignalName.StateEntered);
 			return;
 		}
 	}
 
-	protected void CheckingCondition()
-	{
+	protected void CheckingCondition() {
 		PreviousState = CurrentState;
-		if (CurrentState.Condition)
-		{
+		if (CurrentState.Condition) {
 			return;
 		}
 

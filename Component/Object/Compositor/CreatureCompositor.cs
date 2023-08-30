@@ -41,21 +41,20 @@ public partial class CreatureCompositor : ObjectCompositor {
 		for (int _frame = 0, _state = 0; _frame < SpriteSheet.Hframes * SpriteSheet.Vframes; _frame++) {
 			var _horizontalIndex = _frame * _width - _texture.GetWidth() * _state;
 			var _verticalIndex = _state * _height;
-				if (_frame == SpriteSheet.Hframes * (_state + 1) - 1) {
-					_state++;
-				}
-
 			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
 			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
-				if (_polys.Count == 0) continue;
-            var _poly = _polys[0];
+			foreach (var _poly in _polys) {
 				for (var _i = 0; _i < _poly.Length; _i++) {
 					_poly[_i] += SpriteSheet.Position;
 				}
-			var _shape = new CollisionPolygon2D {
-				Polygon = _poly
-			};
+				var _shape = new CollisionPolygon2D {
+					Polygon = _poly
+				};
 				_information.ShapePool.TryAdd(_frame, _shape);
+			}
+			if (_frame == SpriteSheet.Hframes * (_state + 1) - 1) {
+				_state++;
+			}
 		}
 	}
 

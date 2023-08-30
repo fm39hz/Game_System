@@ -22,12 +22,12 @@ public abstract partial class ObjectCompositor : Node2D {
 		YSortEnabled = true;
 	}
 
-	public virtual void InformationInit() {
+	protected virtual void InformationInit() {
 		Information = new();
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		UpdateInformation();
+		InformationUpdate();
 		PlayAnimation();
 	}
 
@@ -35,7 +35,7 @@ public abstract partial class ObjectCompositor : Node2D {
 		SpriteSheet.Animate(Information);
 	}
 
-	protected virtual void UpdateInformation() {
+	protected virtual void InformationUpdate() {
 		Information.Update(StateMachine.CurrentState);
 	}
 }

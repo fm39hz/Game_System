@@ -14,23 +14,22 @@ public partial class CreatureCompositor : ObjectCompositor {
 
 	public override void _Ready() {
 		base._Ready();
-		Hurtbox = this.GetFirstChildOfType<Creature>().GetFirstChildOfType<HurtBox>();
+		if (Target is not Creature _target) {
+			throw new InvalidCastException("Target must be Creature");
+		}
+		Hurtbox = _target.GetFirstChildOfType<HurtBox>();
 		SpriteSheet.PolygonChanged += Hurtbox.UpdateCollision;
 	}
 
-	public override void InformationInit() {
-		if (Target is not Creature) {
-			throw new InvalidCastException("Target must be Creature");
-		}
-
+	protected override void InformationInit() {
 		Information = new CreatureData {
 			Health = Health
 		};
-		CreateShape();
+		HurtboxInit();
 	}
 
-	public void CreateShape() {
-		if (Information is not CreatureData _data) {
+	public void HurtboxInit() {
+		if (Information is not CreatureData _information) {
 			throw new InvalidCastException("Cannot implicity Object data");
 		}
 
@@ -42,9 +41,9 @@ public partial class CreatureCompositor : ObjectCompositor {
 		for (int _frame = 0, _state = 0; _frame < SpriteSheet.Hframes * SpriteSheet.Vframes; _frame++) {
 			var _horizontalIndex = _frame * _width - _texture.GetWidth() * _state;
 			var _verticalIndex = _state * _height;
-			if (_frame == SpriteSheet.Hframes * (_state + 1) - 1) {
-				_state++;
-			}
+				if (_frame == SpriteSheet.Hframes * (_state + 1) - 1) {
+					_state++;
+				}
 
 			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
 			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
@@ -57,19 +56,16 @@ public partial class CreatureCompositor : ObjectCompositor {
 					Polygon = _poly
 				};
 
-				_data.ShapePool.TryAdd(_frame, _shape);
+				_information.ShapePool.TryAdd(_frame, _shape);
 			}
 		}
 	}
 
-	protected override void UpdateInformation() {
-		base.UpdateInformation();
-		if (Target is not Creature _creature) {
-			throw new ArgumentException("Target must be Creature to be use with Creature Compositor");
-		}
-
-		if (!_creature.Velocity.IsEqualApprox(Vector2.Zero)) {
-			Information.Direction.SetDirection(_creature.Velocity);
+	protected override void InformationUpdate() {
+		base.InformationUpdate();
+		var _target = (Creature)Target;
+		if (!_target.Velocity.IsEqualApprox(Vector2.Zero)) {
+			Information.Direction.SetDirection(_target.Velocity);
 		}
 	}
 }

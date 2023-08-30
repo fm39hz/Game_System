@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using GameSystem.Component.Object.Compositor;
+using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 
 namespace GameSystem.Component.Manager;
@@ -41,9 +42,7 @@ public partial class InputManager : Node
 					GetTree().Quit();
 					break;
 				case Key.F3:
-					#if DEBUG
-					GetTree().DebugCollisionsHint = !GetTree().DebugCollisionsHint;
-					#endif
+					GlobalStatus.Instance.ToggleDebugMode();
 					break;
 			}
 		}

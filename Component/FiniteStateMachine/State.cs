@@ -6,7 +6,8 @@ using GameSystem.Data.Instance;
 namespace GameSystem.Component.FiniteStateMachine;
 
 [GlobalClass]
-public abstract partial class State : Node {
+public abstract partial class State : Node
+{
 	[Signal]
 	public delegate void StateRunningEventHandler();
 
@@ -24,9 +25,12 @@ public abstract partial class State : Node {
 	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
 
-	public override void _EnterTree() {
-		try {
-			if (AnimationSpeed == 0) {
+	public override void _EnterTree()
+	{
+		try
+		{
+			if (AnimationSpeed == 0)
+			{
 				IsLoop = false;
 				GD.Print("SpriteSheet Loop has been set to false because of Animation Speed is not set");
 			}
@@ -35,24 +39,29 @@ public abstract partial class State : Node {
 			Compositor = GetOwner<ObjectCompositor>();
 			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
-		catch (NullReferenceException) {
+		catch (NullReferenceException)
+		{
 			GD.Print("Failed to detect State Machine for State \"" + Name + "\"");
 			GD.Print("This State's Parent is \"" + GetParent().GetType() + "\"");
 		}
 	}
 
-	public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta)
+	{
 		UpdateCondition(delta);
-		if (StateMachine.CurrentState == this) {
+		if (StateMachine.CurrentState == this)
+		{
 			RunningState(delta);
 		}
 	}
 
-	public virtual void SetCondition(bool condition) {
+	public virtual void SetCondition(bool condition)
+	{
 		Condition = condition;
 	}
 
-	public virtual void ResetCondition() {
+	public virtual void ResetCondition()
+	{
 		Condition = false;
 	}
 
@@ -60,7 +69,8 @@ public abstract partial class State : Node {
 
 	public abstract void UpdateCondition(double delta);
 
-	public virtual void RunningState(double delta) {
+	public virtual void RunningState(double delta)
+	{
 		EmitSignal(SignalName.StateRunning);
 	}
 

@@ -3,7 +3,8 @@ namespace GameSystem.Data.Instance;
 /// <summary>
 /// Chứa thông tin về frame của 1 đối tượng
 /// </summary>
-public class FrameData {
+public class FrameData
+{
 	/// <summary>
 	/// Số frame của SpriteSheetPlayer
 	/// </summary>
@@ -18,7 +19,8 @@ public class FrameData {
 	/// <value></value>
 	public double Speed { get; set; }
 
-	public FrameData(int frameNumber, double speed, int transitionFrame) {
+	public FrameData(int frameNumber, double speed, int transitionFrame)
+	{
 		Length = frameNumber;
 		Speed = speed;
 		TransitionFrame = transitionFrame;

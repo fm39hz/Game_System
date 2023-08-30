@@ -4,14 +4,17 @@ using Godot;
 namespace GameSystem.Component.Object.Composition;
 
 [GlobalClass]
-public partial class Creature : CharacterBody2D {
+public partial class Creature : CharacterBody2D
+{
 	public CreatureCompositor Compositor { get; set; }
 
-	public override void _EnterTree() {
+	public override void _EnterTree()
+	{
 		Compositor = GetParent<CreatureCompositor>();
 	}
 
-	public override void _PhysicsProcess(double delta) {
+	public override void _PhysicsProcess(double delta)
+	{
 		MoveAndSlide();
 	}
 }

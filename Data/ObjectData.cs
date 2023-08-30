@@ -3,7 +3,8 @@ using GameSystem.Data.Instance;
 
 namespace GameSystem.BaseClass;
 
-public class ObjectData {
+public class ObjectData
+{
 	/// <summary>
 	/// Owner current state
 	/// </summary>
@@ -14,7 +15,8 @@ public class ObjectData {
 	/// </summary>
 	public DirectionData Direction { get; set; } = new();
 
-	public virtual void Update(State currentState) {
+	public virtual void Update(State currentState)
+	{
 		CurrentState = currentState;
 	}
 }

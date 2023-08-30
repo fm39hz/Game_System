@@ -6,7 +6,8 @@ using Godot;
 namespace GameSystem.Data.Instance;
 
 [GlobalClass]
-public class CreatureData : ObjectData {
+public class CreatureData : ObjectData
+{
 	/// <summary>
 	/// Condition allow Compositor to Move
 	/// </summary>
@@ -16,9 +17,11 @@ public class CreatureData : ObjectData {
 	public Dictionary<int, CollisionPolygon2D> ShapePool { get; set; } = new();
 	[Export] public float Health { get; set; }
 
-	public void TakeDamage(DamageData damage) {
+	public void TakeDamage(DamageData damage)
+	{
 		Health -= damage.Value;
-		foreach (var _effect in damage.EffectsValue) {
+		foreach (var _effect in damage.EffectsValue)
+		{
 			EffetedEffects.Add(_effect);
 			_effect.Apply();
 		}

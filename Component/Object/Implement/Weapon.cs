@@ -7,7 +7,8 @@ using Godot;
 namespace GameSystem.Component.Object.Compositor.Equipment;
 
 [GlobalClass]
-public partial class Weapon : Item {
+public partial class Weapon : Item
+{
 	[Signal]
 	public delegate void ApplyDamageEventHandler(DamageData damage);
 
@@ -15,7 +16,8 @@ public partial class Weapon : Item {
 	public DamageData Damage { get; set; }
 	public Item Target { get; set; }
 
-	public override void _EnterTree() {
+	public override void _EnterTree()
+	{
 		Target = GetOwner<Item>();
 		Damage = this.GetFirstChild<DamageData>();
 	}

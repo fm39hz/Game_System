@@ -17,6 +17,6 @@ public partial class Weapon : Item {
 
 	public override void _EnterTree() {
 		Target = GetOwner<Item>();
-		Damage = this.GetFirstChildOfType<DamageData>();
+		Damage = this.GetFirstChild<DamageData>();
 	}
 }

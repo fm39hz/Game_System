@@ -15,8 +15,8 @@ public abstract partial class ObjectCompositor : Node2D {
 	public ObjectData Information { get; protected set; } = new();
 
 	public override void _Ready() {
-		StateMachine = this.GetFirstChildOfType<StateMachine>();
-		SpriteSheet = Target.GetFirstChildOfType<SpriteSheet>();
+		StateMachine = this.GetFirstChild<StateMachine>();
+		SpriteSheet = Target.GetFirstChild<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
 		YSortEnabled = true;

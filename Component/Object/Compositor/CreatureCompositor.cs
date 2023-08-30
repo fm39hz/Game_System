@@ -17,7 +17,7 @@ public partial class CreatureCompositor : ObjectCompositor {
 		if (Target is not Creature _target) {
 			throw new InvalidCastException("Target must be Creature");
 		}
-		Hurtbox = _target.GetFirstChildOfType<HurtBox>();
+		Hurtbox = _target.GetFirstChild<HurtBox>();
 		SpriteSheet.PolygonChanged += Hurtbox.UpdateCollision;
 	}
 
@@ -47,17 +47,15 @@ public partial class CreatureCompositor : ObjectCompositor {
 
 			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
 			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
-			foreach (var _poly in _polys) {
+				if (_polys.Count == 0) continue;
+            var _poly = _polys[0];
 				for (var _i = 0; _i < _poly.Length; _i++) {
 					_poly[_i] += SpriteSheet.Position;
 				}
-
-				var _shape = new CollisionPolygon2D {
-					Polygon = _poly
-				};
-
+			var _shape = new CollisionPolygon2D {
+				Polygon = _poly
+			};
 				_information.ShapePool.TryAdd(_frame, _shape);
-			}
 		}
 	}
 

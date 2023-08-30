@@ -1,7 +1,7 @@
 using GameSystem.BaseClass;
 using GameSystem.Component.Object.Compositor;
 using Godot;
-using GameSystem.Data.Global;
+using GameSystem.Utils;
 
 namespace GameSystem.Component.Animation;
 

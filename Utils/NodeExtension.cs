@@ -9,7 +9,7 @@ public static class NodeExtension {
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <returns>The first node of type T</returns>
-	public static T GetFirstChildOfType<T>(this Node target) where T : Node {
+	public static T GetFirstChild<T>(this Node target) where T : Node {
 		T _targetChild = null;
 		for (var _i = 0; _i < target.GetChildCount(); _i++) {
 			if (target.GetChildOrNull<T>(_i) != null) {
@@ -30,7 +30,7 @@ public static class NodeExtension {
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <returns>The first Sibling of type T</returns>
-	public static T GetFirstSiblingOfType<T>(this Node target) where T : Node {
+	public static T GetFirstSibling<T>(this Node target) where T : Node {
 		var _parent = target.GetParent();
 		T _targetSibling = null;
 		for (var _i = 0; _i < _parent.GetChildCount(); _i++) {

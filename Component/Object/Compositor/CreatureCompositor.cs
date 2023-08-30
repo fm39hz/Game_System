@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Component.Object.Composition;
@@ -51,22 +52,24 @@ public partial class CreatureCompositor : ObjectCompositor
 			var _verticalIndex = _state * _height;
 			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
 			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
-			foreach (var _poly in _polys)
-			{
-				for (var _i = 0; _i < _poly.Length; _i++)
+				foreach (var _poly in _polys)
 				{
-					_poly[_i] += SpriteSheet.Position;
+					for (var _i = 0; _i < _poly.Length; _i++)
+					{
+						_poly[_i] += SpriteSheet.Position;
+					}
+					var _shapeName = Name + "_" + _frame;
+					var _shape = new CollisionPolygon2D
+					{
+						Polygon = _poly,
+						Name = _shapeName
+					};
+					_information.ShapePool.TryAdd(_frame, _shape);
 				}
-				var _shape = new CollisionPolygon2D
+				if (_frame == SpriteSheet.Hframes * (_state + 1) - 1)
 				{
-					Polygon = _poly
-				};
-				_information.ShapePool.TryAdd(_frame, _shape);
-			}
-			if (_frame == SpriteSheet.Hframes * (_state + 1) - 1)
-			{
-				_state++;
-			}
+					_state++;
+				}
 		}
 	}
 

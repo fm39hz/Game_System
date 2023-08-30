@@ -15,7 +15,7 @@ public partial class Hitbox : Marker2D {
 
 	public override void _EnterTree() {
 		Target = GetParent<Weapon>();
-		OwnerHurtbox = Target.GetOwner<CreatureCompositor>().GetFirstChildOfType<HurtBox>();
+		OwnerHurtbox = Target.GetOwner<CreatureCompositor>().GetFirstChild<HurtBox>();
 		var _hitboxZone = new Area2D {
 			CollisionLayer = 2,
 			CollisionMask = 2

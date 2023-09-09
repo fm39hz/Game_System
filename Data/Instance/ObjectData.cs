@@ -1,7 +1,6 @@
 using GameSystem.Component.FiniteStateMachine;
-using GameSystem.Data.Instance;
 
-namespace GameSystem.BaseClass;
+namespace GameSystem.Data.Instance;
 
 public class ObjectData
 {

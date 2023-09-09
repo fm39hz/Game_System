@@ -1,4 +1,4 @@
-using GameSystem.BaseClass;
+using GameSystem.Data.Instance;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Animation;
 using GameSystem.Utils;

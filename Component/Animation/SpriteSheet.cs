@@ -1,4 +1,4 @@
-using GameSystem.BaseClass;
+using GameSystem.Data.Instance;
 using GameSystem.Component.Object.Compositor;
 using Godot;
 using GameSystem.Utils;

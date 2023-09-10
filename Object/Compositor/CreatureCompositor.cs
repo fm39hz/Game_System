@@ -16,7 +16,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	public override void _Ready()
 	{
 		base._Ready();
-		if (Target is not Creature _target)
+		if (Composition is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}
@@ -75,7 +75,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	protected override void InformationUpdate()
 	{
 		base.InformationUpdate();
-		var _target = (Creature)Target;
+		var _target = (Creature)Composition;
 		if (!_target.Velocity.IsEqualApprox(Vector2.Zero))
 		{
 			Information.Direction.SetDirection(_target.Velocity);

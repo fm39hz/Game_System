@@ -16,7 +16,7 @@ public partial class Weapon : ItemCompositor
 
 	public override void _EnterTree()
 	{
-		Target = GetOwner<Item>();
+		Composition = GetOwner<Item>();
 		Damage = this.GetFirstChild<DamageData>();
 	}
 }

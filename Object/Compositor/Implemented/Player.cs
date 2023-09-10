@@ -13,6 +13,6 @@ public partial class Player : CreatureCompositor
 	{
 		base._Ready();
 		InputHandler = this.GetFirstChild<InputManager>();
-		View = Target.GetFirstChild<Camera2D>();
+		View = Composition.GetFirstChild<Camera2D>();
 	}
 }

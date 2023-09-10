@@ -9,7 +9,7 @@ namespace GameSystem.Component.Object.Compositor;
 [GlobalClass]
 public abstract partial class ObjectCompositor : Node2D
 {
-	[Export] public Node Target { get; set; }
+	[Export] public Node Composition { get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;
 	public StateMachine StateMachine { get; protected set; }
 	public SpriteSheet SpriteSheet { get; protected set; }
@@ -18,7 +18,7 @@ public abstract partial class ObjectCompositor : Node2D
 	public override void _Ready()
 	{
 		StateMachine = this.GetFirstChild<StateMachine>();
-		SpriteSheet = Target.GetFirstChild<SpriteSheet>();
+		SpriteSheet = Composition.GetFirstChild<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
 		YSortEnabled = true;

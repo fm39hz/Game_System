@@ -11,6 +11,7 @@ public partial class Weapon : ItemCompositor
 {
 	[Signal]
 	public delegate void ApplyDamageEventHandler(DamageData damage);
+
 	public Hitbox Hitbox { get; set; }
 	public DamageData Damage { get; set; }
 

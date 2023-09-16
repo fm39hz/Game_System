@@ -63,6 +63,7 @@ public static class NodeExtension
 			target.RemoveChild(target.GetChild(_i));
 		}
 	}
+
 	public static double GetResponseTime(this Node target)
 	{
 		return Performance.GetMonitor(Performance.Monitor.TimeFps) * target.GetPhysicsProcessDeltaTime();

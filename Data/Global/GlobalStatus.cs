@@ -4,6 +4,7 @@ public class GlobalStatus
 {
 	public bool IsDebug { get; private set; }
 	public static GlobalStatus Instance { get; private set; } = new();
+
 	private GlobalStatus()
 	{
 		IsDebug = false;

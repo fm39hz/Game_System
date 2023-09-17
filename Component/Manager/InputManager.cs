@@ -3,10 +3,10 @@ using Godot;
 using GameSystem.Component.Object.Compositor;
 using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
+using GameSystem.Object.Compositor.Implemented;
 
 namespace GameSystem.Component.Manager;
 
-[GlobalClass]
 public partial class InputManager : Node
 {
 	[Signal]
@@ -15,19 +15,19 @@ public partial class InputManager : Node
 	[Signal]
 	public delegate void ActionKeyPressedEventHandler();
 
-	private CreatureCompositor Compositor { get; set; }
+	private Player Compositor { get; set; }
 	private bool IsMoveable { get; set; }
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		try
 		{
 			IsMoveable = true;
-			Compositor = GetOwner<CreatureCompositor>();
+			Compositor = GetParent<Player>();
 		}
 		catch (NullReferenceException)
 		{
-			GD.Print("InputManager phải được đặt trong CreatureCompositor");
+			GD.Print("InputManager phải được đặt trong PlayerCompositor");
 			throw;
 		}
 	}

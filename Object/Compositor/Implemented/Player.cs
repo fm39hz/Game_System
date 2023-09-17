@@ -1,5 +1,4 @@
 using GameSystem.Component.Manager;
-using GameSystem.Component.Object.Composition;
 using GameSystem.Component.Object.Compositor;
 using GameSystem.Utils;
 using Godot;
@@ -15,7 +14,12 @@ public partial class Player : CreatureCompositor
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		InputHandler = this.GetFirstChild<InputManager>();
+		InputHandler = new();
+		AddChild(InputHandler);
+	}
+	public override void _Ready()
+	{
+		base._Ready();
 		View = Composition.GetFirstChild<Camera2D>();
 	}
 }

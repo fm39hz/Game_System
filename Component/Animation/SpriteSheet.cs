@@ -2,6 +2,7 @@ using GameSystem.Data.Instance;
 using GameSystem.Component.Object.Compositor;
 using Godot;
 using GameSystem.Utils;
+using GameSystem.Data.Global;
 
 namespace GameSystem.Component.Animation;
 
@@ -51,9 +52,9 @@ public partial class SpriteSheet : Sprite2D
 
 		if (_firstFrame <= CurrentFrame && CurrentFrame < _nextFrame)
 		{
-			FrameCounter += Compositor.GetResponseTime(); //Create realtime frame counter
+			FrameCounter += GlobalStatus.GetResponseTime(); //Create realtime frame counter
 		}
-		if (FrameCounter >= 60 * Compositor.GetResponseTime() / _frameInfor.Speed)
+		if (FrameCounter >= 60 * GlobalStatus.GetResponseTime() / _frameInfor.Speed)
 		{
 			if (CurrentFrame == _nextFrame - 1)
 			{

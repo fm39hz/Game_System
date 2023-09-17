@@ -29,7 +29,7 @@ public partial class HurtBox : Area2D
 
 	public void UpdateCollision(int frame)
 	{
-		GetTree().DebugCollisionsHint = GlobalStatus.IsDebug;
+		GetTree().DebugCollisionsHint = GlobalStatus.GetDebugInfo();
 		this.RemoveAllChild();
 		foreach (var (_frame, _collisionPolygon2D) in ((CreatureData)Compositor.Information).ShapePool)
 		{

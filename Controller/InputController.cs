@@ -7,7 +7,7 @@ using GameSystem.Object.Compositor.Implemented;
 
 namespace GameSystem.Component.Manager;
 
-public partial class InputManager : Node
+public partial class InputController : Node
 {
 	[Signal]
 	public delegate void MovementKeyPressedEventHandler(bool isPressed);

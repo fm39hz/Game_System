@@ -42,9 +42,6 @@ public partial class HurtBox : Area2D
 
 	public void TakeDamage(DamageData damage)
 	{
-		foreach (var _target in damage.Target)
-		{
-			((CreatureData)Compositor.Information).TakeDamage(damage);
-		}
+		((CreatureData)Compositor.Information).TakeDamage(damage);
 	}
 }

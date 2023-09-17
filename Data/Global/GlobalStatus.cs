@@ -2,7 +2,7 @@ namespace GameSystem.Data.Global;
 
 public class GlobalStatus
 {
-	public bool IsDebug { get; private set; }
+	public static bool IsDebug { get; private set; }
 	public static GlobalStatus Instance { get; private set; } = new();
 
 	private GlobalStatus()
@@ -11,7 +11,7 @@ public class GlobalStatus
 		Instance = this;
 	}
 
-	public void ToggleDebugMode()
+	public static void ToggleDebugMode()
 	{
 		IsDebug = !IsDebug;
 	}

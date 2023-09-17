@@ -5,7 +5,7 @@ using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Compositor.Implemented;
 
-namespace GameSystem.Component.Manager;
+namespace GameSystem.Controller;
 
 public partial class InputController : Node
 {
@@ -42,7 +42,7 @@ public partial class InputController : Node
 					GetTree().Quit();
 					break;
 				case Key.F3:
-					GlobalStatus.Instance.ToggleDebugMode();
+					GlobalStatus.ToggleDebugMode();
 					break;
 			}
 		}

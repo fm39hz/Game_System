@@ -1,5 +1,6 @@
 using Godot;
 using GameSystem.Utils;
+using System;
 
 namespace GameSystem.Data.Instance;
 
@@ -44,6 +45,10 @@ public class DirectionData
 
 	public int GetDirectionAsNumber()
 	{
+		if (AsNumber < 0 || AsNumber > 7)
+		{
+			throw new IndexOutOfRangeException("Direction must be in range 0-7");
+		}
 		if (IsFourDirection)
 		{
 			return AsNumber switch

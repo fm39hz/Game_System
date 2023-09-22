@@ -1,9 +1,8 @@
 using Godot;
 using GameSystem.Component.Object.Compositor;
 using GameSystem.Utils;
-using GameSystem.Object.Compositor.Implemented;
 
-namespace GameSystem.Component.Object.Implemented;
+namespace GameSystem.Object.Compositor.Implemented;
 
 [GlobalClass]
 public partial class Enemy : CreatureCompositor

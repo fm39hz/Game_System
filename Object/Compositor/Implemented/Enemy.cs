@@ -1,5 +1,4 @@
 using Godot;
-using GameSystem.Object.Compositor;
 using GameSystem.Utils;
 
 namespace GameSystem.Object.Compositor.Implemented;

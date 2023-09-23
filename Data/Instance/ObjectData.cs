@@ -1,3 +1,4 @@
+using System.Numerics;
 using GameSystem.Component.FiniteStateMachine;
 
 namespace GameSystem.Data.Instance;
@@ -13,6 +14,7 @@ public class ObjectData
 	/// Owner direction facing
 	/// </summary>
 	public DirectionData Direction { get; set; } = new();
+	public Vector2 Location { get; set; } = new();
 
 	public virtual void Update(State currentState)
 	{

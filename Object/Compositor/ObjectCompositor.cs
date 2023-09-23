@@ -4,7 +4,7 @@ using GameSystem.Component.Animation;
 using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Component.Object.Compositor;
+namespace GameSystem.Object.Compositor;
 
 [GlobalClass]
 public abstract partial class ObjectCompositor : Node2D

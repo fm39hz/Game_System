@@ -1,5 +1,5 @@
 using GameSystem.Data.Instance;
-using GameSystem.Component.Object.Compositor;
+using GameSystem.Object.Compositor;
 using Godot;
 using GameSystem.Utils;
 using GameSystem.Data.Global;

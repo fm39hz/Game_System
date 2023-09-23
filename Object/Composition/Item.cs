@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameSystem.Component.Object.Composition;
+namespace GameSystem.Object.Composition;
 
 public partial class Item : Node2D
 {

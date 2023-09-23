@@ -1,11 +1,11 @@
 using System;
 using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
-using GameSystem.Component.Object.Composition;
+using GameSystem.Object.Composition;
 using GameSystem.Data.Instance;
 using Godot;
 
-namespace GameSystem.Component.Object.Compositor;
+namespace GameSystem.Object.Compositor;
 
 [GlobalClass]
 public partial class CreatureCompositor : ObjectCompositor

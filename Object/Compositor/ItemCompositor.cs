@@ -1,4 +1,4 @@
-namespace GameSystem.Component.Object.Compositor;
+namespace GameSystem.Object.Compositor;
 
 public partial class ItemCompositor : ObjectCompositor
 {

@@ -1,4 +1,4 @@
-using GameSystem.Component.Object.Compositor;
+using GameSystem.Object.Compositor;
 using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Utils;

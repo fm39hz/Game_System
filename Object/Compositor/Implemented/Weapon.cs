@@ -1,10 +1,10 @@
 using GameSystem.Component.DamageSystem;
-using GameSystem.Component.Object.Composition;
+using GameSystem.Object.Composition;
 using GameSystem.Data.Instance;
 using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Component.Object.Compositor.Equipment;
+namespace GameSystem.Object.Compositor.Equipment;
 
 [GlobalClass]
 public partial class Weapon : ItemCompositor

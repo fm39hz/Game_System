@@ -1,5 +1,5 @@
-using GameSystem.Component.Object.Compositor.Equipment;
-using GameSystem.Component.Object.Compositor;
+using GameSystem.Object.Compositor.Equipment;
+using GameSystem.Object.Compositor;
 using GameSystem.Utils;
 using Godot;
 

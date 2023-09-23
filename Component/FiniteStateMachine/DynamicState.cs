@@ -1,5 +1,5 @@
 using System;
-using GameSystem.Component.Object.Compositor;
+using GameSystem.Object.Compositor;
 using Godot;
 
 namespace GameSystem.Component.FiniteStateMachine;

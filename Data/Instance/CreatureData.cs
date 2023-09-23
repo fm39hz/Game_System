@@ -4,7 +4,6 @@ using Godot;
 
 namespace GameSystem.Data.Instance;
 
-[GlobalClass]
 public class CreatureData : ObjectData
 {
 	/// <summary>

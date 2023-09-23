@@ -14,13 +14,15 @@ public static class PolygonCreator
 		var _height = _texture.GetHeight() / spriteSheet.Vframes;
 		for (int _frame = 0, _state = 0; _frame < spriteSheet.Hframes * spriteSheet.Vframes; _frame++)
 		{
-			var _horizontalIndex = _frame * _width - _texture.GetWidth() * _state;
-			var _verticalIndex = _state * _height;
-			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
-			var _polys = bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), AccurateValue);
-			foreach (var _poly in _polys)
+			var _position = new Vector2I
 			{
-				_shapePool.TryAdd(_frame, ConfigPolygon(_poly, spriteSheet.Position, name + "_" + _frame));
+				X = _frame * _width - _texture.GetWidth() * _state,
+				Y = _state * _height
+			};
+			var _polys = bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), AccurateValue);
+			foreach (var _shape in _polys)
+			{
+				_shapePool.TryAdd(_frame, ConfigPolygon(_shape, spriteSheet.Position, spriteSheet.GetParent().Name + "_" + _frame));
 			}
 			if (_frame == spriteSheet.Hframes * (_state + 1) - 1)
 			{

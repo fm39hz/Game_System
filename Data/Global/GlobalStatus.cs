@@ -21,7 +21,7 @@ public class GlobalStatus
 	public static double GetResponseTime()
 	{
 		var _delta = Instance.MainLoop.Root.GetPhysicsProcessDeltaTime();
-		return Performance.GetMonitor(Performance.Monitor.TimeFps) * _delta;
+		return Engine.GetFramesPerSecond() * _delta;
 	}
 	public static void ToggleDebugMode()
 	{

@@ -26,50 +26,13 @@ public partial class CreatureCompositor : ObjectCompositor
 
 	protected override void InformationInit()
 	{
+		var _bitmap = new Bitmap();
+		_bitmap.CreateFromImageAlpha(SpriteSheet.Texture.GetImage());
 		Information = new CreatureData
 		{
-			Health = Health
+			Health = Health,
+			ShapePool = PolygonCreator.GetCoveredPolygon(SpriteSheet, _bitmap, Name)
 		};
-		HurtboxInit();
-	}
-
-	public void HurtboxInit()
-	{
-		if (Information is not CreatureData _information)
-		{
-			throw new InvalidCastException("Cannot implicity Object data");
-		}
-
-		var _texture = SpriteSheet.Texture;
-		var _width = _texture.GetWidth() / SpriteSheet.Hframes;
-		var _height = _texture.GetHeight() / SpriteSheet.Vframes;
-		var _bitmap = new Bitmap();
-		_bitmap.CreateFromImageAlpha(_texture.GetImage());
-		for (int _frame = 0, _state = 0; _frame < SpriteSheet.Hframes * SpriteSheet.Vframes; _frame++)
-		{
-			var _horizontalIndex = _frame * _width - _texture.GetWidth() * _state;
-			var _verticalIndex = _state * _height;
-			var _position = new Vector2I(_horizontalIndex, _verticalIndex);
-			var _polys = _bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), 0.42f);
-			foreach (var _poly in _polys)
-			{
-				for (var _i = 0; _i < _poly.Length; _i++)
-				{
-					_poly[_i] += SpriteSheet.Position;
-				}
-				var _shapeName = Name + "_" + _frame;
-				var _shape = new CollisionPolygon2D
-				{
-					Polygon = _poly,
-					Name = _shapeName
-				};
-				_information.ShapePool.TryAdd(_frame, _shape);
-			}
-			if (_frame == SpriteSheet.Hframes * (_state + 1) - 1)
-			{
-				_state++;
-			}
-		}
 	}
 
 	protected override void InformationUpdate()

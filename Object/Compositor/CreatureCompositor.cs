@@ -31,7 +31,7 @@ public partial class CreatureCompositor : ObjectCompositor
 		Information = new CreatureData
 		{
 			Health = Health,
-			ShapePool = PolygonCreator.GetPolygonArea(SpriteSheet, _bitmap, Name)
+			ShapePool = PolygonCreator.GetArea(SpriteSheet, _bitmap, Name)
 		};
 	}
 

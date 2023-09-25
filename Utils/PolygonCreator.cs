@@ -6,7 +6,7 @@ namespace GameSystem.Utils;
 public static class PolygonCreator
 {
 	private const float AccurateValue = 0.42f;
-	public static Dictionary<int, CollisionPolygon2D> GetPolygonArea(Sprite2D spriteSheet, Bitmap bitmap, string name)
+	public static Dictionary<int, CollisionPolygon2D> GetArea(Sprite2D spriteSheet, Bitmap bitmap, string name)
 	{
 		var _shapePool = new Dictionary<int, CollisionPolygon2D>();
 		var _texture = spriteSheet.Texture;
@@ -22,7 +22,7 @@ public static class PolygonCreator
 			var _polys = bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), AccurateValue);
 			foreach (var _shape in _polys)
 			{
-				_shapePool.TryAdd(_frame, ConfigPolygon(_shape, spriteSheet.Position, spriteSheet.GetParent().Name + "_" + _frame));
+				_shapePool.TryAdd(_frame, ConfigPolygon(_shape, spriteSheet.Position, name + "_" + _frame));
 			}
 			if (_frame == spriteSheet.Hframes * (_state + 1) - 1)
 			{

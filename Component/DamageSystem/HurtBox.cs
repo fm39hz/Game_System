@@ -31,11 +31,12 @@ public partial class HurtBox : Area2D
 	{
 		GetTree().DebugCollisionsHint = GlobalStatus.GetDebugInfo();
 		this.RemoveAllChild();
-		foreach (var (_frame, _collisionPolygon2D) in ((CreatureData)Compositor.Information).ShapePool)
+		foreach (var (_frame, _collisionShape) in ((CreatureData)Compositor.Information).ShapePool)
 		{
 			if (_frame == frame)
 			{
-				AddChild(_collisionPolygon2D);
+				AddChild(_collisionShape);
+				return;
 			}
 		}
 	}

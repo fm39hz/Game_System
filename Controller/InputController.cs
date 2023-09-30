@@ -19,10 +19,10 @@ public partial class InputController : Node
 
 	public override void _EnterTree()
 	{
+		IsMoveable = true;
 		try
 		{
-			IsMoveable = true;
-			Compositor = GetParent<Player>();
+			Compositor = GetParentOrNull<Player>();
 		}
 		catch (NullReferenceException)
 		{

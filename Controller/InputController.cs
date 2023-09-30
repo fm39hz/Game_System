@@ -1,6 +1,5 @@
 using System;
 using Godot;
-using GameSystem.Object.Compositor;
 using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Compositor.Implemented;
@@ -54,7 +53,6 @@ public partial class InputController : Node
 		{
 			IsMoveable = _information.IsMoveable;
 		}
-
 		var _up = Input.IsActionPressed("ui_up");
 		var _down = Input.IsActionPressed("ui_down");
 		var _left = Input.IsActionPressed("ui_left");
@@ -63,7 +61,6 @@ public partial class InputController : Node
 		{
 			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
-
 		if (Input.IsActionJustPressed("ui_accept"))
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
@@ -76,7 +73,14 @@ public partial class InputController : Node
 		{
 			inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		}
-
+		return inputVector;
+	}
+	public Vector2 SideScrollingVector(Vector2 inputVector)
+	{
+		if (IsMoveable)
+		{
+			inputVector.X = Input.GetAxis("ui_left", "ui_right");
+		}
 		return inputVector;
 	}
 }

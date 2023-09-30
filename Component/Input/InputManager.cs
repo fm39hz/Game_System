@@ -4,9 +4,9 @@ using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Compositor.Implemented;
 
-namespace GameSystem.Component.Input.InputManager;
+namespace GameSystem.Component.Input;
 
-public partial class InputController : Node
+public partial class InputManager : Node
 {
 	[Signal]
 	public delegate void MovementKeyPressedEventHandler(bool isPressed);

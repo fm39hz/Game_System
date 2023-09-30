@@ -4,7 +4,7 @@ using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Compositor.Implemented;
 
-namespace GameSystem.Controller;
+namespace GameSystem.Component.Input.InputManager;
 
 public partial class InputController : Node
 {

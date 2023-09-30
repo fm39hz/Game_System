@@ -1,4 +1,4 @@
-using GameSystem.Controller;
+using GameSystem.Component.Input.InputManager;
 using GameSystem.Utils;
 using Godot;
 

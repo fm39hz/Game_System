@@ -1,4 +1,4 @@
-using System.Numerics;
+using Godot;
 using GameSystem.Component.FiniteStateMachine;
 
 namespace GameSystem.Data.Instance;
@@ -14,10 +14,9 @@ public class ObjectData
 	/// Owner direction facing
 	/// </summary>
 	public DirectionData Direction { get; set; } = new();
+	
+	/// <summary>
+	/// Owner Location
+	/// </summary>
 	public Vector2 Location { get; set; } = new();
-
-	public virtual void Update(State currentState)
-	{
-		CurrentState = currentState;
-	}
 }

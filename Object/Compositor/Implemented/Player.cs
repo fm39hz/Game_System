@@ -16,6 +16,7 @@ public partial class Player : CreatureCompositor
 		InputHandler = new();
 		AddChild(InputHandler);
 	}
+
 	public override void _Ready()
 	{
 		base._Ready();

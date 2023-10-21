@@ -75,6 +75,7 @@ public partial class InputManager : Node
 		}
 		return inputVector;
 	}
+
 	public Vector2 SideScrollingVector(Vector2 inputVector)
 	{
 		if (IsMoveable)

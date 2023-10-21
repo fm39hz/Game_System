@@ -6,6 +6,7 @@ namespace GameSystem.Utils;
 public static class PolygonCreator
 {
 	private const float AccurateValue = 0.42f;
+
 	public static Dictionary<int, CollisionPolygon2D> GetArea(Sprite2D spriteSheet, Bitmap bitmap, string name)
 	{
 		var _shapePool = new Dictionary<int, CollisionPolygon2D>();
@@ -30,8 +31,8 @@ public static class PolygonCreator
 			}
 		}
 		return _shapePool;
-
 	}
+
 	private static CollisionPolygon2D ConfigPolygon(Vector2[] poly, Vector2 position, string name)
 	{
 		for (var _i = 0; _i < poly.Length; _i++)

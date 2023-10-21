@@ -42,6 +42,6 @@ public abstract partial class ObjectCompositor : Node2D
 
 	protected virtual void InformationUpdate()
 	{
-		Information.Update(StateMachine.CurrentState);
+		Information.CurrentState = StateMachine.CurrentState;
 	}
 }

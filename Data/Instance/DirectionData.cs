@@ -45,7 +45,7 @@ public class DirectionData
 
 	public int GetDirectionAsNumber()
 	{
-		if (AsNumber < 0 || AsNumber > 7)
+		if (AsNumber is < 0 or > 7)
 		{
 			throw new IndexOutOfRangeException("Direction must be in range 0-7");
 		}

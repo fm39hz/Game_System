@@ -38,7 +38,10 @@ public partial class CreatureCompositor : ObjectCompositor
 	protected override void InformationUpdate()
 	{
 		base.InformationUpdate();
-		var _target = (Creature)Composition;
+		if (Composition is not Creature _target)
+		{
+			throw new InvalidCastException("Target must be Creature");
+		}
 		if (!_target.Velocity.IsEqualApprox(Vector2.Zero))
 		{
 			Information.Direction.SetDirection(_target.Velocity);

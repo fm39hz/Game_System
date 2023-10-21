@@ -4,25 +4,27 @@ namespace GameSystem.Data.Global;
 
 public class GlobalStatus
 {
-	public static GlobalStatus Instance { get; private set; } = new();
+	private static GlobalStatus Instance { get; set; } = new();
 	private bool IsDebugging { get; set; }
 	private SceneTree MainLoop { get; set; }
 
 	private GlobalStatus()
 	{
-		Instance = this;
+		Instance ??= this;
 		IsDebugging = false;
 		MainLoop = Engine.GetMainLoop() as SceneTree;
 	}
-	public static bool GetDebugInfo()
+
+	public static bool Debugging()
 	{
 		return Instance.IsDebugging;
 	}
+
 	public static double GetResponseTime()
 	{
-		var _delta = Instance.MainLoop.Root.GetPhysicsProcessDeltaTime();
-		return Engine.GetFramesPerSecond() * _delta;
+		return Engine.GetFramesPerSecond() * Instance.MainLoop.Root.GetPhysicsProcessDeltaTime();
 	}
+
 	public static void ToggleDebugMode()
 	{
 		Instance.IsDebugging = !Instance.IsDebugging;

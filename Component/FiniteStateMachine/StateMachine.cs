@@ -15,16 +15,13 @@ public partial class StateMachine : Node
 
 	[Export] public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
-	public List<State> States { get; protected set; }
+	public List<State> States { get; protected set; } = new();
 
 	public override void _Ready()
 	{
-		var _id = 0;
-		States = new List<State>();
 		foreach (var _target in GetChildren().OfType<State>())
 		{
 			States.Add(_target);
-			_target.Id = _id++;
 		}
 		Init();
 	}

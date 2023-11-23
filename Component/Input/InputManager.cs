@@ -2,7 +2,7 @@ using System;
 using Godot;
 using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
-using GameSystem.Object.Compositor.Implemented;
+using GameSystem.Object.Compositor.Concrete;
 
 namespace GameSystem.Component.InputManagement;
 

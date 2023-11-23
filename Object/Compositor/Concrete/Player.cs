@@ -2,7 +2,7 @@ using GameSystem.Component.InputManagement;
 using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Object.Compositor.Implemented;
+namespace GameSystem.Object.Compositor.Concrete;
 
 [GlobalClass]
 public partial class Player : CreatureCompositor
@@ -20,6 +20,6 @@ public partial class Player : CreatureCompositor
 	public override void _Ready()
 	{
 		base._Ready();
-		View = Composition.GetFirstChild<Camera2D>();
+		View = Decorator.GetFirstChild<Camera2D>();
 	}
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Composition;
+using GameSystem.Object.Decorator;
 using Godot;
 
 namespace GameSystem.Data.Instance;

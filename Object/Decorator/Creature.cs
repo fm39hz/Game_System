@@ -1,7 +1,7 @@
 using GameSystem.Object.Compositor;
 using Godot;
 
-namespace GameSystem.Object.Composition;
+namespace GameSystem.Object.Decorator;
 
 [GlobalClass]
 public partial class Creature : CharacterBody2D

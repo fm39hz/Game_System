@@ -1,5 +1,5 @@
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Composition;
+using GameSystem.Object.Decorator;
 using GameSystem.Data.Instance;
 using GameSystem.Utils;
 using Godot;
@@ -17,7 +17,7 @@ public partial class Weapon : ItemCompositor
 
 	public override void _EnterTree()
 	{
-		Composition = GetOwner<Item>();
+		Decorator = GetOwner<Item>();
 		Damage = this.GetFirstChild<DamageData>();
 	}
 }

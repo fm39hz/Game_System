@@ -1,7 +1,7 @@
 using System;
 using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Composition;
+using GameSystem.Object.Decorator;
 using GameSystem.Data.Instance;
 using Godot;
 
@@ -16,7 +16,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	public override void _Ready()
 	{
 		base._Ready();
-		if (Composition is not Creature _target)
+		if (Decorator is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}
@@ -38,7 +38,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	protected override void InformationUpdate()
 	{
 		base.InformationUpdate();
-		if (Composition is not Creature _target)
+		if (Decorator is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}

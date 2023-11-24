@@ -33,17 +33,18 @@ public partial class InputManager : Node
 
 	public override void _UnhandledKeyInput(InputEvent @event)
 	{
-		if (@event is InputEventKey _eventKey && _eventKey.IsPressed())
+		if (@event is not InputEventKey _eventKey || !_eventKey.IsPressed())
 		{
-			switch (_eventKey.Keycode)
-			{
-				case Key.Escape:
-					GetTree().Quit();
-					break;
-				case Key.F3:
-					GlobalStatus.ToggleDebugMode();
-					break;
-			}
+			return;
+		}
+		switch (_eventKey.Keycode)
+		{
+			case Key.Escape:
+				GetTree().Quit();
+				break;
+			case Key.F3:
+				GlobalStatus.ToggleDebugMode();
+				break;
 		}
 	}
 

@@ -15,19 +15,12 @@ public static class NodeExtension
 		T _targetChild = null;
 		for (var _i = 0; _i < target.GetChildCount(); _i++)
 		{
-			if (target.GetChildOrNull<T>(_i) != null)
-			{
-				_targetChild = target.GetChild<T>(_i);
-				break;
-			}
+			if (target.GetChildOrNull<T>(_i) == null) continue;
+			_targetChild = target.GetChild<T>(_i);
+			break;
 		}
 
-		if (_targetChild == null)
-		{
-			throw new Exception("Cannot find any child of type " + typeof(T));
-		}
-
-		return _targetChild;
+		return _targetChild!;
 	}
 
 	/// <summary>

@@ -33,11 +33,9 @@ public partial class HurtBox : Area2D
 		this.RemoveAllChild();
 		foreach (var (_frame, _collisionShape) in ((CreatureData)Compositor.Information).ShapePool)
 		{
-			if (_frame == frame)
-			{
-				AddChild(_collisionShape);
-				return;
-			}
+			if (_frame != frame) continue;
+			AddChild(_collisionShape);
+			return;
 		}
 	}
 

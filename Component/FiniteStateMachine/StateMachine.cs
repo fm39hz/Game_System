@@ -9,17 +9,17 @@ public partial class StateMachine : Node
 {
 	[Signal] public delegate void StateEnteredEventHandler();
 	[Signal] public delegate void StateExitedEventHandler();
-	[Export] public State InitualizedState { get; set; }
+	[Export] public State InitializedState { get; set; }
 	
 	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
-	public List<State> States { get; } = new();
+	public Queue<State> States { get; } = new();
 
 	public override void _Ready()
 	{
 		foreach (var _target in GetChildren().OfType<State>())
 		{
-			States.Add(_target);
+			States.Enqueue(_target);
 		}
 		Init();
 	}
@@ -33,7 +33,7 @@ public partial class StateMachine : Node
 			StateExited += _selected.ExitMachine;
 		}
 		SelectState();
-		CurrentState ??= InitualizedState;
+		CurrentState = InitializedState ?? States.Peek();
 		PreviousState = CurrentState;
 	}
 

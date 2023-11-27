@@ -7,15 +7,13 @@ namespace GameSystem.Component.FiniteStateMachine;
 [GlobalClass]
 public partial class StateMachine : Node
 {
-	[Signal]
-	public delegate void StateEnteredEventHandler();
-
-	[Signal]
-	public delegate void StateExitedEventHandler();
-
-	[Export] public State CurrentState { get; protected set; }
+	[Signal] public delegate void StateEnteredEventHandler();
+	[Signal] public delegate void StateExitedEventHandler();
+	[Export] public State InitualizedState { get; set; }
+	
+	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
-	public List<State> States { get; protected set; } = new();
+	public List<State> States { get; } = new();
 
 	public override void _Ready()
 	{
@@ -35,6 +33,7 @@ public partial class StateMachine : Node
 			StateExited += _selected.ExitMachine;
 		}
 		SelectState();
+		CurrentState = InitualizedState;
 		PreviousState = CurrentState;
 	}
 
@@ -50,12 +49,8 @@ public partial class StateMachine : Node
 
 	protected void CheckingCondition()
 	{
+		if (CurrentState.Condition) return;
 		PreviousState = CurrentState;
-		if (CurrentState.Condition)
-		{
-			return;
-		}
-
 		EmitSignal(SignalName.StateExited);
 		SelectState();
 	}

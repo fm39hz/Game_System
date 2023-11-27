@@ -20,7 +20,7 @@ public abstract partial class State : Node
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	public ObjectCompositor Compositor { get; protected set; }
+	protected ObjectCompositor Compositor { get; set; }
 	public FrameData Frame { get; protected set; }
 	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
@@ -67,9 +67,9 @@ public abstract partial class State : Node
 
 	public abstract void EnteredMachine();
 
-	public abstract void UpdateCondition(double delta);
+	protected abstract void UpdateCondition(double delta);
 
-	public virtual void RunningState(double delta)
+	protected virtual void RunningState(double delta)
 	{
 		EmitSignal(SignalName.StateRunning);
 	}

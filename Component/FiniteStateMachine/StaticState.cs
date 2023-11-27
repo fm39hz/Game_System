@@ -14,7 +14,7 @@ public partial class StaticState : State
 		// throw new System.NotImplementedException();
 	}
 
-	public override void UpdateCondition(double delta)
+	protected override void UpdateCondition(double delta)
 	{
 		// throw new System.NotImplementedException();
 	}

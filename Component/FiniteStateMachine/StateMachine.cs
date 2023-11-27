@@ -13,13 +13,13 @@ public partial class StateMachine : Node
 	
 	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
-	public Queue<State> States { get; } = new();
+	public List<State> States { get; } = new();
 
 	public override void _Ready()
 	{
 		foreach (var _target in GetChildren().OfType<State>())
 		{
-			States.Enqueue(_target);
+			States.Add(_target);
 		}
 		Init();
 	}
@@ -33,7 +33,7 @@ public partial class StateMachine : Node
 			StateExited += _selected.ExitMachine;
 		}
 		SelectState();
-		CurrentState = InitializedState ?? States.Peek();
+		CurrentState = InitializedState ?? States.First();
 		PreviousState = CurrentState;
 	}
 

@@ -55,15 +55,15 @@ public partial class InputManager : Node
 		{
 			IsMoveable = _information.IsMoveable;
 		}
-		var _up = InputMapping.IsPressed(MappedKey.Up);
-		var _down = InputMapping.IsPressed(MappedKey.Down);
-		var _left = InputMapping.IsPressed(MappedKey.Left);
-		var _right = InputMapping.IsPressed(MappedKey.Right);
+		var _up = InputMapped.IsPressed(InputMappedEnum.Up);
+		var _down = InputMapped.IsPressed(InputMappedEnum.Down);
+		var _left = InputMapped.IsPressed(InputMappedEnum.Left);
+		var _right = InputMapped.IsPressed(InputMappedEnum.Right);
 		if (IsMoveable)
 		{
 			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
-		if (InputMapping.IsJustPressed(MappedKey.Action))
+		if (InputMapped.IsJustPressed(InputMappedEnum.Action))
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
 		}
@@ -73,7 +73,7 @@ public partial class InputManager : Node
 	{
 		if (IsMoveable)
 		{
-			inputVector = InputMapping.GetVector();
+			inputVector = InputMapped.GetVector();
 		}
 		return inputVector;
 	}
@@ -82,7 +82,7 @@ public partial class InputManager : Node
 	{
 		if (IsMoveable)
 		{
-			inputVector.X = InputMapping.GetHorizontalAxis();
+			inputVector.X = InputMapped.GetHorizontalAxis();
 		}
 		return inputVector;
 	}

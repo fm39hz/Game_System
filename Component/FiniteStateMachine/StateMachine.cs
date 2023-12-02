@@ -33,7 +33,7 @@ public partial class StateMachine : Node
 			StateExited += _selected.ExitMachine;
 		}
 		SelectState();
-		CurrentState = InitializedState ?? States.First();
+		CurrentState = InitializedState! ?? States.First();
 		PreviousState = CurrentState;
 	}
 

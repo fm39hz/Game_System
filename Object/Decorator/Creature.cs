@@ -11,6 +11,7 @@ public partial class Creature : CharacterBody2D
 	public override void _EnterTree()
 	{
 		Compositor = GetParent<CreatureCompositor>();
+		MotionMode = MotionModeEnum.Floating;
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -1,14 +1,14 @@
 using System;
 using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Decorator;
+using GameSystem.Object.PhysicsBody;
 using GameSystem.Data.Instance;
 using Godot;
 
-namespace GameSystem.Object.Compositor;
+namespace GameSystem.Object.Root;
 
 [GlobalClass]
-public partial class CreatureCompositor : ObjectCompositor
+public partial class CreatureRoot : ObjectRoot
 {
 	[Export] public float Health { get; set; }
 	public HurtBox Hurtbox { get; set; }
@@ -16,7 +16,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	public override void _Ready()
 	{
 		base._Ready();
-		if (Decorator is not Creature _target)
+		if (PhysicsBody is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}
@@ -38,7 +38,7 @@ public partial class CreatureCompositor : ObjectCompositor
 	protected override void InformationUpdate()
 	{
 		base.InformationUpdate();
-		if (Decorator is not Creature _target)
+		if (PhysicsBody is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}

@@ -1,13 +1,13 @@
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Decorator;
+using GameSystem.Object.PhysicsBody;
 using GameSystem.Data.Instance;
 using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Object.Compositor.Equipment;
+namespace GameSystem.Object.Root.Equipment;
 
 [GlobalClass]
-public partial class Weapon : ItemCompositor
+public partial class Weapon : ItemRoot
 {
 	[Signal]
 	public delegate void ApplyDamageEventHandler(DamageData damage);
@@ -17,7 +17,7 @@ public partial class Weapon : ItemCompositor
 
 	public override void _EnterTree()
 	{
-		Decorator = GetOwner<Item>();
+		PhysicsBody = GetOwner<Item>();
 		Damage = this.GetFirstChild<DamageData>();
 	}
 }

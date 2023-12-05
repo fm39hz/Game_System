@@ -1,6 +1,6 @@
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Data.Instance;
-using GameSystem.Object.Compositor;
+using GameSystem.Object.Root;
 using Godot;
 using GameSystem.Data.Global;
 
@@ -21,7 +21,7 @@ public partial class SpriteSheet : Sprite2D
 	[Signal]
 	public delegate void PolygonChangedEventHandler(int frame);
 
-	public ObjectCompositor Compositor { get; set; }
+	public ObjectRoot Root { get; set; }
 
 	/// <summary>
 	/// The current frame, show by int
@@ -35,7 +35,7 @@ public partial class SpriteSheet : Sprite2D
 
 	public override void _EnterTree()
 	{
-		Compositor = GetOwner<ObjectCompositor>();
+		Root = GetOwner<ObjectRoot>();
 	}
 
 	/// <summary>

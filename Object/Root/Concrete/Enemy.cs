@@ -1,10 +1,10 @@
 using Godot;
 using GameSystem.Utils;
 
-namespace GameSystem.Object.Compositor.Concrete;
+namespace GameSystem.Object.Root.Concrete;
 
 [GlobalClass]
-public partial class Enemy : CreatureCompositor
+public partial class Enemy : CreatureRoot
 {
 	public Player Target { get; private set; }
 	public Area2D TargetingZone { get; set; }

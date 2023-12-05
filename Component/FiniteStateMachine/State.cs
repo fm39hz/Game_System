@@ -1,5 +1,5 @@
 using System;
-using GameSystem.Object.Compositor;
+using GameSystem.Object.Root;
 using Godot;
 using GameSystem.Data.Instance;
 
@@ -20,7 +20,7 @@ public abstract partial class State : Node
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	protected ObjectCompositor Compositor { get; set; }
+	protected ObjectRoot Root { get; set; }
 	public FrameData Frame { get; protected set; }
 	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
@@ -36,7 +36,7 @@ public abstract partial class State : Node
 			}
 
 			StateMachine = GetParent<StateMachine>();
-			Compositor = GetOwner<ObjectCompositor>();
+			Root = GetOwner<ObjectRoot>();
 			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
 		catch (NullReferenceException)

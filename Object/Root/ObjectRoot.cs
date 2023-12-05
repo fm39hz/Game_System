@@ -4,12 +4,12 @@ using GameSystem.Component.Animation;
 using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Object.Compositor;
+namespace GameSystem.Object.Root;
 
 [GlobalClass]
-public abstract partial class ObjectCompositor : Node2D
+public abstract partial class ObjectRoot : Node2D
 {
-	[Export] public Node Decorator { get; set; }
+	[Export] public Node PhysicsBody { get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;
 	public StateMachine StateMachine { get; protected set; }
 	public SpriteSheet SpriteSheet { get; protected set; }
@@ -18,7 +18,7 @@ public abstract partial class ObjectCompositor : Node2D
 	public override void _Ready()
 	{
 		StateMachine = this.GetFirstChild<StateMachine>();
-		SpriteSheet = Decorator.GetFirstChild<SpriteSheet>();
+		SpriteSheet = PhysicsBody.GetFirstChild<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
 		YSortEnabled = true;

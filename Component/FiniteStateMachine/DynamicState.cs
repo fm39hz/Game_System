@@ -1,5 +1,5 @@
 using System;
-using GameSystem.Object.Compositor;
+using GameSystem.Object.Root;
 using Godot;
 
 namespace GameSystem.Component.FiniteStateMachine;
@@ -12,11 +12,11 @@ public partial class DynamicState : State
 		base._EnterTree();
 		try
 		{
-			Compositor = GetOwner<ObjectCompositor>();
+			Root = GetOwner<ObjectRoot>();
 		}
 		catch (NullReferenceException)
 		{
-			GD.Print("Cannot find any Compositor");
+			GD.Print("Cannot find any Root");
 			throw;
 		}
 	}

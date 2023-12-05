@@ -1,7 +1,7 @@
+using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Root;
 using Godot;
-using GameSystem.Data.Global;
 
 namespace GameSystem.Component.Animation;
 
@@ -9,13 +9,13 @@ namespace GameSystem.Component.Animation;
 public partial class SpriteSheet : Sprite2D
 {
 	/// <summary>
-	/// Signal trigger when the Sheet finished
+	///     Signal trigger when the Sheet finished
 	/// </summary>
 	[Signal]
 	public delegate void AnimationFinishedEventHandler();
 
 	/// <summary>
-	/// Signal trigger when the collision must changed	
+	///     Signal trigger when the collision must changed
 	/// </summary>
 	[Signal]
 	public delegate void PolygonChangedEventHandler(int frame);
@@ -23,12 +23,12 @@ public partial class SpriteSheet : Sprite2D
 	public ObjectRoot Root { get; set; }
 
 	/// <summary>
-	/// The current frame, show by int
+	///     The current frame, show by int
 	/// </summary>
 	public int CurrentFrame { get; private set; }
 
 	/// <summary>
-	/// Realframe counter
+	///     Realframe counter
 	/// </summary>
 	private double FrameCounter { get; set; }
 
@@ -38,7 +38,7 @@ public partial class SpriteSheet : Sprite2D
 	}
 
 	/// <summary>
-	/// Run the SpriteSheetPlayer based on the data provided
+	///     Run the SpriteSheetPlayer based on the data provided
 	/// </summary>
 	/// <param name="objectData">Owner Data</param>
 	public void Animate(ObjectData objectData)
@@ -46,8 +46,8 @@ public partial class SpriteSheet : Sprite2D
 		var _currentState = objectData.CurrentState;
 		var _frameData = _currentState.Frame;
 		var _direction = objectData.Direction.GetDirectionAsNumber(); //Get Owner Direction
-		var _firstFrame = _frameData.Length * _direction++;          //Set the First frame of animation
-		var _nextFrame = _frameData.Length * _direction;             //Get the end frame
+		var _firstFrame = _frameData.Length * _direction++;           //Set the First frame of animation
+		var _nextFrame = _frameData.Length * _direction;              //Get the end frame
 
 		SetFrame(_firstFrame, _nextFrame, _frameData.Speed, _currentState.IsLoop);
 		if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)

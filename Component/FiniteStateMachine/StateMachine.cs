@@ -1,6 +1,6 @@
-using Godot;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 
 namespace GameSystem.Component.FiniteStateMachine;
 
@@ -8,9 +8,11 @@ namespace GameSystem.Component.FiniteStateMachine;
 public partial class StateMachine : Node
 {
 	[Signal] public delegate void StateEnteredEventHandler();
+
 	[Signal] public delegate void StateExitedEventHandler();
+
 	[Export] public State InitializedState { get; set; }
-	
+
 	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
 	public List<State> States { get; } = new();

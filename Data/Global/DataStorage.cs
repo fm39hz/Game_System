@@ -5,13 +5,13 @@ namespace GameSystem.Data.Global;
 
 public class DataStorage
 {
-	public static DataStorage Instance { get; private set; } = new();
-	private Dictionary<string, Dictionary<string, dynamic>> Groups { get; set; } = new();
-
 	private DataStorage()
 	{
 		Instance ??= this;
 	}
+
+	public static DataStorage Instance { get; private set; } = new();
+	private Dictionary<string, Dictionary<string, dynamic>> Groups { get; set; } = new();
 
 	private static void AddGroup(string group)
 	{

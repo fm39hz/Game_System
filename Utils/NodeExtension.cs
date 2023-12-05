@@ -1,12 +1,12 @@
-using Godot;
 using System;
+using Godot;
 
 namespace GameSystem.Utils;
 
 public static class NodeExtension
 {
 	/// <summary>
-	/// Get the first child node of type T
+	///     Get the first child node of type T
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <returns>The first node of type T</returns>
@@ -24,7 +24,7 @@ public static class NodeExtension
 	}
 
 	/// <summary>
-	/// Get the first node of type T, at the same level with current node
+	///     Get the first node of type T, at the same level with current node
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <returns>The first Sibling of type T</returns>

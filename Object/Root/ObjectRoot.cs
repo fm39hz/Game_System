@@ -1,6 +1,6 @@
-using GameSystem.Data.Instance;
-using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Component.Animation;
+using GameSystem.Component.FiniteStateMachine;
+using GameSystem.Data.Instance;
 using GameSystem.Utils;
 using Godot;
 

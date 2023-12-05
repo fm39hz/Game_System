@@ -1,7 +1,7 @@
 using System;
+using GameSystem.Data.Instance;
 using GameSystem.Object.Root;
 using Godot;
-using GameSystem.Data.Instance;
 
 namespace GameSystem.Component.FiniteStateMachine;
 

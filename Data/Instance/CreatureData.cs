@@ -7,7 +7,7 @@ namespace GameSystem.Data.Instance;
 public class CreatureData : ObjectData
 {
 	/// <summary>
-	/// Condition allow Root to Move
+	///     Condition allow Root to Move
 	/// </summary>
 	public bool IsMoveable { get; set; } = true;
 

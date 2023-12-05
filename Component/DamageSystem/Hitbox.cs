@@ -1,5 +1,5 @@
-using GameSystem.Object.Root.Equipment;
 using GameSystem.Object.Root;
+using GameSystem.Object.Root.Equipment;
 using GameSystem.Utils;
 using Godot;
 

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using GameSystem.Data.Instance;
 using GameSystem.Object.Root;
 using Godot;
@@ -65,14 +66,32 @@ public abstract partial class State : Node
 		Condition = false;
 	}
 
-	public abstract void EnteredMachine();
+	public virtual void EnteredMachine()
+	{
+		#if DEBUG
+		GD.Print("Entered " + Name + " state");
+		#endif
+	}
 
-	protected abstract void UpdateCondition(double delta);
+	protected virtual void UpdateCondition(double delta)
+	{
+		#if DEBUG
+		GD.Print("Updated " + Name + " state");
+		#endif
+	}
 
 	protected virtual void RunningState(double delta)
 	{
+		#if DEBUG
+		GD.Print("Running " + Name + " state");
+		#endif
 		EmitSignal(SignalName.StateRunning);
 	}
 
-	public abstract void ExitMachine();
+	public virtual void ExitMachine()
+	{
+		#if DEBUG
+		GD.Print("Exited " + Name + " state");
+		#endif
+	}
 }

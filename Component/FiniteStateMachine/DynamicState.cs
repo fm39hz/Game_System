@@ -20,19 +20,4 @@ public partial class DynamicState : State
 			throw;
 		}
 	}
-
-	public override void EnteredMachine()
-	{
-		// throw new System.NotImplementedException();
-	}
-
-	protected override void UpdateCondition(double delta)
-	{
-		// throw new System.NotImplementedException();
-	}
-
-	public override void ExitMachine()
-	{
-		// throw new System.NotImplementedException();
-	}
 }

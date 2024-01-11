@@ -34,11 +34,9 @@ public static class NodeExtension
 		T _targetSibling = null;
 		for (var _i = 0; _i < _parent.GetChildCount(); _i++)
 		{
-			if (_parent.GetChildOrNull<T>(_i) != null)
-			{
-				_targetSibling = _parent.GetChild<T>(_i);
-				break;
-			}
+			if (_parent.GetChildOrNull<T>(_i) == null) continue;
+			_targetSibling = _parent.GetChild<T>(_i);
+			break;
 		}
 
 		if (_targetSibling == null)

@@ -17,11 +17,11 @@ public abstract partial class ObjectRoot : Node2D
 
 	public override void _Ready()
 	{
+		YSortEnabled = true;
 		StateMachine = this.GetFirstChild<StateMachine>();
 		SpriteSheet = PhysicsBody.GetFirstChild<SpriteSheet>();
 		InformationInit();
 		Information.Direction.IsFourDirection = IsFourDirection;
-		YSortEnabled = true;
 	}
 
 	protected virtual void InformationInit()
@@ -43,5 +43,7 @@ public abstract partial class ObjectRoot : Node2D
 	protected virtual void InformationUpdate()
 	{
 		Information.CurrentState = StateMachine.CurrentState;
+		if (PhysicsBody is not Node2D _node) return;
+		Information.Location = Position + _node.Position;
 	}
 }

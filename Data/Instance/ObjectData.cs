@@ -18,5 +18,5 @@ public class ObjectData
 	/// <summary>
 	///     Owner Location
 	/// </summary>
-	public Vector2 Location { get; set; } = new();
+	public Vector2 Location { get; set; }
 }

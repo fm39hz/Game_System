@@ -11,8 +11,8 @@ public class CreatureData : ObjectData
 	/// </summary>
 	public bool IsMoveable { get; set; } = true;
 
-	public List<Effect> EffetedEffects { get; set; } = new();
-	public Dictionary<int, CollisionPolygon2D> ShapePool { get; set; } = new();
+	public List<Effect> EffetedEffects { get; init; } = new();
+	public Dictionary<int, CollisionPolygon2D> ShapePool { get; init; } = new();
 	[Export] public float Health { get; set; }
 
 	public void TakeDamage(DamageData damage)

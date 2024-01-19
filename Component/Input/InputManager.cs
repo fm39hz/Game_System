@@ -7,16 +7,14 @@ using Godot;
 
 namespace GameSystem.Component.InputManagement;
 
-public partial class InputManager : Node
+public abstract partial class InputManager : Node
 {
-	[Signal]
-	public delegate void ActionKeyPressedEventHandler();
+	[Signal] public delegate void ActionKeyPressedEventHandler();
 
-	[Signal]
-	public delegate void MovementKeyPressedEventHandler(bool isPressed);
+	[Signal] public delegate void MovementKeyPressedEventHandler(bool isPressed);
 
-	private Player Compositor { get; set; }
-	private bool IsMoveable { get; set; }
+	protected Player Compositor { get; set; }
+	protected bool IsMoveable { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -67,23 +65,5 @@ public partial class InputManager : Node
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
 		}
-	}
-
-	public Vector2 TopDownVector(Vector2 inputVector)
-	{
-		if (IsMoveable)
-		{
-			inputVector = InputMapped.GetVector();
-		}
-		return inputVector;
-	}
-
-	public Vector2 SideScrollingVector(Vector2 inputVector)
-	{
-		if (IsMoveable)
-		{
-			inputVector.X = InputMapped.GetHorizontalAxis();
-		}
-		return inputVector;
 	}
 }

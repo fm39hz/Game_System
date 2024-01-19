@@ -1,5 +1,7 @@
 using GameSystem.Component.InputManagement;
+using GameSystem.Object.PhysicsBody;
 using GameSystem.Utils;
+using GameSystem.Utils.Factory;
 using Godot;
 
 namespace GameSystem.Object.Root.Concrete;
@@ -13,7 +15,7 @@ public partial class Player : CreatureRoot
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		InputHandler = new();
+		InputHandler = InputManagerFactory.CreateInputManager(((Creature)PhysicsBody).MotionMode);
 		AddChild(InputHandler);
 	}
 

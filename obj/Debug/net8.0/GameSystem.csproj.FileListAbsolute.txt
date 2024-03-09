@@ -1,0 +1,13 @@
+D:\My_game\Godot\Prototype\GameSystem\bin\Debug\net8.0\GameSystem.deps.json
+D:\My_game\Godot\Prototype\GameSystem\bin\Debug\net8.0\GameSystem.dll
+D:\My_game\Godot\Prototype\GameSystem\bin\Debug\net8.0\GameSystem.pdb
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.csproj.AssemblyReference.cache
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.GeneratedMSBuildEditorConfig.editorconfig
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.AssemblyInfoInputs.cache
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.AssemblyInfo.cs
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.csproj.CoreCompileInputs.cache
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.sourcelink.json
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.dll
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\refint\GameSystem.dll
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\GameSystem.pdb
+D:\My_game\Godot\Prototype\GameSystem\obj\Debug\net8.0\ref\GameSystem.dll

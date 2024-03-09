@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "CScDVbHkb6TWq+Ziu2U1bCsZqW8Dt8F9K4SziPeVS0BzVxSgRDWHUkl6vpQACzJC86DEId/pBCTpESBqpCWTpQ==",
+  "success": true,
+  "projectFilePath": "D:\\My_game\\Godot\\Prototype\\GameSystem\\GameSystem.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hitpo\\.nuget\\packages\\godot.sourcegenerators\\4.2.0\\godot.sourcegenerators.4.2.0.nupkg.sha512",
+    "C:\\Users\\hitpo\\.nuget\\packages\\godotsharp\\4.2.0\\godotsharp.4.2.0.nupkg.sha512",
+    "C:\\Users\\hitpo\\.nuget\\packages\\godotsharpeditor\\4.2.0\\godotsharpeditor.4.2.0.nupkg.sha512",
+    "C:\\Users\\hitpo\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,5 +1,4 @@
-﻿using System;
-using GameSystem.Component.InputManagement;
+﻿using GameSystem.Component.InputManagement;
 using Godot;
 
 namespace GameSystem.Utils.Factory;

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using GameSystem.Utils.Save;
 
 namespace GameSystem.Data.Global;

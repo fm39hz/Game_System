@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using GameSystem.Component.DamageSystem;
 using GameSystem.Object.PhysicsBody;
 using Godot;

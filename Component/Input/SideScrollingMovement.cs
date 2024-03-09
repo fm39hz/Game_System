@@ -1,6 +1,6 @@
-﻿using Godot;
+﻿using GameSystem.Abstraction;
 using GameSystem.Data.Constant;
-using GameSystem.Abstraction;
+using Godot;
 
 namespace GameSystem.Component.InputManagement;
 
@@ -17,6 +17,6 @@ public partial class SideScrollingMovement : InputManager, IDirectionalInput
 
 	public Vector2 GetJumpVector(Vector2 inputVector)
 	{
-		throw new System.NotImplementedException();
+		throw new NotImplementedException();
 	}
 }

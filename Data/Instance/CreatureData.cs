@@ -1,9 +1,10 @@
+using GameSystem.Abstraction.AbstractClass;
 using GameSystem.Component.DamageSystem;
 using Godot;
 
 namespace GameSystem.Data.Instance;
 
-public class CreatureData : ObjectData
+public class CreatureData : BaseObjectData
 {
 	/// <summary>
 	///     Condition allow Root to Move

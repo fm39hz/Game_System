@@ -1,3 +1,4 @@
+using GameSystem.Abstraction;
 using GameSystem.Component.Animation;
 using GameSystem.Component.FiniteStateMachine;
 using GameSystem.Data.Instance;
@@ -13,7 +14,7 @@ public abstract partial class ObjectRoot : Node2D
 	[Export] public bool IsFourDirection { get; set; } = true;
 	public StateMachine StateMachine { get; protected set; }
 	public SpriteSheet SpriteSheet { get; protected set; }
-	public ObjectData Information { get; protected set; } = new();
+	public IBaseObjectData Information { get; protected set; }
 
 	public override void _Ready()
 	{
@@ -26,7 +27,7 @@ public abstract partial class ObjectRoot : Node2D
 
 	protected virtual void InformationInit()
 	{
-		Information = new();
+		Information = new ObjectData();
 	}
 
 	public override void _PhysicsProcess(double delta)

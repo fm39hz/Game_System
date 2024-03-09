@@ -1,22 +1,7 @@
-using GameSystem.Component.FiniteStateMachine;
-using Godot;
+using GameSystem.Abstraction.AbstractClass;
 
 namespace GameSystem.Data.Instance;
 
-public class ObjectData
+public class ObjectData : BaseObjectData
 {
-	/// <summary>
-	///     Owner current state
-	/// </summary>
-	public State CurrentState { get; set; }
-
-	/// <summary>
-	///     Owner direction facing
-	/// </summary>
-	public DirectionData Direction { get; set; } = new();
-
-	/// <summary>
-	///     Owner Location
-	/// </summary>
-	public Vector2 Location { get; set; }
 }

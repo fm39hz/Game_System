@@ -1,5 +1,5 @@
+using GameSystem.Abstraction;
 using GameSystem.Data.Global;
-using GameSystem.Data.Instance;
 using GameSystem.Object.Root;
 using Godot;
 
@@ -41,7 +41,7 @@ public partial class SpriteSheet : Sprite2D
 	///     Run the SpriteSheetPlayer based on the data provided
 	/// </summary>
 	/// <param name="objectData">Owner Data</param>
-	public void Animate(ObjectData objectData)
+	public void Animate(IBaseObjectData objectData)
 	{
 		var _currentState = objectData.CurrentState;
 		var _frameData = _currentState.Frame;

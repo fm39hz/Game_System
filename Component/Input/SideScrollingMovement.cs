@@ -1,6 +1,6 @@
 ﻿using Godot;
 using GameSystem.Data.Constant;
-using GameSystem.VirtualInstance;
+using GameSystem.Abstraction;
 
 namespace GameSystem.Component.InputManagement;
 
@@ -13,5 +13,10 @@ public partial class SideScrollingMovement : InputManager, IDirectionalInput
 			inputVector.X = InputMapped.GetHorizontalAxis();
 		}
 		return inputVector;
+	}
+
+	public Vector2 GetJumpVector(Vector2 inputVector)
+	{
+		throw new System.NotImplementedException();
 	}
 }

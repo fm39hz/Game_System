@@ -12,7 +12,7 @@ public partial class Hitbox : Marker2D
 	[Export] public float ShapeHeight { get; set; }
 	[Export] public float ShapeSpacing { get; set; }
 	public Weapon Target { get; set; }
-	public HurtBox OwnerHurtbox { get; set; }
+	public HurtBox? OwnerHurtbox { get; set; }
 
 	public override void _EnterTree()
 	{

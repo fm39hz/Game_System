@@ -11,7 +11,7 @@ public class CreatureData : BaseObjectData
 	/// </summary>
 	public bool IsMoveable { get; set; } = true;
 
-	public List<Effect> EffetedEffects { get; init; } = new();
+	public List<Effect> EffetedEffects { get; init; } = [];
 	public Dictionary<int, CollisionPolygon2D> ShapePool { get; init; } = new();
 	[Export] public float Health { get; set; }
 

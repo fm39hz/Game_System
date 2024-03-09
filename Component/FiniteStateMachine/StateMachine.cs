@@ -9,7 +9,7 @@ public partial class StateMachine : Node
 
 	[Signal] public delegate void StateExitedEventHandler();
 
-	[Export] public State InitializedState { get; set; }
+	[Export] public State? InitializedState { get; set; }
 
 	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }

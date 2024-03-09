@@ -11,14 +11,13 @@ public static class NodeExtension
 	/// <returns>The first node of type T</returns>
 	public static T GetFirstChild<T>(this Node target) where T : Node
 	{
-		T _targetChild = null;
+		T? _targetChild = null;
 		for (var _i = 0; _i < target.GetChildCount(); _i++)
 		{
 			if (target.GetChildOrNull<T>(_i) == null) continue;
 			_targetChild = target.GetChild<T>(_i);
 			break;
 		}
-
 		return _targetChild!;
 	}
 

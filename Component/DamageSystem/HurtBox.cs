@@ -9,7 +9,7 @@ namespace GameSystem.Component.DamageSystem;
 [GlobalClass]
 public partial class HurtBox : Area2D
 {
-	private CreatureRoot Root { get; set; }
+	private CreatureRoot? Root { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -21,7 +21,7 @@ public partial class HurtBox : Area2D
 
 	public override void _ExitTree()
 	{
-		foreach (var _item in ((CreatureData)Root.Information).ShapePool)
+		foreach (var _item in ((CreatureData)Root!.Information!).ShapePool)
 		{
 			_item.Value.Dispose();
 		}
@@ -31,7 +31,7 @@ public partial class HurtBox : Area2D
 	{
 		GetTree().DebugCollisionsHint = GlobalStatus.Debugging();
 		this.RemoveAllChild();
-		foreach (var (_frame, _collisionShape) in ((CreatureData)Root.Information).ShapePool)
+		foreach (var (_frame, _collisionShape) in ((CreatureData)Root!.Information!).ShapePool)
 		{
 			if (_frame != frame) continue;
 			AddChild(_collisionShape);

@@ -6,7 +6,7 @@ namespace GameSystem.Object.PhysicsBody;
 [GlobalClass]
 public partial class Creature : CharacterBody2D
 {
-	public CreatureRoot Root { get; set; }
+	public CreatureRoot? Root { get; set; }
 
 	public override void _EnterTree()
 	{

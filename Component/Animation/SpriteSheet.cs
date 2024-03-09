@@ -20,7 +20,6 @@ public partial class SpriteSheet : Sprite2D
 	[Signal]
 	public delegate void PolygonChangedEventHandler(int frame);
 
-	public ObjectRoot Root { get; set; }
 
 	/// <summary>
 	///     The current frame, show by int
@@ -31,11 +30,6 @@ public partial class SpriteSheet : Sprite2D
 	///     Realframe counter
 	/// </summary>
 	private double FrameCounter { get; set; }
-
-	public override void _EnterTree()
-	{
-		Root = GetOwner<ObjectRoot>();
-	}
 
 	/// <summary>
 	///     Run the SpriteSheetPlayer based on the data provided

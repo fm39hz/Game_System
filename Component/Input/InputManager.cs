@@ -1,21 +1,19 @@
-using System;
-using Godot;
+using GameSystem.Data.Constant;
 using GameSystem.Data.Global;
 using GameSystem.Data.Instance;
-using GameSystem.Object.Compositor.Concrete;
+using GameSystem.Object.Root.Concrete;
+using Godot;
 
 namespace GameSystem.Component.InputManagement;
 
-public partial class InputManager : Node
+public abstract partial class InputManager : Node
 {
-	[Signal]
-	public delegate void MovementKeyPressedEventHandler(bool isPressed);
+	[Signal] public delegate void ActionKeyPressedEventHandler();
 
-	[Signal]
-	public delegate void ActionKeyPressedEventHandler();
+	[Signal] public delegate void MovementKeyPressedEventHandler(bool isPressed);
 
-	private Player Compositor { get; set; }
-	private bool IsMoveable { get; set; }
+	protected Player? Compositor { get; set; }
+	protected bool IsMoveable { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -50,39 +48,21 @@ public partial class InputManager : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Compositor.Information is CreatureData _information)
+		if (Compositor!.Information is CreatureData _information)
 		{
 			IsMoveable = _information.IsMoveable;
 		}
-		var _up = Input.IsActionPressed("ui_up");
-		var _down = Input.IsActionPressed("ui_down");
-		var _left = Input.IsActionPressed("ui_left");
-		var _right = Input.IsActionPressed("ui_right");
+		var _up = InputMapped.IsPressed(InputMappedEnum.Up);
+		var _down = InputMapped.IsPressed(InputMappedEnum.Down);
+		var _left = InputMapped.IsPressed(InputMappedEnum.Left);
+		var _right = InputMapped.IsPressed(InputMappedEnum.Right);
 		if (IsMoveable)
 		{
 			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
-		if (Input.IsActionJustPressed("ui_accept"))
+		if (InputMapped.IsJustPressed(InputMappedEnum.Action))
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
 		}
-	}
-
-	public Vector2 TopDownVector(Vector2 inputVector)
-	{
-		if (IsMoveable)
-		{
-			inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		}
-		return inputVector;
-	}
-
-	public Vector2 SideScrollingVector(Vector2 inputVector)
-	{
-		if (IsMoveable)
-		{
-			inputVector.X = Input.GetAxis("ui_left", "ui_right");
-		}
-		return inputVector;
 	}
 }

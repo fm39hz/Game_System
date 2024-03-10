@@ -1,33 +1,32 @@
-using System;
-using GameSystem.Utils;
 using GameSystem.Component.DamageSystem;
-using GameSystem.Object.Decorator;
 using GameSystem.Data.Instance;
+using GameSystem.Object.PhysicsBody;
+using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Object.Compositor;
+namespace GameSystem.Object.Root;
 
 [GlobalClass]
-public partial class CreatureCompositor : ObjectCompositor
+public partial class CreatureRoot : ObjectRoot
 {
 	[Export] public float Health { get; set; }
-	public HurtBox Hurtbox { get; set; }
+	public HurtBox? Hurtbox { get; set; }
 
 	public override void _Ready()
 	{
 		base._Ready();
-		if (Decorator is not Creature _target)
+		if (PhysicsBody is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}
 		Hurtbox = _target.GetFirstChild<HurtBox>();
-		SpriteSheet.PolygonChanged += Hurtbox.UpdateCollision;
+		SpriteSheet!.PolygonChanged += Hurtbox.UpdateCollision;
 	}
 
-	protected override void InformationInit()
+	protected override void InitInformation()
 	{
 		var _bitmap = new Bitmap();
-		_bitmap.CreateFromImageAlpha(SpriteSheet.Texture.GetImage());
+		_bitmap.CreateFromImageAlpha(SpriteSheet!.Texture.GetImage());
 		Information = new CreatureData
 		{
 			Health = Health,
@@ -35,16 +34,16 @@ public partial class CreatureCompositor : ObjectCompositor
 		};
 	}
 
-	protected override void InformationUpdate()
+	protected override void UpdateInformation()
 	{
-		base.InformationUpdate();
-		if (Decorator is not Creature _target)
+		base.UpdateInformation();
+		if (PhysicsBody is not Creature _target)
 		{
 			throw new InvalidCastException("Target must be Creature");
 		}
 		if (!_target.Velocity.IsEqualApprox(Vector2.Zero))
 		{
-			Information.Direction.SetDirection(_target.Velocity);
+			Information!.Direction!.SetDirection(_target.Velocity);
 		}
 	}
 }

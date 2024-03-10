@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameSystem.Object.Decorator;
+namespace GameSystem.Object.PhysicsBody;
 
 public partial class Item : Node2D
 {

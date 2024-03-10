@@ -1,16 +1,17 @@
-using GameSystem.Object.Compositor;
+using GameSystem.Object.Root;
 using Godot;
 
-namespace GameSystem.Object.Decorator;
+namespace GameSystem.Object.PhysicsBody;
 
 [GlobalClass]
 public partial class Creature : CharacterBody2D
 {
-	public CreatureCompositor Compositor { get; set; }
+	public CreatureRoot? Root { get; set; }
 
 	public override void _EnterTree()
 	{
-		Compositor = GetParent<CreatureCompositor>();
+		Root = GetParent<CreatureRoot>();
+		MotionMode = MotionModeEnum.Floating;
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -1,0 +1,8 @@
+﻿obj/
+bin/
+# Godot 4+ specific ignores
+.godot/
+*.csproj.old.*
+# Mono specific ignores
+.vs/
+*.old

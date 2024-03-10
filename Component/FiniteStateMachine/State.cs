@@ -1,7 +1,6 @@
-using System;
-using GameSystem.Object.Compositor;
-using Godot;
 using GameSystem.Data.Instance;
+using GameSystem.Object.Root;
+using Godot;
 
 namespace GameSystem.Component.FiniteStateMachine;
 
@@ -20,10 +19,10 @@ public abstract partial class State : Node
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	protected ObjectCompositor Compositor { get; set; }
-	public FrameData Frame { get; protected set; }
+	protected ObjectRoot? Root { get; set; }
+	public FrameData? Frame { get; protected set; }
 	public bool Condition { get; protected set; }
-	protected StateMachine StateMachine { get; set; }
+	protected StateMachine? StateMachine { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -36,7 +35,7 @@ public abstract partial class State : Node
 			}
 
 			StateMachine = GetParent<StateMachine>();
-			Compositor = GetOwner<ObjectCompositor>();
+			Root = GetOwner<ObjectRoot>();
 			Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 		}
 		catch (NullReferenceException)
@@ -49,7 +48,7 @@ public abstract partial class State : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateCondition(delta);
-		if (StateMachine.CurrentState == this)
+		if (StateMachine!.CurrentState == this)
 		{
 			RunningState(delta);
 		}
@@ -65,14 +64,32 @@ public abstract partial class State : Node
 		Condition = false;
 	}
 
-	public abstract void EnteredMachine();
+	public virtual void EnteredMachine()
+	{
+		#if DEBUG
+		GD.Print("Entered " + Name + " state");
+		#endif
+	}
 
-	protected abstract void UpdateCondition(double delta);
+	protected virtual void UpdateCondition(double delta)
+	{
+		#if DEBUG
+		GD.Print("Updated " + Name + " state");
+		#endif
+	}
 
 	protected virtual void RunningState(double delta)
 	{
+		#if DEBUG
+		GD.Print("Running " + Name + " state");
+		#endif
 		EmitSignal(SignalName.StateRunning);
 	}
 
-	public abstract void ExitMachine();
+	public virtual void ExitMachine()
+	{
+		#if DEBUG
+		GD.Print("Exited " + Name + " state");
+		#endif
+	}
 }

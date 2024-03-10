@@ -1,17 +1,10 @@
-using Godot;
 using GameSystem.Utils;
-using System;
+using Godot;
 
 namespace GameSystem.Data.Instance;
 
 public class DirectionData
 {
-	public int AsNumber { get; private set; }
-	public Vector2 AsVector { get; private set; }
-	public float AsRadiant { get; private set; }
-	public bool IsTransitioning { get; set; }
-	public bool IsFourDirection { get; set; }
-
 	public DirectionData()
 	{
 		SetDirection(0);
@@ -29,6 +22,12 @@ public class DirectionData
 		SetDirection(direction);
 	}
 
+	public int AsNumber { get; private set; }
+	public Vector2 AsVector { get; private set; }
+	public float AsRadiant { get; private set; }
+	public bool IsTransitioning { get; set; }
+	public bool IsFourDirection { get; set; }
+
 	public void SetDirection(int input)
 	{
 		AsNumber = input;
@@ -38,7 +37,7 @@ public class DirectionData
 
 	public void SetDirection(Vector2 input)
 	{
-		AsVector = input;
+		AsVector = input.Normalized();
 		AsNumber = Direction.ToDirection(input);
 		AsRadiant = Direction.ToRadian(AsNumber);
 	}

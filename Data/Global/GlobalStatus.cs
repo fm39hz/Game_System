@@ -4,16 +4,16 @@ namespace GameSystem.Data.Global;
 
 public class GlobalStatus
 {
-	private static GlobalStatus Instance { get; set; } = new();
-	private bool IsDebugging { get; set; }
-	private SceneTree MainLoop { get; set; }
-
 	private GlobalStatus()
 	{
-		Instance ??= this;
+		Instance = this;
 		IsDebugging = false;
-		MainLoop = Engine.GetMainLoop() as SceneTree;
+		MainLoop = (Engine.GetMainLoop() as SceneTree)!;
 	}
+
+	private static GlobalStatus Instance { get; set; } = new();
+	private bool IsDebugging { get; set; }
+	private SceneTree MainLoop { get; }
 
 	public static bool Debugging()
 	{

@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using Godot;
 
 namespace GameSystem.Utils;
 
 public static class PolygonCreator
 {
-	private const float AccurateValue = 0.42f;
+	private const float ACCURACY = 0.42f;
 
 	public static Dictionary<int, CollisionPolygon2D> GetArea(Sprite2D spriteSheet, Bitmap bitmap, string name)
 	{
@@ -20,7 +19,7 @@ public static class PolygonCreator
 				X = _frame * _width - _texture.GetWidth() * _state,
 				Y = _state * _height
 			};
-			var _polys = bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), AccurateValue);
+			var _polys = bitmap.OpaqueToPolygons(new Rect2I(_position, _width, _height), ACCURACY);
 			foreach (var _shape in _polys)
 			{
 				_shapePool.TryAdd(_frame, ConfigPolygon(_shape, spriteSheet.Position, name + "_" + _frame));

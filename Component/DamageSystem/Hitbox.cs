@@ -1,5 +1,5 @@
-using GameSystem.Object.Compositor.Equipment;
-using GameSystem.Object.Compositor;
+using GameSystem.Object.Root;
+using GameSystem.Object.Root.Equipment;
 using GameSystem.Utils;
 using Godot;
 
@@ -11,13 +11,13 @@ public partial class Hitbox : Marker2D
 	[Export] public float ShapeRadius { get; set; }
 	[Export] public float ShapeHeight { get; set; }
 	[Export] public float ShapeSpacing { get; set; }
-	public Weapon Target { get; set; }
-	public HurtBox OwnerHurtbox { get; set; }
+	public Weapon? Target { get; set; }
+	public HurtBox? OwnerHurtbox { get; set; }
 
 	public override void _EnterTree()
 	{
 		Target = GetParent<Weapon>();
-		OwnerHurtbox = Target.GetOwner<CreatureCompositor>().GetFirstChild<HurtBox>();
+		OwnerHurtbox = Target.GetOwner<CreatureRoot>().GetFirstChild<HurtBox>();
 		var _hitboxZone = new Area2D
 		{
 			CollisionLayer = 2,
@@ -40,7 +40,7 @@ public partial class Hitbox : Marker2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		// Rotation = Compositor.Information.Direction.AsRadiant;
+		// Rotation = Root.Information.Direction.AsRadiant;
 	}
 
 	public void HurtboxEnter(Area2D target)
@@ -49,19 +49,17 @@ public partial class Hitbox : Marker2D
 		{
 			if (_target != OwnerHurtbox)
 			{
-				Target.ApplyDamage += _target.TakeDamage;
+				Target!.ApplyDamage += _target.TakeDamage;
 			}
 		}
 	}
 
 	public void HurtBoxExit(Area2D target)
 	{
-		if (target is HurtBox _target)
+		if (target is not HurtBox _target) return;
+		if (_target != OwnerHurtbox)
 		{
-			if (_target != OwnerHurtbox)
-			{
-				Target.ApplyDamage -= _target.TakeDamage;
-			}
+			Target!.ApplyDamage -= _target.TakeDamage;
 		}
 	}
 }

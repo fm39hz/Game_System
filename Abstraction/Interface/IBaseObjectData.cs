@@ -9,12 +9,12 @@ public interface IBaseObjectData
 	/// <summary>
 	///     Owner current state
 	/// </summary>
-	public State CurrentState { get; set; }
+	public State? CurrentState { get; set; }
 
 	/// <summary>
 	///     Owner direction facing
 	/// </summary>
-	public DirectionData Direction { get; set; }
+	public DirectionData? Direction { get; set; }
 
 	/// <summary>
 	///     Owner Location

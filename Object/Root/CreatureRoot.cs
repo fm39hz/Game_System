@@ -43,7 +43,7 @@ public partial class CreatureRoot : ObjectRoot
 		}
 		if (!_target.Velocity.IsEqualApprox(Vector2.Zero))
 		{
-			Information!.Direction.SetDirection(_target.Velocity);
+			Information!.Direction!.SetDirection(_target.Velocity);
 		}
 	}
 }

@@ -6,9 +6,9 @@ public class GlobalStatus
 {
 	private GlobalStatus()
 	{
-		Instance ??= this;
+		Instance = this;
 		IsDebugging = false;
-		MainLoop = Engine.GetMainLoop() as SceneTree;
+		MainLoop = (Engine.GetMainLoop() as SceneTree)!;
 	}
 
 	private static GlobalStatus Instance { get; set; } = new();

@@ -41,6 +41,6 @@ public partial class HurtBox : Area2D
 
 	public void TakeDamage(DamageData damage)
 	{
-		((CreatureData)Root.Information).TakeDamage(damage);
+		((CreatureData)Root!.Information!).TakeDamage(damage);
 	}
 }

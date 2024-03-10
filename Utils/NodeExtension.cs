@@ -29,7 +29,7 @@ public static class NodeExtension
 	public static T GetFirstSibling<T>(this Node target) where T : Node
 	{
 		var _parent = target.GetParent();
-		T _targetSibling = null;
+		T? _targetSibling = null;
 		for (var _i = 0; _i < _parent.GetChildCount(); _i++)
 		{
 			if (_parent.GetChildOrNull<T>(_i) == null) continue;

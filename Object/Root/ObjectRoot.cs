@@ -22,7 +22,7 @@ public abstract partial class ObjectRoot : Node2D
 		StateMachine = this.GetFirstChild<StateMachine>();
 		SpriteSheet = PhysicsBody!.GetFirstChild<SpriteSheet>();
 		InitInformation();
-		Information!.Direction.IsFourDirection = IsFourDirection;
+		Information!.Direction!.IsFourDirection = IsFourDirection;
 	}
 
 	protected virtual void InitInformation()

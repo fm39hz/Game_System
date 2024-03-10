@@ -10,16 +10,16 @@ public class DataStorage
 	}
 
 	public static DataStorage Instance { get; private set; } = new();
-	private Dictionary<string, Dictionary<string, dynamic>> Groups { get; set; } = new();
+	private Dictionary<string, Dictionary<string, dynamic>>? Groups { get; set; } = new();
 
 	private static void AddGroup(string group)
 	{
-		Instance.Groups.TryAdd(group, new());
+		Instance.Groups!.TryAdd(group, new());
 	}
 
 	public static Dictionary<string, dynamic> GetGroup(string group)
 	{
-		if (!Instance.Groups.ContainsKey(group))
+		if (!Instance.Groups!.ContainsKey(group))
 		{
 			AddGroup(group);
 		}
@@ -28,7 +28,7 @@ public class DataStorage
 
 	public static void SetGroup(string group, Dictionary<string, dynamic> item)
 	{
-		if (!Instance.Groups.ContainsKey(group))
+		if (!Instance.Groups!.ContainsKey(group))
 		{
 			AddGroup(group);
 		}

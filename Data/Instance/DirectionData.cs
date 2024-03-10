@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameSystem.Data.Instance;
 
-public class DirectionData
+public sealed class DirectionData
 {
 	public DirectionData()
 	{

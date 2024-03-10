@@ -14,13 +14,13 @@ public enum InputMappedEnum
 public static class InputMapped
 {
 	private static readonly string[] KeyMap =
-	{
+	[
 		"ui_left",
 		"ui_right",
 		"ui_up",
 		"ui_down",
 		"ui_accept"
-	};
+	];
 
 	public static string GetMappingValue(InputMappedEnum input)
 	{

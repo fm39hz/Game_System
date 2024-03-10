@@ -1,6 +1,0 @@
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.csproj.AssemblyReference.cache
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.GeneratedMSBuildEditorConfig.editorconfig
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.AssemblyInfoInputs.cache
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.AssemblyInfo.cs
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.csproj.CoreCompileInputs.cache
-D:\My_game\Godot\Prototype\GameSystem\.godot\mono\temp\obj\Debug\GameSystem.sourcelink.json

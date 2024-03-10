@@ -1,6 +1,5 @@
 using GameSystem.Abstraction;
 using GameSystem.Data.Global;
-using GameSystem.Object.Root;
 using Godot;
 
 namespace GameSystem.Component.Animation;
@@ -40,8 +39,8 @@ public partial class SpriteSheet : Sprite2D
 		var _currentState = objectData.CurrentState;
 		var _frameData = _currentState!.Frame;
 		var _direction = objectData.Direction!.GetDirectionAsNumber(); //Get Owner Direction
-		var _firstFrame = _frameData.Length * _direction++;           //Set the First frame of animation
-		var _nextFrame = _frameData.Length * _direction;              //Get the end frame
+		var _firstFrame = _frameData!.Length * _direction++;           //Set the First frame of animation
+		var _nextFrame = _frameData.Length * _direction;               //Get the end frame
 
 		SetFrame(_firstFrame, _nextFrame, _frameData.Speed, _currentState.IsLoop);
 		if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)

@@ -11,7 +11,7 @@ public partial class Hitbox : Marker2D
 	[Export] public float ShapeRadius { get; set; }
 	[Export] public float ShapeHeight { get; set; }
 	[Export] public float ShapeSpacing { get; set; }
-	public Weapon Target { get; set; }
+	public Weapon? Target { get; set; }
 	public HurtBox? OwnerHurtbox { get; set; }
 
 	public override void _EnterTree()
@@ -49,19 +49,17 @@ public partial class Hitbox : Marker2D
 		{
 			if (_target != OwnerHurtbox)
 			{
-				Target.ApplyDamage += _target.TakeDamage;
+				Target!.ApplyDamage += _target.TakeDamage;
 			}
 		}
 	}
 
 	public void HurtBoxExit(Area2D target)
 	{
-		if (target is HurtBox _target)
+		if (target is not HurtBox _target) return;
+		if (_target != OwnerHurtbox)
 		{
-			if (_target != OwnerHurtbox)
-			{
-				Target.ApplyDamage -= _target.TakeDamage;
-			}
+			Target!.ApplyDamage -= _target.TakeDamage;
 		}
 	}
 }

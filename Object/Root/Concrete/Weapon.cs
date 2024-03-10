@@ -12,8 +12,8 @@ public partial class Weapon : ItemRoot
 	[Signal]
 	public delegate void ApplyDamageEventHandler(DamageData damage);
 
-	public Hitbox Hitbox { get; set; }
-	public DamageData Damage { get; set; }
+	public Hitbox? Hitbox { get; set; }
+	public DamageData? Damage { get; set; }
 
 	public override void _EnterTree()
 	{

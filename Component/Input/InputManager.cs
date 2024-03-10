@@ -12,7 +12,7 @@ public abstract partial class InputManager : Node
 
 	[Signal] public delegate void MovementKeyPressedEventHandler(bool isPressed);
 
-	protected Player Compositor { get; set; }
+	protected Player? Compositor { get; set; }
 	protected bool IsMoveable { get; set; }
 
 	public override void _EnterTree()
@@ -48,7 +48,7 @@ public abstract partial class InputManager : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Compositor.Information is CreatureData _information)
+		if (Compositor!.Information is CreatureData _information)
 		{
 			IsMoveable = _information.IsMoveable;
 		}

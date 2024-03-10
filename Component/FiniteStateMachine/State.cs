@@ -19,10 +19,10 @@ public abstract partial class State : Node
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	protected ObjectRoot Root { get; set; }
-	public FrameData Frame { get; protected set; }
+	protected ObjectRoot? Root { get; set; }
+	public FrameData? Frame { get; protected set; }
 	public bool Condition { get; protected set; }
-	protected StateMachine StateMachine { get; set; }
+	protected StateMachine? StateMachine { get; set; }
 
 	public override void _EnterTree()
 	{
@@ -48,7 +48,7 @@ public abstract partial class State : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateCondition(delta);
-		if (StateMachine.CurrentState == this)
+		if (StateMachine!.CurrentState == this)
 		{
 			RunningState(delta);
 		}

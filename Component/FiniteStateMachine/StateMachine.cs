@@ -11,8 +11,8 @@ public partial class StateMachine : Node
 
 	[Export] public State? InitializedState { get; set; }
 
-	public State CurrentState { get; protected set; }
-	public State PreviousState { get; protected set; }
+	public State? CurrentState { get; protected set; }
+	public State? PreviousState { get; protected set; }
 	public List<State> States { get; } = new();
 
 	public override void _Ready()
@@ -33,7 +33,7 @@ public partial class StateMachine : Node
 			StateExited += _selected.ExitMachine;
 		}
 		SelectState();
-		CurrentState = InitializedState! ?? States.First();
+		CurrentState = InitializedState!;
 		PreviousState = CurrentState;
 	}
 
@@ -49,7 +49,7 @@ public partial class StateMachine : Node
 
 	protected void CheckingCondition()
 	{
-		if (CurrentState.Condition) return;
+		if (CurrentState!.Condition) return;
 		PreviousState = CurrentState;
 		EmitSignal(SignalName.StateExited);
 		SelectState();

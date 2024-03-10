@@ -31,7 +31,7 @@ public static class InputMapped
 			InputMappedEnum.Up => KeyMap[2],
 			InputMappedEnum.Down => KeyMap[3],
 			InputMappedEnum.Action => KeyMap[4],
-			_ => "" 
+			_ => ""
 		};
 	}
 

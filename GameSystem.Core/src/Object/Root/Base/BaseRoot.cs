@@ -9,7 +9,7 @@ namespace GameSystem.Core.Object.Root.Base;
 public abstract partial class BaseRoot<TData, TBody> : Node2D, IObjectRoot
 	where TData : BaseObjectData where TBody : Node
 {
-	[Export] public required Node PhysicsBody { protected get; set; }
+	[Export] public required Node PhysicsBody { private get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;
 
 	protected TBody? Body

@@ -21,6 +21,6 @@ public abstract partial class BasePlayer : BaseCreatureRoot
 	public override void _Ready()
 	{
 		base._Ready();
-		View = PhysicsBody!.GetFirstChild<Camera2D>();
+		View = Body!.GetFirstChild<Camera2D>();
 	}
 }

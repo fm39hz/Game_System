@@ -13,7 +13,7 @@ public abstract partial class BaseObjectRoot<TData, TBody> : BaseRoot<TData, TBo
 	{
 		YSortEnabled = true;
 		StateMachine = this.GetFirstChild<BaseStateMachine>();
-		SpriteSheet = PhysicsBody!.GetFirstChild<BaseSpriteSheet>();
+		SpriteSheet = Body!.GetFirstChild<BaseSpriteSheet>();
 		InitInformation();
 	}
 

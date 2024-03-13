@@ -15,7 +15,7 @@ public abstract partial class BaseCreatureRoot : BaseObjectRoot<BaseCreatureData
 	public override void _Ready()
 	{
 		base._Ready();
-		Hurtbox = PhysicsBody.GetFirstChild<BaseHurtBox>();
+		Hurtbox = Body!.GetFirstChild<BaseHurtBox>();
 		SpriteSheet!.PolygonChanged += Hurtbox.UpdateCollision;
 	}
 

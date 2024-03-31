@@ -1,20 +1,19 @@
-using GameSystem.Core.Component.InputManagement.Base;
 using GameSystem.Core.Data.Concrete;
 using GameSystem.Core.Data.Constant;
-using GameSystem.Core.Object.Root.Concrete.Base;
 using GameSystem.Core.Utils.Singleton;
 using Godot;
+using Player = GameSystem.Core.Object.Root.Concrete.Player;
 
 namespace GameSystem.Core.Component.InputManagement.Concrete;
 
-public abstract partial class InputManager : BaseInputManager
+public abstract partial class InputManager : InputManagement.InputManager
 {
 	public override void _EnterTree()
 	{
 		IsMoveable = true;
 		try
 		{
-			Compositor = GetParentOrNull<BasePlayer>();
+			Compositor = GetParentOrNull<Player>();
 		}
 		catch (NullReferenceException)
 		{
@@ -52,11 +51,11 @@ public abstract partial class InputManager : BaseInputManager
 		var _right = InputMapped.IsPressed(InputMappedEnum.Right);
 		if (IsMoveable)
 		{
-			EmitSignal(BaseInputManager.SignalName.MovementKeyPressed, _up || _down || _left || _right);
+			EmitSignal(InputManagement.InputManager.SignalName.MovementKeyPressed, _up || _down || _left || _right);
 		}
 		if (InputMapped.IsJustPressed(InputMappedEnum.Action))
 		{
-			EmitSignal(BaseInputManager.SignalName.ActionKeyPressed);
+			EmitSignal(InputManagement.InputManager.SignalName.ActionKeyPressed);
 		}
 	}
 }

@@ -12,8 +12,4 @@
         <PackageReference Include="GodotSharp" Version="4.2.1"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="src\Object\PhysicsBody\Interface\"/>
-    </ItemGroup>
-
 </Project>

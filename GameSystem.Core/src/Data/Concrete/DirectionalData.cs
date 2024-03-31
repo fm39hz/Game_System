@@ -1,10 +1,9 @@
-using GameSystem.Core.Data.Base;
 using GameSystem.Core.Utils;
 using Godot;
 
 namespace GameSystem.Core.Data.Concrete;
 
-public sealed class DirectionalData : BaseDirectionalData
+public sealed class DirectionalData : Data.DirectionalData
 {
 	public DirectionalData()
 	{

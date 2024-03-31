@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSystem.Core", "GameSystem.Core\GameSystem.Core.csproj", "{3AC49172-18B4-4086-A5BC-489F563CDF2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSystem.Service", "GameSystem.Service\GameSystem.Service.csproj", "{6DA35EE4-050D-4AC4-B161-276AA7C744D6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameSystem.Utils", "GameSystem.Utils\GameSystem.Utils.csproj", "{50403812-1F30-4B34-AE57-587A2963577E}"
 EndProject
 Global
@@ -16,10 +14,6 @@ Global
 		{3AC49172-18B4-4086-A5BC-489F563CDF2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AC49172-18B4-4086-A5BC-489F563CDF2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AC49172-18B4-4086-A5BC-489F563CDF2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DA35EE4-050D-4AC4-B161-276AA7C744D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DA35EE4-050D-4AC4-B161-276AA7C744D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DA35EE4-050D-4AC4-B161-276AA7C744D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DA35EE4-050D-4AC4-B161-276AA7C744D6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{50403812-1F30-4B34-AE57-587A2963577E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{50403812-1F30-4B34-AE57-587A2963577E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50403812-1F30-4B34-AE57-587A2963577E}.Release|Any CPU.ActiveCfg = Release|Any CPU

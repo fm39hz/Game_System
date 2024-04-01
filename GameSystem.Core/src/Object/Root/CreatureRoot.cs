@@ -1,8 +1,8 @@
-﻿using Godot;
+﻿using GameSystem.Core.Component.DamageSystem;
 using GameSystem.Core.Data;
-using GameSystem.Core.Utils;
-using GameSystem.Core.Component.DamageSystem;
 using GameSystem.Core.Object.PhysicsBody;
+using GameSystem.Core.Utils;
+using Godot;
 
 namespace GameSystem.Core.Object.Root;
 
@@ -10,6 +10,7 @@ public abstract partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
 {
 	[Export] public float Health { get; set; }
 	public HurtBox? Hurtbox { get; set; }
+
 	public override void InitData()
 	{
 		base.InitData();

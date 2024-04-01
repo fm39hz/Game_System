@@ -66,5 +66,5 @@ public abstract partial class SpriteSheet : Sprite2D, ISpriteSheet
 			CurrentFrame++; //Increase frame when frame counter end
 		}
 		FrameCounter = 0; //Reset frame counter
-	}	
+	}
 }

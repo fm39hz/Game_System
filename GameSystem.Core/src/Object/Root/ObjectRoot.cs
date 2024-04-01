@@ -6,9 +6,14 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root;
 
-public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IContainerized
+public abstract class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IContainerized
 	where TData : ObjectData where TBody : Node2D
 {
+	public virtual void PlayAnimation()
+	{
+		SpriteSheet!.Animate(Information!);
+	}
+
 	public virtual void UpdateData(double delta)
 	{
 		Information!.CurrentState = StateMachine!.CurrentState;
@@ -20,11 +25,6 @@ public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAn
 		YSortEnabled = true;
 		StateMachine = this.GetFirstChild<StateMachine>();
 		SpriteSheet = Body!.GetFirstChild<SpriteSheet>();
-	}
-
-	public virtual void PlayAnimation()
-	{
-		SpriteSheet!.Animate(Information!);
 	}
 
 	public override void _Ready()

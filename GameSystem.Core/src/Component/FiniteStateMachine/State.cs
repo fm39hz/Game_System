@@ -1,4 +1,5 @@
 ﻿using GameSystem.Core.Data.Concrete;
+using GameSystem.Core.Object.Root;
 using Godot;
 using ObjectData = GameSystem.Core.Data.ObjectData;
 
@@ -18,7 +19,7 @@ public abstract partial class State : Node, IState
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
-	protected Object.Root.ObjectRoot<ObjectData, Node2D>? Root { get; set; }
+	protected ObjectRoot<ObjectData, Node2D>? Root { get; set; }
 	public FrameData? Frame { get; protected set; }
 	public bool Condition { get; set; }
 	protected StateMachine? StateMachine { get; set; }
@@ -48,7 +49,7 @@ public abstract partial class State : Node, IState
 		}
 
 		StateMachine = GetParent<StateMachine>();
-		Root = GetOwner<Object.Root.ObjectRoot<ObjectData, Node2D>>();
+		Root = GetOwner<ObjectRoot<ObjectData, Node2D>>();
 		Frame = new FrameData(NumberOfFrame, AnimationSpeed, TransitionFrame);
 	}
 

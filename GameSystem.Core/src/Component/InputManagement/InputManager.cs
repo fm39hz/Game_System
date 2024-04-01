@@ -15,36 +15,6 @@ public abstract partial class InputManager : Node, IDirectionalInput, IContainer
 	protected Player? Compositor { get; set; }
 	protected bool IsMoveable { get; set; }
 
-	public abstract Vector2 GetMovementVector(Vector2 inputVector);
-
-	public abstract Vector2 GetJumpVector(Vector2 inputVector);
-
-	public override void _EnterTree()
-	{
-		InitData();
-	}
-	public override void _PhysicsProcess(double delta)
-	{
-		UpdateData(delta);
-	}
-
-	public override void _UnhandledKeyInput(InputEvent @event)
-	{
-		if (@event is not InputEventKey _eventKey || !_eventKey.IsPressed())
-		{
-			return;
-		}
-		switch (_eventKey.Keycode)
-		{
-			case Key.Escape:
-				GetTree().Quit();
-				break;
-			case Key.F3:
-				GlobalStatus.ToggleDebugMode();
-				break;
-		}
-	}
-
 
 	public void InitData()
 	{
@@ -74,6 +44,37 @@ public abstract partial class InputManager : Node, IDirectionalInput, IContainer
 		if (InputMapped.IsJustPressed(InputMappedEnum.Action))
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
+		}
+	}
+
+	public abstract Vector2 GetMovementVector(Vector2 inputVector);
+
+	public abstract Vector2 GetJumpVector(Vector2 inputVector);
+
+	public override void _EnterTree()
+	{
+		InitData();
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		UpdateData(delta);
+	}
+
+	public override void _UnhandledKeyInput(InputEvent @event)
+	{
+		if (@event is not InputEventKey _eventKey || !_eventKey.IsPressed())
+		{
+			return;
+		}
+		switch (_eventKey.Keycode)
+		{
+			case Key.Escape:
+				GetTree().Quit();
+				break;
+			case Key.F3:
+				GlobalStatus.ToggleDebugMode();
+				break;
 		}
 	}
 }

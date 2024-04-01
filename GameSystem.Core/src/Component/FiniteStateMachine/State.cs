@@ -1,7 +1,6 @@
 ﻿using GameSystem.Core.Data.Concrete;
 using GameSystem.Core.Object.Root;
 using Godot;
-using ObjectData = GameSystem.Core.Data.ObjectData;
 
 namespace GameSystem.Core.Component.FiniteStateMachine;
 

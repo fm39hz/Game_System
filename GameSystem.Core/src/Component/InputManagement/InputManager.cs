@@ -6,7 +6,7 @@ using Godot;
 
 namespace GameSystem.Core.Component.InputManagement;
 
-public abstract partial class InputManager : Node, IDirectionalInput, IInitializeableObject
+public abstract partial class InputManager : Node, IDirectionalInput, IContainerized
 {
 	[Signal] public delegate void ActionKeyPressedEventHandler();
 

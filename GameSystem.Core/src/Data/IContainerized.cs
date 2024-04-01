@@ -1,6 +1,6 @@
 ﻿namespace GameSystem.Core.Data;
 
-public interface IInitializeableObject
+public interface IContainerized
 {
 	public void InitData();
 

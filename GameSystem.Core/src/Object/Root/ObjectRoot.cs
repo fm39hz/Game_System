@@ -15,7 +15,7 @@ public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IOb
 		Information.Location = Position + Body!.Position;
 	}
 
-	public virtual void InitializeData()
+	public virtual void InitData()
 	{
 		YSortEnabled = true;
 		StateMachine = this.GetFirstChild<StateMachine>();
@@ -29,7 +29,7 @@ public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IOb
 
 	public override void _Ready()
 	{
-		InitializeData();
+		InitData();
 	}
 
 	public override void _PhysicsProcess(double delta)

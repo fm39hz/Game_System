@@ -10,9 +10,9 @@ public abstract partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
 {
 	[Export] public float Health { get; set; }
 	public HurtBox? Hurtbox { get; set; }
-	public override void InitializeData()
+	public override void InitData()
 	{
-		base.InitializeData();
+		base.InitData();
 		Hurtbox = Body!.GetFirstChild<HurtBox>();
 		SpriteSheet!.PolygonChanged += Hurtbox.UpdateCollision;
 		var _bitmap = new Bitmap();

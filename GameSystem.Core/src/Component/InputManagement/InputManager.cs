@@ -21,7 +21,7 @@ public abstract partial class InputManager : Node, IDirectionalInput, IInitializ
 
 	public override void _EnterTree()
 	{
-		InitializeData();
+		InitData();
 	}
 	public override void _PhysicsProcess(double delta)
 	{
@@ -46,7 +46,7 @@ public abstract partial class InputManager : Node, IDirectionalInput, IInitializ
 	}
 
 
-	public void InitializeData()
+	public void InitData()
 	{
 		IsMoveable = true;
 		try

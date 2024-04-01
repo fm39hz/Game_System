@@ -15,7 +15,7 @@ public partial class ItemRoot : ObjectRoot<ItemData, Item>
 		throw new NotImplementedException();
 	}
 
-	public override void InitializeData()
+	public override void InitData()
 	{
 		throw new NotImplementedException();
 	}

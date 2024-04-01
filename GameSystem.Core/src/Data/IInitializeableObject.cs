@@ -2,7 +2,7 @@
 
 public interface IInitializeableObject
 {
-	public void InitializeData();
+	public void InitData();
 
 	public void UpdateData(double delta);
 }

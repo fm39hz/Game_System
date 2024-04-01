@@ -1,5 +1,4 @@
 ﻿using GameSystem.Core.Data;
-using GameSystem.Core.Data.Concrete;
 using GameSystem.Core.Data.Constant;
 using GameSystem.Core.Object.Root.Concrete;
 using GameSystem.Core.Utils.Singleton;

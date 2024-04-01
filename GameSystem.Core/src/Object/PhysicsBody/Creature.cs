@@ -1,7 +1,7 @@
 ﻿using Godot;
 using CreatureRoot = GameSystem.Core.Object.Root.CreatureRoot;
 
-namespace GameSystem.Core.Object.PhysicsBody.Base;
+namespace GameSystem.Core.Object.PhysicsBody;
 
 public abstract partial class Creature : CharacterBody2D
 {

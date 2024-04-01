@@ -1,8 +1,8 @@
 ﻿using GameSystem.Core.Component.DamageSystem;
-using GameSystem.Core.Object.PhysicsBody.Base;
+using GameSystem.Core.Data;
+using GameSystem.Core.Object.PhysicsBody;
 using GameSystem.Core.Utils;
 using Godot;
-using DamageData = GameSystem.Core.Data.DamageData;
 
 namespace GameSystem.Core.Object.Root.Concrete;
 

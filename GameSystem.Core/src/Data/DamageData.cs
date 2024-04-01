@@ -1,5 +1,5 @@
 ﻿using GameSystem.Core.Component.DamageSystem;
-using GameSystem.Core.Object.PhysicsBody.Base;
+using GameSystem.Core.Object.PhysicsBody;
 using Godot;
 
 namespace GameSystem.Core.Data;

@@ -1,5 +1,5 @@
 ﻿using GameSystem.Core.Data;
-using GameSystem.Core.Object.PhysicsBody.Base;
+using GameSystem.Core.Object.PhysicsBody;
 
 namespace GameSystem.Core.Object.Root;
 

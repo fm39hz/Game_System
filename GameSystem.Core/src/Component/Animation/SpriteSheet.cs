@@ -18,7 +18,6 @@ public abstract partial class SpriteSheet : Sprite2D, ISpriteSheet
 	[Signal]
 	public delegate void PolygonChangedEventHandler(int frame);
 
-
 	/// <summary>
 	///     The current frame, show by int
 	/// </summary>

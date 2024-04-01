@@ -7,7 +7,7 @@ public partial class TopdownMovement : InputManager
 {
 	public override Vector2 GetMovementVector(Vector2 inputVector)
 	{
-		if (IsMoveable)
+		if (TargetAudience!.Information!.IsMoveable)
 		{
 			inputVector = InputMapped.GetVector();
 		}

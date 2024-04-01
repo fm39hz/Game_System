@@ -7,7 +7,7 @@ public partial class SideScrollingMovement : InputManager
 {
 	public override Vector2 GetMovementVector(Vector2 inputVector)
 	{
-		if (IsMoveable)
+		if (TargetAudience!.Information!.IsMoveable)
 		{
 			inputVector.X = InputMapped.GetHorizontalAxis();
 		}

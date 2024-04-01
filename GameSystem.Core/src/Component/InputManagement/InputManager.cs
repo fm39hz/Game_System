@@ -12,34 +12,23 @@ public abstract partial class InputManager : Node, IDirectionalInput, IContainer
 
 	[Signal] public delegate void MovementKeyPressedEventHandler(bool isPressed);
 
-	protected Player? Compositor { get; set; }
-	protected bool IsMoveable { get; set; }
-
-
+	public required Player TargetAudience { get; set; }
 	public void InitData()
 	{
-		IsMoveable = true;
-		try
-		{
-			Compositor = GetParentOrNull<Player>();
-		}
-		catch (NullReferenceException)
-		{
-			GD.Print("InputManager phải được đặt trong PlayerCompositor");
-			throw;
-		}
+		TargetAudience = GetParent<Player>();
 	}
 
 	public void UpdateData(double delta)
 	{
-		var _up = InputMapped.IsPressed(InputMappedEnum.Up);
-		var _down = InputMapped.IsPressed(InputMappedEnum.Down);
-		var _left = InputMapped.IsPressed(InputMappedEnum.Left);
-		var _right = InputMapped.IsPressed(InputMappedEnum.Right);
-		IsMoveable = Compositor!.Information!.IsMoveable;
-		if (IsMoveable)
+		if (TargetAudience!.Information!.IsMoveable)
 		{
-			EmitSignal(SignalName.MovementKeyPressed, _up || _down || _left || _right);
+			EmitSignal(
+				SignalName.MovementKeyPressed, 
+				InputMapped.IsPressed(InputMappedEnum.Up) ||
+				InputMapped.IsPressed(InputMappedEnum.Down) ||
+				InputMapped.IsPressed(InputMappedEnum.Left) ||
+				InputMapped.IsPressed(InputMappedEnum.Right)
+				);
 		}
 		if (InputMapped.IsJustPressed(InputMappedEnum.Action))
 		{

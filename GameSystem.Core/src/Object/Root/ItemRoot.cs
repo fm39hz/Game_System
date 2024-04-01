@@ -10,12 +10,12 @@ public partial class ItemRoot : ObjectRoot<ItemData, Item>
 		throw new NotImplementedException();
 	}
 
-	public override void UpdateInformation()
+	public override void UpdateData(double delta)
 	{
 		throw new NotImplementedException();
 	}
 
-	public override void InitInformation()
+	public override void InitializeData()
 	{
 		throw new NotImplementedException();
 	}

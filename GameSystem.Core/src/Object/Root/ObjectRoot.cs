@@ -6,31 +6,35 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root;
 
-public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>
+public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IObjectRoot, IInitializeableObject
 	where TData : ObjectData where TBody : Node2D
 {
-	public override void _Ready()
+	public virtual void UpdateData(double delta)
+	{
+		Information!.CurrentState = StateMachine!.CurrentState;
+		Information.Location = Position + Body!.Position;
+	}
+
+	public virtual void InitializeData()
 	{
 		YSortEnabled = true;
 		StateMachine = this.GetFirstChild<StateMachine>();
 		SpriteSheet = Body!.GetFirstChild<SpriteSheet>();
-		InitInformation();
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-		UpdateInformation();
-		PlayAnimation();
-	}
-
-	public override void PlayAnimation()
+	public virtual void PlayAnimation()
 	{
 		SpriteSheet!.Animate(Information!);
 	}
 
-	public override void UpdateInformation()
+	public override void _Ready()
 	{
-		Information!.CurrentState = StateMachine!.CurrentState;
-		Information.Location = Position + Body!.Position;
+		InitializeData();
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		UpdateData(delta);
+		PlayAnimation();
 	}
 }

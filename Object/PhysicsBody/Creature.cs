@@ -1,5 +1,5 @@
-﻿using Godot;
-using CreatureRoot = GameSystem.Core.Object.Root.CreatureRoot;
+﻿using GameSystem.Core.Object.Root;
+using Godot;
 
 namespace GameSystem.Core.Object.PhysicsBody;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
 namespace GameSystem.Core.Component.FiniteStateMachine;
@@ -10,7 +11,7 @@ public partial class StateMachine : Node, IStateMachine
 
 	[Signal] public delegate void StateExitedEventHandler();
 
-	[Export] public State? InitializedState { get; set; }
+	[Export] public State InitializedState { get; set; }
 
 	public State CurrentState { get; protected set; }
 	public State PreviousState { get; protected set; }
@@ -27,9 +28,10 @@ public partial class StateMachine : Node, IStateMachine
 	{
 		foreach (var _selected in States)
 		{
-			StateEntered += _selected.EnteredMachine;
 			_selected.StateRunning += CheckingCondition;
-			StateExited += _selected.ExitMachine;
+			if (_selected is not IMachinaryState _machinaryState) continue;
+			StateEntered += _machinaryState.EnteredMachine;
+			StateExited += _machinaryState.ExitMachine;
 		}
 		SelectState();
 		CurrentState = InitializedState!;

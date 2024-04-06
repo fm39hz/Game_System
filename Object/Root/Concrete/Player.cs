@@ -5,7 +5,7 @@ using InputManager = GameSystem.Core.Component.InputManagement.InputManager;
 
 namespace GameSystem.Core.Object.Root.Concrete;
 
-public abstract partial class Player : CreatureRoot
+public partial class Player : CreatureRoot
 {
 	public InputManager InputHandler { get; set; }
 	public Camera2D View { get; set; }

@@ -4,7 +4,7 @@ using Godot;
 
 namespace GameSystem.Core.Component.FiniteStateMachine;
 
-public abstract partial class State : Node, IState
+public partial class State : Node, IState
 {
 	[Signal]
 	public delegate void StateRunningEventHandler();

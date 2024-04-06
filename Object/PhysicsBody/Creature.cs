@@ -4,7 +4,7 @@ using CreatureRoot = GameSystem.Core.Object.Root.CreatureRoot;
 namespace GameSystem.Core.Object.PhysicsBody;
 
 [GlobalClass]
-public abstract partial class Creature : CharacterBody2D
+public partial class Creature : CharacterBody2D
 {
 	public CreatureRoot Root { get; set; }
 

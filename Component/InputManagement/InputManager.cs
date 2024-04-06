@@ -1,4 +1,4 @@
-﻿using GameSystem.Core.Data;
+using GameSystem.Core.Data;
 using GameSystem.Core.Data.Constant;
 using GameSystem.Core.Object.Root.Concrete;
 using GameSystem.Core.Utils.Singleton;
@@ -6,7 +6,7 @@ using Godot;
 
 namespace GameSystem.Core.Component.InputManagement;
 
-public abstract partial class InputManager : Node, IDirectionalInput, IContainerized
+public partial class InputManager : Node, IDirectionalInput, IContainerized
 {
 	[Signal] public delegate void ActionKeyPressedEventHandler();
 
@@ -36,9 +36,9 @@ public abstract partial class InputManager : Node, IDirectionalInput, IContainer
 		}
 	}
 
-	public abstract Vector2 GetMovementVector(Vector2 inputVector);
+	public virtual Vector2 GetMovementVector(Vector2 inputVector) => new();
 
-	public abstract Vector2 GetJumpVector(Vector2 inputVector);
+	public virtual Vector2 GetJumpVector(Vector2 inputVector) => new();
 
 	public override void _EnterTree()
 	{

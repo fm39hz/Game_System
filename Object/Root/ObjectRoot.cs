@@ -6,7 +6,7 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root;
 
-public abstract partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IContainerized
+public partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IContainerized
 	where TData : ObjectData where TBody : Node2D
 {
 	public virtual void PlayAnimation()

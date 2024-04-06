@@ -5,7 +5,7 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root;
 
-public abstract partial class Root<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
+public partial class Root<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
 {
 	[Export] public required Node PhysicsBody { private get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;

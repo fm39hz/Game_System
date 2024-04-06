@@ -6,7 +6,7 @@ using Weapon = GameSystem.Core.Object.Root.Concrete.Weapon;
 namespace GameSystem.Core.Component.DamageSystem;
 
 [GlobalClass]
-public abstract partial class Hitbox : Marker2D, IHitbox
+public partial class Hitbox : Marker2D, IHitbox
 {
 	[Export] public float ShapeRadius { get; set; }
 	[Export] public float ShapeHeight { get; set; }

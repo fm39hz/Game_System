@@ -7,7 +7,7 @@ using Godot;
 namespace GameSystem.Core.Object.Root;
 
 [GlobalClass]
-public abstract partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
+public partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
 {
 	[Export] public float Health { get; set; }
 	public HurtBox Hurtbox { get; set; }

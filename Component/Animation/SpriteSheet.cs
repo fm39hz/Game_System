@@ -5,7 +5,7 @@ using Godot;
 namespace GameSystem.Core.Component.Animation;
 
 [GlobalClass]
-public abstract partial class SpriteSheet : Sprite2D, ISpriteSheet
+public partial class SpriteSheet : Sprite2D, ISpriteSheet
 {
 	/// <summary>
 	///     Signal trigger when the Sheet finished

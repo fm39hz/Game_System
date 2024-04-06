@@ -4,7 +4,7 @@ using Godot;
 
 namespace GameSystem.Core.Component.FiniteStateMachine;
 
-public abstract partial class StateMachine : Node, IStateMachine
+public partial class StateMachine : Node, IStateMachine
 {
 	[Signal] public delegate void StateEnteredEventHandler();
 

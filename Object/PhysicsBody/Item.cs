@@ -3,4 +3,4 @@
 namespace GameSystem.Core.Object.PhysicsBody;
 
 [GlobalClass]
-public abstract partial class Item : Node2D;
+public partial class Item : Node2D;

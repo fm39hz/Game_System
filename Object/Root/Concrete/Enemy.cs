@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root.Concrete;
 
-public abstract partial class Enemy : CreatureRoot
+public partial class Enemy : CreatureRoot
 {
 	public Player Target { get; private set; }
 	public Area2D TargetingZone { get; set; }

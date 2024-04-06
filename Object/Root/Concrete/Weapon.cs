@@ -6,7 +6,7 @@ using Godot;
 
 namespace GameSystem.Core.Object.Root.Concrete;
 
-public abstract partial class Weapon : ItemRoot
+public partial class Weapon : ItemRoot
 {
 	[Signal]
 	public delegate void ApplyDamageEventHandler(DamageData damage);

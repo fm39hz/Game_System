@@ -8,7 +8,7 @@ using DamageData = GameSystem.Core.Data.DamageData;
 namespace GameSystem.Core.Component.DamageSystem;
 
 [GlobalClass]
-public abstract partial class HurtBox : Area2D, IHurtBox
+public partial class HurtBox : Area2D, IHurtBox
 {
 	protected CreatureRoot Root { get; set; }
 

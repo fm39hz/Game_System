@@ -28,19 +28,9 @@ public partial class State : Node, IState
 		// TODO: implement this method
 	}
 
-	public virtual void EnteredMachine()
-	{
-		// TODO: implement this method
-	}
-
 	public virtual void RunningState(double delta)
 	{
 		EmitSignal(SignalName.StateRunning);
-	}
-
-	public virtual void ExitMachine()
-	{
-		// TODO: implement this method
 	}
 
 	public override void _EnterTree()

@@ -13,6 +13,7 @@ public partial class InputManager : Node, IDirectionalInput, IContainerized
 	[Signal] public delegate void MovementKeyPressedEventHandler(bool isPressed);
 
 	public Player TargetAudience { get; set; }
+
 	public void InitData()
 	{
 		TargetAudience = GetParent<Player>();
@@ -23,7 +24,7 @@ public partial class InputManager : Node, IDirectionalInput, IContainerized
 		if (TargetAudience!.Information!.IsMoveable)
 		{
 			EmitSignal(
-				SignalName.MovementKeyPressed, 
+				SignalName.MovementKeyPressed,
 				InputMapped.IsPressed(InputMappedEnum.Up) ||
 				InputMapped.IsPressed(InputMappedEnum.Down) ||
 				InputMapped.IsPressed(InputMappedEnum.Left) ||
@@ -36,9 +37,15 @@ public partial class InputManager : Node, IDirectionalInput, IContainerized
 		}
 	}
 
-	public virtual Vector2 GetMovementVector(Vector2 inputVector) => new();
+	public virtual Vector2 GetMovementVector(Vector2 inputVector)
+	{
+		return new Vector2();
+	}
 
-	public virtual Vector2 GetJumpVector(Vector2 inputVector) => new();
+	public virtual Vector2 GetJumpVector(Vector2 inputVector)
+	{
+		return new Vector2();
+	}
 
 	public override void _EnterTree()
 	{

@@ -41,7 +41,7 @@ public sealed class DirectionalData : Data.DirectionalData
 	{
 		if (AsNumber is < 0 or > 7)
 		{
-			throw new System.IndexOutOfRangeException("Direction must be in range 0-7");
+			throw new IndexOutOfRangeException("Direction must be in range 0-7");
 		}
 		if (IsFourDirection)
 		{

@@ -1,9 +1,8 @@
-﻿using GameSystem.Core.Utils;
+﻿using GameSystem.Core.Data;
+using GameSystem.Core.Object.Root;
+using GameSystem.Core.Utils;
 using GameSystem.Core.Utils.Singleton;
 using Godot;
-using CreatureData = GameSystem.Core.Data.Concrete.CreatureData;
-using CreatureRoot = GameSystem.Core.Object.Root.CreatureRoot;
-using DamageData = GameSystem.Core.Data.DamageData;
 
 namespace GameSystem.Core.Component.DamageSystem;
 
@@ -26,7 +25,7 @@ public partial class HurtBox : Area2D, IHurtBox
 
 	public virtual void TakeDamage(DamageData damage)
 	{
-		((CreatureData)Root!.Information!).TakeDamage(damage);
+		Root!.Information!.TakeDamage(damage);
 	}
 
 	public override void _EnterTree()
@@ -39,7 +38,7 @@ public partial class HurtBox : Area2D, IHurtBox
 
 	public override void _ExitTree()
 	{
-		foreach (var _item in ((CreatureData)Root!.Information!).ShapePool)
+		foreach (var _item in Root!.Information!.ShapePool)
 		{
 			_item.Value.Dispose();
 		}

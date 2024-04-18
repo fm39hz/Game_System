@@ -3,7 +3,7 @@ using Godot;
 
 namespace GameSystem.Core.Data;
 
-public abstract class ObjectData
+public abstract partial class ObjectData : Resource
 {
 	/// <summary>
 	///     Owner current state

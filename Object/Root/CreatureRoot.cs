@@ -19,7 +19,7 @@ public partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
 		SpriteSheet!.PolygonChanged += Hurtbox.UpdateCollision;
 		var _bitmap = new Bitmap();
 		_bitmap.CreateFromImageAlpha(SpriteSheet!.Texture.GetImage());
-		Information = new Data.Concrete.CreatureData
+		Information = new CreatureData
 		{
 			Health = Health,
 			ShapePool = PolygonCreator.GetArea(SpriteSheet, _bitmap, Name)

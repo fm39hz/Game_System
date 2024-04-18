@@ -4,7 +4,7 @@ using Godot;
 
 namespace GameSystem.Core.Data;
 
-public abstract class CreatureData : ObjectData, ICreatureData
+public partial class CreatureData : ObjectData, ICreatureData
 {
 	/// <summary>
 	///     Condition allow Root to Move
@@ -15,5 +15,13 @@ public abstract class CreatureData : ObjectData, ICreatureData
 	public Dictionary<int, CollisionPolygon2D> ShapePool { get; init; } = new();
 	[Export] public float Health { get; set; }
 
-	public abstract void TakeDamage(DamageData damage);
+	public void TakeDamage(DamageData damage)
+	{
+		Health -= damage.Value;
+		foreach (var _effect in damage.EffectsValue)
+		{
+			EffetedEffects.Add(_effect);
+			_effect.Apply();
+		}
+	}
 }

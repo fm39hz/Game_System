@@ -5,9 +5,9 @@ using Godot;
 
 namespace GameSystem.Core.Data;
 
-public partial class DamageData : Node
+public partial class DamageData : Resource
 {
 	[Export] public float Value { get; set; }
-	public List<Creature> Target { get; set; } = new();
-	public List<Effect> EffectsValue { get; set; } = new();
+	public List<Creature> Target { get; set; } = [];
+	public List<Effect> EffectsValue { get; set; } = [];
 }

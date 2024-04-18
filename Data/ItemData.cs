@@ -1,3 +1,3 @@
 ﻿namespace GameSystem.Core.Data;
 
-public class ItemData : ObjectData;
+public partial class ItemData : ObjectData;

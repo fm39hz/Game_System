@@ -1,10 +1,11 @@
+using System;
 using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
 namespace GameSystem.Core.Component.FiniteStateMachine;
 
 [GlobalClass]
-public partial class StaticState : State, IMachinaryState
+public partial class StaticState : State, IMachinary
 {
 	[ExportCategory("Motion")] [Export] public float MaxSpeed { get; protected set; }
 	[Export] public float Acceleration { get; protected set; }
@@ -12,11 +13,11 @@ public partial class StaticState : State, IMachinaryState
 
 	public void EnteredMachine()
 	{
-		//TODO: set up state machine
+		throw new NotImplementedException();
 	}
 
 	public void ExitMachine()
 	{
-		//TODO: clean up state machine
+		throw new NotImplementedException();
 	}
 }

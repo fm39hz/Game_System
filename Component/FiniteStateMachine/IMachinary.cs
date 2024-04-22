@@ -1,6 +1,6 @@
 namespace GameSystem.Component.FiniteStateMachine;
 
-public interface IMachinaryState
+public interface IMachinary
 {
 	public void EnteredMachine();
 

@@ -24,11 +24,6 @@ public partial class State : Node, IState
 	public bool Condition { get; set; }
 	protected StateMachine StateMachine { get; set; }
 
-	public virtual void UpdateCondition(double delta)
-	{
-		// TODO: implement this method
-	}
-
 	public virtual void RunningState(double delta)
 	{
 		EmitSignal(SignalName.StateRunning);
@@ -49,7 +44,6 @@ public partial class State : Node, IState
 
 	public override void _PhysicsProcess(double delta)
 	{
-		UpdateCondition(delta);
 		if (StateMachine.CurrentState == this)
 		{
 			RunningState(delta);

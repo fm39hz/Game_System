@@ -1,6 +1,6 @@
 namespace GameSystem.Component.FiniteStateMachine;
 
-public interface IControllableState
+public interface IControllable
 {
 	public void ResetCondition();
 

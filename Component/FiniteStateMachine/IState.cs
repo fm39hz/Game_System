@@ -2,7 +2,5 @@
 
 public interface IState
 {
-	public void UpdateCondition(double delta);
-
 	public void RunningState(double delta);
 }

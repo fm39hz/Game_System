@@ -6,7 +6,7 @@ using Prototype.GameSystem.Object;
 
 namespace GameSystem.Core.Component.InputManagement;
 
-public partial class InputManager : Node, IDirectionalInput, IDynamicContainer
+public abstract partial class InputManager : Node, IDynamicContainer
 {
 	[Signal] public delegate void ActionKeyPressedEventHandler();
 
@@ -21,7 +21,7 @@ public partial class InputManager : Node, IDirectionalInput, IDynamicContainer
 
 	public void UpdateData(double delta)
 	{
-		if (TargetAudience!.Information!.IsMoveable)
+		if (TargetAudience.Information.IsMoveable)
 		{
 			EmitSignal(
 				SignalName.MovementKeyPressed,
@@ -35,16 +35,6 @@ public partial class InputManager : Node, IDirectionalInput, IDynamicContainer
 		{
 			EmitSignal(SignalName.ActionKeyPressed);
 		}
-	}
-
-	public virtual Vector2 GetMovementVector(Vector2 inputVector)
-	{
-		return new Vector2();
-	}
-
-	public virtual Vector2 GetJumpVector(Vector2 inputVector)
-	{
-		return new Vector2();
 	}
 
 	public override void _EnterTree()

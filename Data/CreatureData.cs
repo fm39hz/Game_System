@@ -9,11 +9,11 @@ public partial class CreatureData : ObjectData, ICreatureData
 	/// <summary>
 	///     Condition allow Root to Move
 	/// </summary>
-	public bool IsMoveable { get; set; } = true;
+	[Export] public float Health { get; set; }
+	[Export] public bool IsMoveable { get; set; } = true;
 
 	public List<Effect> EffetedEffects { get; init; } = [];
-	public Dictionary<int, CollisionPolygon2D> ShapePool { get; init; } = new();
-	[Export] public float Health { get; set; }
+	public Dictionary<int, CollisionPolygon2D> ShapePool { get; set; } = new();
 
 	public void TakeDamage(DamageData damage)
 	{

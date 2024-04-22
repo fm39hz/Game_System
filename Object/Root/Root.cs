@@ -12,11 +12,11 @@ public partial class Root<TData, TBody> : Node2D where TData : ObjectData where 
 
 	public TBody Body
 	{
-		get { return PhysicsBody as TBody; }
+		get { return (TBody)PhysicsBody; }
 		set { PhysicsBody = value; }
 	}
 
-	public TData Information { get; protected set; }
+	public TData Information { get; set; }
 
 	public StateMachine StateMachine { get; set; }
 	public SpriteSheet SpriteSheet { get; set; }

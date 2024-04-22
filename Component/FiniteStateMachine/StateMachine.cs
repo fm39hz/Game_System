@@ -22,7 +22,7 @@ public partial class StateMachine : Node, IStateMachine
 		foreach (var _selected in States)
 		{
 			_selected.StateRunning += CheckingCondition;
-			if (_selected is not IMachinaryState _machinaryState) continue;
+			if (_selected is not IMachinary _machinaryState) continue;
 			StateEntered += _machinaryState.EnteredMachine;
 			StateExited += _machinaryState.ExitMachine;
 		}

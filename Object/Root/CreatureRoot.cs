@@ -13,9 +13,9 @@ public partial class CreatureRoot : ObjectRoot<CreatureData, Creature>
 	public override void UpdateData(double delta)
 	{
 		base.UpdateData(delta);
-		if (!Body!.Velocity.IsEqualApprox(Vector2.Zero))
+		if (!Body.Velocity.IsEqualApprox(Vector2.Zero))
 		{
-			Information!.Direction!.SetDirection(Body.Velocity);
+			Information.Direction.SetDirection(Body.Velocity);
 		}
 	}
 }

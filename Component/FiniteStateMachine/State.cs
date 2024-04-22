@@ -50,7 +50,7 @@ public partial class State : Node, IState
 	public override void _PhysicsProcess(double delta)
 	{
 		UpdateCondition(delta);
-		if (StateMachine!.CurrentState == this)
+		if (StateMachine.CurrentState == this)
 		{
 			RunningState(delta);
 		}

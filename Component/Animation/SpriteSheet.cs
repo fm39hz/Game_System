@@ -32,9 +32,9 @@ public partial class SpriteSheet : Sprite2D, ISpriteSheet
 	public void Animate(ObjectData objectData)
 	{
 		var _currentState = objectData.CurrentState;
-		var _frameData = _currentState!.Frame;
-		var _direction = objectData.Direction!.GetDirectionAsNumber(); //Get Owner Direction
-		var _firstFrame = _frameData!.Length * _direction++;           //Set the First frame of animation
+		var _frameData = _currentState.Frame;
+		var _direction = objectData.Direction.GetDirectionAsNumber(); //Get Owner Direction
+		var _firstFrame = _frameData.Length * _direction++;           //Set the First frame of animation
 		var _nextFrame = _frameData.Length * _direction;               //Get the end frame
 
 		SetFrame(_firstFrame, _nextFrame, _frameData.Speed, _currentState.IsLoop);

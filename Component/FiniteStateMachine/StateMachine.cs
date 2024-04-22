@@ -43,7 +43,7 @@ public partial class StateMachine : Node, IStateMachine
 
 	public virtual void CheckingCondition()
 	{
-		if (CurrentState!.Condition) return;
+		if (CurrentState.Condition) return;
 		PreviousState = CurrentState;
 		EmitSignal(SignalName.StateExited);
 		SelectState();

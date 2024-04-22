@@ -15,7 +15,7 @@ public partial class HurtBox : Area2D, IHurtBox
 	{
 		GetTree().DebugCollisionsHint = GlobalStatus.Debugging();
 		this.RemoveAllChild();
-		foreach (var _item in Root!.Information!.ShapePool)
+		foreach (var _item in Root.Information.ShapePool)
 		{
 			if (_item.Key != frame) continue;
 			AddChild(_item.Value);
@@ -25,7 +25,7 @@ public partial class HurtBox : Area2D, IHurtBox
 
 	public virtual void TakeDamage(DamageData damage)
 	{
-		Root!.Information!.TakeDamage(damage);
+		Root.Information.TakeDamage(damage);
 	}
 
 	public override void _EnterTree()
@@ -38,7 +38,7 @@ public partial class HurtBox : Area2D, IHurtBox
 
 	public override void _ExitTree()
 	{
-		foreach (var _item in Root!.Information!.ShapePool)
+		foreach (var _item in Root.Information.ShapePool)
 		{
 			_item.Value.Dispose();
 		}

@@ -13,13 +13,13 @@ public partial class Player : CreatureRoot
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		InputHandler = InputManagerFactory.CreateInputManager(Body!.MotionMode);
+		InputHandler = InputManagerFactory.CreateInputManager(Body.MotionMode);
 		AddChild(InputHandler);
 	}
 
 	public override void _Ready()
 	{
 		base._Ready();
-		View = Body!.GetFirstChild<Camera2D>();
+		View = Body.GetFirstChild<Camera2D>();
 	}
 }

@@ -16,7 +16,7 @@ public partial class Effect : Node, IEffect
 	public virtual void Apply()
 	{
 		EmitSignal(SignalName.EffectApplied);
-		Timer!.Start(CountDown);
+		Timer.Start(CountDown);
 	}
 
 	public virtual void Discard()
@@ -26,7 +26,7 @@ public partial class Effect : Node, IEffect
 
 	public override void _EnterTree()
 	{
-		Timer!.ProcessCallback = Timer.TimerProcessCallback.Idle;
+		Timer.ProcessCallback = Timer.TimerProcessCallback.Idle;
 		Timer.OneShot = true;
 		Timer.Timeout += Discard;
 	}

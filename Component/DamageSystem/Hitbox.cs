@@ -19,7 +19,7 @@ public partial class Hitbox : Marker2D, IHitbox
 		if (target is not HurtBox _target) return;
 		if (_target != OwnerHurtbox)
 		{
-			Target!.ApplyDamage += _target.TakeDamage;
+			Target.ApplyDamage += _target.TakeDamage;
 		}
 	}
 
@@ -28,7 +28,7 @@ public partial class Hitbox : Marker2D, IHitbox
 		if (target is not HurtBox _target) return;
 		if (_target != OwnerHurtbox)
 		{
-			Target!.ApplyDamage -= _target.TakeDamage;
+			Target.ApplyDamage -= _target.TakeDamage;
 		}
 	}
 

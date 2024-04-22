@@ -1,12 +1,12 @@
-using GameSystem.Core.Data;
 using GameSystem.Core.Data.Constant;
 using GameSystem.Core.Object.Root.Concrete;
 using GameSystem.Core.Utils.Singleton;
 using Godot;
+using Prototype.GameSystem.Object;
 
 namespace GameSystem.Core.Component.InputManagement;
 
-public partial class InputManager : Node, IDirectionalInput, IContainerized
+public partial class InputManager : Node, IDirectionalInput, IDynamicContainer
 {
 	[Signal] public delegate void ActionKeyPressedEventHandler();
 

@@ -7,21 +7,18 @@ namespace GameSystem.Core.Component.FiniteStateMachine;
 
 public partial class State : Node, IState
 {
-	[Signal]
-	public delegate void StateRunningEventHandler();
+	[Signal] public delegate void StateRunningEventHandler();
 
 	[Export] public int Id { get; set; }
 
 	[ExportCategory("SpriteSheetPlayer")]
-	[Export]
-	public int NumberOfFrame { get; protected set; }
-
+	[Export] public int NumberOfFrame { get; protected set; }
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }
 	protected ObjectRoot<ObjectData, Node2D> Root { get; set; }
 	public FrameData Frame { get; protected set; }
-	public bool Condition { get; set; }
+	public bool Condition { get; protected set; }
 	protected StateMachine StateMachine { get; set; }
 
 	public virtual void RunningState(double delta)

@@ -1,4 +1,5 @@
-﻿using GameSystem.Core.Component.Animation;
+﻿using System;
+using GameSystem.Core.Component.Animation;
 using GameSystem.Core.Component.FiniteStateMachine;
 using GameSystem.Core.Data;
 using Godot;
@@ -12,7 +13,14 @@ public partial class Root<TData, TBody> : Node2D where TData : ObjectData where 
 
 	public TBody Body
 	{
-		get { return (TBody)PhysicsBody; }
+		get
+		{
+			if (PhysicsBody is TBody _body)
+			{
+				return _body;
+			}
+			throw new InvalidCastException("Body must set with TBody type");
+		}
 		set { PhysicsBody = value; }
 	}
 

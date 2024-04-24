@@ -13,14 +13,7 @@ public partial class Root<TData, TBody> : Node2D where TData : ObjectData where 
 
 	public TBody Body
 	{
-		get
-		{
-			if (PhysicsBody is TBody _body)
-			{
-				return _body;
-			}
-			throw new InvalidCastException("Body must set with TBody type");
-		}
+		get { return PhysicsBody as TBody ?? throw new InvalidCastException("Body must set with TBody type"); }
 		set { PhysicsBody = value; }
 	}
 

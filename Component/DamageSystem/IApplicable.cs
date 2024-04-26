@@ -1,6 +1,6 @@
 ﻿namespace GameSystem.Core.Component.DamageSystem;
 
-public interface IEffect
+public interface IApplicable
 {
 	public void Apply();
 

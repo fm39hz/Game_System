@@ -4,7 +4,7 @@ using Timer = Godot.Timer;
 namespace GameSystem.Core.Component.DamageSystem;
 
 [GlobalClass]
-public partial class Effect : Node, IEffect
+public partial class Effect : Node, IApplicable
 {
 	[Signal] public delegate void EffectAppliedEventHandler();
 

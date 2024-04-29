@@ -6,7 +6,7 @@ using Godot;
 
 namespace GameSystem.Object.Root;
 
-public partial class Root<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
+public partial class BaseRoot<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
 {
 	[Export] public Node PhysicsBody { private get; set; }
 	[Export] public bool IsFourDirection { get; set; } = true;
@@ -15,10 +15,7 @@ public partial class Root<TData, TBody> : Node2D where TData : ObjectData where 
 	{
 		get
 		{
-			if (PhysicsBody is TBody _body)
-			{
-				return _body;
-			}
+			if (PhysicsBody is TBody _body) return _body;
 			throw new InvalidCastException("Body must set with TBody type");
 		}
 		set { PhysicsBody = value; }

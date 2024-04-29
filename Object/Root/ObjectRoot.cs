@@ -7,7 +7,7 @@ using Prototype.GameSystem.Object;
 
 namespace GameSystem.Object.Root;
 
-public partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IDynamicContainer
+public partial class ObjectRoot<TData, TBody> : BaseRoot<TData, TBody>, IAnimated, IDynamicContainer
 	where TData : ObjectData where TBody : Node2D
 {
 	public virtual void PlayAnimation()

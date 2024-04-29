@@ -1,9 +1,9 @@
-﻿using GameSystem.Core.Data;
-using GameSystem.Core.Data.Concrete;
-using GameSystem.Core.Object.Root;
+﻿using GameSystem.Data;
+using GameSystem.Data.Concrete;
+using GameSystem.Object.Root;
 using Godot;
 
-namespace GameSystem.Core.Component.FiniteStateMachine;
+namespace GameSystem.Component.FiniteStateMachine;
 
 public partial class State : Node, IState
 {
@@ -13,6 +13,7 @@ public partial class State : Node, IState
 
 	[ExportCategory("SpriteSheetPlayer")]
 	[Export] public int NumberOfFrame { get; protected set; }
+
 	[Export] public bool IsLoop { get; protected set; }
 	[Export] public float AnimationSpeed { get; protected set; }
 	[Export] public int TransitionFrame { get; set; }

@@ -1,9 +1,9 @@
 ﻿using System;
-using GameSystem.Core.Component.InputManagement;
-using GameSystem.Core.Component.InputManagement.Concrete;
+using GameSystem.Component.InputManagement;
+using GameSystem.Component.InputManagement.Concrete;
 using Godot;
 
-namespace GameSystem.Core.Utils.Factory;
+namespace GameSystem.Utils.Factory;
 
 public static class InputManagerFactory
 {

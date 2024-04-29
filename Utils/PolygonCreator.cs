@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 
-namespace GameSystem.Core.Utils;
+namespace GameSystem.Utils;
 
 public static class PolygonCreator
 {

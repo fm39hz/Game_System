@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using GameSystem.Core.Component.DamageSystem;
-using GameSystem.Core.Object.PhysicsBody;
+using GameSystem.Component.DamageSystem;
+using GameSystem.Object.PhysicsBody;
 using Godot;
 
-namespace GameSystem.Core.Data;
+namespace GameSystem.Data;
 
 public partial class DamageData : Resource
 {

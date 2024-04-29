@@ -1,10 +1,10 @@
-﻿using GameSystem.Core.Data;
-using GameSystem.Core.Object.Root;
-using GameSystem.Core.Utils;
-using GameSystem.Core.Utils.Singleton;
+﻿using GameSystem.Data;
+using GameSystem.Object.Root;
+using GameSystem.Utils;
+using GameSystem.Utils.Singleton;
 using Godot;
 
-namespace GameSystem.Core.Component.DamageSystem;
+namespace GameSystem.Component.DamageSystem;
 
 [GlobalClass]
 public partial class HurtBox : Area2D, IHurtBox

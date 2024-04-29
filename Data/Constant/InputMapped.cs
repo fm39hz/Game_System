@@ -1,7 +1,7 @@
 ﻿using System;
 using Godot;
 
-namespace GameSystem.Core.Data.Constant;
+namespace GameSystem.Data.Constant;
 
 public enum InputMappedEnum
 {

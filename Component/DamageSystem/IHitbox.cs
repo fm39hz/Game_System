@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameSystem.Core.Component.DamageSystem;
+namespace GameSystem.Component.DamageSystem;
 
 public interface IHitbox
 {

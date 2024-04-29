@@ -1,8 +1,8 @@
-﻿using GameSystem.Core.Data;
-using GameSystem.Core.Utils.Singleton;
+﻿using GameSystem.Data;
+using GameSystem.Utils.Singleton;
 using Godot;
 
-namespace GameSystem.Core.Component.Animation;
+namespace GameSystem.Component.Animation;
 
 [GlobalClass]
 public partial class SpriteSheet : Sprite2D, ISpriteSheet
@@ -35,7 +35,7 @@ public partial class SpriteSheet : Sprite2D, ISpriteSheet
 		var _frameData = _currentState.Frame;
 		var _direction = objectData.Direction.GetDirectionAsNumber(); //Get Owner Direction
 		var _firstFrame = _frameData.Length * _direction++;           //Set the First frame of animation
-		var _nextFrame = _frameData.Length * _direction;               //Get the end frame
+		var _nextFrame = _frameData.Length * _direction;              //Get the end frame
 
 		SetFrame(_firstFrame, _nextFrame, _frameData.Speed, _currentState.IsLoop);
 		if (CurrentFrame < _firstFrame || CurrentFrame >= _nextFrame)

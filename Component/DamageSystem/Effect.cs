@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Timer = Godot.Timer;
 
-namespace GameSystem.Core.Component.DamageSystem;
+namespace GameSystem.Component.DamageSystem;
 
 [GlobalClass]
 public partial class Effect : Node, IApplicable

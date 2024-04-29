@@ -1,7 +1,7 @@
-﻿using GameSystem.Core.Component.FiniteStateMachine;
+﻿using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
-namespace GameSystem.Core.Data;
+namespace GameSystem.Data;
 
 public abstract partial class ObjectData : Resource
 {

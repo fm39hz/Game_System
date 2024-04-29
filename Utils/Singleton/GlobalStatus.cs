@@ -1,6 +1,6 @@
 using Godot;
 
-namespace GameSystem.Core.Utils.Singleton;
+namespace GameSystem.Utils.Singleton;
 
 public class GlobalStatus
 {

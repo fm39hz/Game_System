@@ -1,10 +1,10 @@
 ﻿using System;
-using GameSystem.Core.Component.Animation;
-using GameSystem.Core.Component.FiniteStateMachine;
-using GameSystem.Core.Data;
+using GameSystem.Component.Animation;
+using GameSystem.Component.FiniteStateMachine;
+using GameSystem.Data;
 using Godot;
 
-namespace GameSystem.Core.Object.Root;
+namespace GameSystem.Object.Root;
 
 public partial class Root<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
 {

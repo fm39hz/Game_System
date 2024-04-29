@@ -1,11 +1,11 @@
-﻿using GameSystem.Core.Component.Animation;
-using GameSystem.Core.Component.FiniteStateMachine;
-using GameSystem.Core.Data;
-using GameSystem.Core.Utils;
+﻿using GameSystem.Component.Animation;
+using GameSystem.Component.FiniteStateMachine;
+using GameSystem.Data;
+using GameSystem.Utils;
 using Godot;
 using Prototype.GameSystem.Object;
 
-namespace GameSystem.Core.Object.Root;
+namespace GameSystem.Object.Root;
 
 public partial class ObjectRoot<TData, TBody> : Root<TData, TBody>, IAnimated, IDynamicContainer
 	where TData : ObjectData where TBody : Node2D

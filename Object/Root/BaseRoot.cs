@@ -1,0 +1,28 @@
+﻿using System;
+using GameSystem.Component.Animation;
+using GameSystem.Component.FiniteStateMachine;
+using GameSystem.Data;
+using Godot;
+
+namespace GameSystem.Object.Root;
+
+public partial class BaseRoot<TData, TBody> : Node2D where TData : ObjectData where TBody : Node
+{
+	[Export] public Node PhysicsBody { private get; set; }
+	[Export] public bool IsFourDirection { get; set; } = true;
+
+	public TBody Body
+	{
+		get
+		{
+			if (PhysicsBody is TBody _body) return _body;
+			throw new InvalidCastException("Body must set with TBody type");
+		}
+		set { PhysicsBody = value; }
+	}
+
+	public TData Information { get; set; }
+
+	public StateMachine StateMachine { get; set; }
+	public SpriteSheet SpriteSheet { get; set; }
+}

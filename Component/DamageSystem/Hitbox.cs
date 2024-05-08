@@ -1,9 +1,9 @@
-﻿using GameSystem.Core.Utils;
+﻿using GameSystem.Utils;
 using Godot;
-using CreatureRoot = GameSystem.Core.Object.Root.CreatureRoot;
-using Weapon = GameSystem.Core.Object.Root.Concrete.Weapon;
+using Concrete_Weapon = GameSystem.Object.Root.Concrete.Weapon;
+using Root_CreatureRoot = GameSystem.Object.Root.CreatureRoot;
 
-namespace GameSystem.Core.Component.DamageSystem;
+namespace GameSystem.Component.DamageSystem;
 
 [GlobalClass]
 public partial class Hitbox : Marker2D, IHitbox
@@ -11,7 +11,7 @@ public partial class Hitbox : Marker2D, IHitbox
 	[Export] public float ShapeRadius { get; set; }
 	[Export] public float ShapeHeight { get; set; }
 	[Export] public float ShapeSpacing { get; set; }
-	public Weapon Target { get; set; }
+	public Concrete_Weapon Target { get; set; }
 	public HurtBox OwnerHurtbox { get; set; }
 
 	public virtual void HurtboxEnter(Area2D target)
@@ -34,8 +34,8 @@ public partial class Hitbox : Marker2D, IHitbox
 
 	public override void _EnterTree()
 	{
-		Target = GetParent<Weapon>();
-		OwnerHurtbox = Target.GetOwner<CreatureRoot>().GetFirstChild<HurtBox>();
+		Target = GetParent<Concrete_Weapon>();
+		OwnerHurtbox = Target.GetOwner<Root_CreatureRoot>().GetFirstChild<HurtBox>();
 		var _hitboxZone = new Area2D
 		{
 			CollisionLayer = 2,

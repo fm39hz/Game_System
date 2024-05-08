@@ -1,7 +1,7 @@
-﻿using GameSystem.Core.Utils;
+﻿using GameSystem.Utils;
 using Godot;
 
-namespace GameSystem.Core.Object.Root.Concrete;
+namespace GameSystem.Object.Root.Concrete;
 
 public partial class Enemy : CreatureRoot
 {

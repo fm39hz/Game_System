@@ -1,4 +1,4 @@
-﻿namespace GameSystem.Core.Component.Animation;
+﻿namespace GameSystem.Component.Animation;
 
 public interface IAnimated
 {

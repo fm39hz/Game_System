@@ -1,4 +1,4 @@
-﻿namespace GameSystem.Core.Component.FiniteStateMachine;
+﻿namespace GameSystem.Component.FiniteStateMachine;
 
 public interface IStateMachine
 {

@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace GameSystem.Core.Data;
+namespace GameSystem.Data;
 
 public interface IDirectionalData
 {

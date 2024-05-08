@@ -1,13 +1,13 @@
-﻿using GameSystem.Core.Utils;
-using GameSystem.Core.Utils.Factory;
+﻿using GameSystem.Utils;
+using GameSystem.Utils.Factory;
 using Godot;
-using InputManager = GameSystem.Core.Component.InputManagement.InputManager;
+using InputManagement_InputManager = GameSystem.Component.InputManagement.InputManager;
 
-namespace GameSystem.Core.Object.Root.Concrete;
+namespace GameSystem.Object.Root.Concrete;
 
 public partial class Player : CreatureRoot
 {
-	public InputManager InputHandler { get; set; }
+	public InputManagement_InputManager InputHandler { get; set; }
 	public Camera2D View { get; set; }
 
 	public override void _EnterTree()

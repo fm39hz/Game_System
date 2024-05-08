@@ -1,9 +1,9 @@
-﻿using GameSystem.Core.Component.DamageSystem;
-using GameSystem.Core.Data;
-using GameSystem.Core.Object.PhysicsBody;
+﻿using GameSystem.Component.DamageSystem;
+using GameSystem.Data;
+using GameSystem.Object.PhysicsBody;
 using Godot;
 
-namespace GameSystem.Core.Object.Root;
+namespace GameSystem.Object.Root;
 
 [GlobalClass]
 public partial class CreatureRoot : ObjectRoot<CreatureData, Creature>

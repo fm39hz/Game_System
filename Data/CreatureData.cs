@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using GameSystem.Core.Component.DamageSystem;
+using GameSystem.Component.DamageSystem;
 using Godot;
 
-namespace GameSystem.Core.Data;
+namespace GameSystem.Data;
 
 public partial class CreatureData : ObjectData, ICreatureData
 {
@@ -10,6 +10,7 @@ public partial class CreatureData : ObjectData, ICreatureData
 	///     Condition allow Root to Move
 	/// </summary>
 	[Export] public float Health { get; set; }
+
 	[Export] public bool IsMoveable { get; set; } = true;
 
 	public List<Effect> EffetedEffects { get; init; } = [];

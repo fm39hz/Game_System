@@ -1,10 +1,10 @@
-using GameSystem.Core.Data.Constant;
-using GameSystem.Core.Object.Root.Concrete;
-using GameSystem.Core.Utils.Singleton;
+using GameSystem.Data.Constant;
+using GameSystem.Object.Root.Concrete;
+using GameSystem.Utils.Singleton;
 using Godot;
 using Prototype.GameSystem.Object;
 
-namespace GameSystem.Core.Component.InputManagement;
+namespace GameSystem.Component.InputManagement;
 
 public abstract partial class InputManager : Node, IDynamicContainer
 {

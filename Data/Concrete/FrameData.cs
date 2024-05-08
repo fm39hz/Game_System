@@ -1,4 +1,4 @@
-namespace GameSystem.Core.Data.Concrete;
+namespace GameSystem.Data.Concrete;
 
 /// <summary>
 ///     Chứa thông tin về frame của 1 đối tượng

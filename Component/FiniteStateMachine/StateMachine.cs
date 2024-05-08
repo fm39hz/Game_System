@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using GameSystem.Component.FiniteStateMachine;
 using Godot;
 
-namespace GameSystem.Core.Component.FiniteStateMachine;
+namespace GameSystem.Component.FiniteStateMachine;
 
 public partial class StateMachine : Node, IStateMachine
 {

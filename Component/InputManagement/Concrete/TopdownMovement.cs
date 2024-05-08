@@ -1,8 +1,8 @@
 ﻿using System;
-using GameSystem.Core.Data.Constant;
+using GameSystem.Data.Constant;
 using Godot;
 
-namespace GameSystem.Core.Component.InputManagement.Concrete;
+namespace GameSystem.Component.InputManagement.Concrete;
 
 public partial class TopdownMovement : InputManager, IDirectionalInput
 {

@@ -10,14 +10,12 @@ public partial class SpriteSheet : Sprite2D, ISpriteSheet
 	/// <summary>
 	///     Signal trigger when the Sheet finished
 	/// </summary>
-	[Signal]
-	public delegate void AnimationFinishedEventHandler();
+	[Signal] public delegate void AnimationFinishedEventHandler();
 
 	/// <summary>
 	///     Signal trigger when the collision must changed
 	/// </summary>
-	[Signal]
-	public delegate void PolygonChangedEventHandler(int frame);
+	[Signal] public delegate void PolygonChangedEventHandler(int frame);
 
 	/// <summary>
 	///     The current frame, show by int

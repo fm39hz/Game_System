@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>12</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>GameSystem.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Chickensoft.AutoInject" Version="2.1.0" />
+      <PackageReference Include="Chickensoft.GodotNodeInterfaces" Version="2.2.11-godot4.3.0-beta.3" />
+      <PackageReference Include="Godot.SourceGenerators" Version="4.3.0-beta.3" />
+      <PackageReference Include="GodotSharp" Version="4.3.0-beta.3" />
+    </ItemGroup>
+
+</Project>
